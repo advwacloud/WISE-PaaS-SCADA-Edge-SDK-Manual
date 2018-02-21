@@ -2,7 +2,7 @@
 
 ---
 
-## EdgeAgent 
+## EdgeAgent
 
 ### 1. 建構子
 
@@ -31,11 +31,14 @@ EdgeAgent edgeAgent = new EdgeAgent( options );
 
 * Connected: 當 EdgeAgent 成功連上 Broker 後觸發
 * Disconnected: 當 EdgeAgent 連線中斷後觸發
-* MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型: 
-  * DataOn    : 資料開始上傳
+* MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型:
+
+  * DataOn
+    : 資料開始上傳
   * DataOff: 資料停止上傳
-  *  WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
-  * WriteConfig    : Cloud 端改變 Config 同步到 Edge 端
+  * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
+  * WriteConfig  
+    : Cloud 端改變 Config 同步到 Edge 端
 
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
@@ -47,11 +50,13 @@ edgeAgent.MessageReceived += edgeAgent_MessageReceived;
 private void edgeAgent_Connected( object sender, EdgeAgentConnectedEventArgs e )
 {
     // Connected
+    Console.WriteLine( "Connect success !" );
 }
 
 private void edgeAgent_Disconnected( object sender, DisconnectedEventArgs e )
 {
-    // Disconnectd
+    // Disconnected
+    Console.WriteLine( "Disconnected..." );
 }
 
 private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs e )
@@ -80,15 +85,11 @@ private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs 
             break;
         case MessageType.ConfigAck:
             ConfigAckMessage cfgAckMsg = (ConfigAckMessage)e.Message;
-            MessageBox.Show( string.Format( "Upload Config Result: {0}", cfgAckMsg.D.Cfg.ToString() ) );
+            Console.WriteLine( "Upload Config Result: {0}", cfgAckMsg.D.Cfg.ToString() );
             break;
     }
 }
 ```
-
-
-
-
 
 
 
