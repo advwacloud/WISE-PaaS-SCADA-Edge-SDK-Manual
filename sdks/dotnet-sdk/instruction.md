@@ -4,9 +4,9 @@
 
 ## EdgeAgent
 
-### 1. 建構子
+### 1. Constructor\(EdgeAgentOptions options\)
 
-##### 初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
+初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
 
 ```
 EdgeAgentOptions options = new EdgeAgentOptions()
@@ -25,9 +25,9 @@ EdgeAgentOptions options = new EdgeAgentOptions()
 EdgeAgent edgeAgent = new EdgeAgent( options );
 ```
 
-### 2. 事件
+### 2. Event
 
-##### EdgeAgent 有三種事件供訂閱, 分別如下:
+EdgeAgent 有三種事件供訂閱，分別如下:
 
 * Connected: 當 EdgeAgent 成功連上 Broker 後觸發
 * Disconnected: 當 EdgeAgent 連線中斷後觸發
@@ -86,6 +86,30 @@ private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs 
     }
 }
 ```
+
+### 3. Connect\(\)
+
+與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
+
+```
+edgeAgent.Connect();
+```
+
+### 4. Disconnect\(\)
+
+與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
+
+```
+edgeAgent.Connect();
+```
+
+### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
+
+### 6. SendData\( EdgeData data \)
+
+### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
+
+
 
 
 
