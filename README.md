@@ -1,3 +1,6 @@
-# My Awesome Book
+# WISE-PaaS SCADA Edge SDK Manual
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+---
+
+**WISE-PaaS SCADA資料上傳標準流程** ![](/assets/擷取.PNG)
+
