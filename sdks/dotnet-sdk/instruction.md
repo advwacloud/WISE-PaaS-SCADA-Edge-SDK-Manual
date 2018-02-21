@@ -31,8 +31,7 @@ EdgeAgent edgeAgent = new EdgeAgent( options );
 
 * Connected: 當 EdgeAgent 成功連上 Broker 後觸發
 * Disconnected: 當 EdgeAgent 連線中斷後觸發
-* MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型:
-
+* MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型
   * DataOn: 資料開始上傳
   * DataOff: 資料停止上傳
   * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
