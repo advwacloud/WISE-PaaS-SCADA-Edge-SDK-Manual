@@ -7,7 +7,7 @@
 * Runtime
   * .Net Framework 4.5.2
 * Nuget Package
-  * WISEPaaS.SCADA.DotNet.SDK
+  * [WISEPaaS.SCADA.DotNet.SDK](https://www.nuget.org/packages/WISEPaaS.SCADA.DotNet.SDK)
 
 
 
