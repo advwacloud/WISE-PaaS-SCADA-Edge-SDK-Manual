@@ -252,6 +252,8 @@ bool result = edgeAgent.SendData( data ).Result;
 
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
 
+上傳Device Status \(狀態有改變再送即可\)。
+
 ```
 EdgeDeviceStatus deviceStatus = new EdgeDeviceStatus();
 for ( int i = 1; i <= 2; i++ )
