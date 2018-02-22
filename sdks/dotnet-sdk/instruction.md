@@ -105,11 +105,106 @@ edgeAgent.Connect();
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
 
+上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
+
+```
+EdgeConfig config = new EdgeConfig();
+```
+
+SCADA Config設定
+
+```
+config.Scada = new EdgeConfig.ScadaConfig()
+{
+    Id = "5095cf13-f005-4c81-b6c9-68cf038e2b87",
+    Name = "TEST_SCADA",
+    Description = "For Test"
+};
+```
+
+Device Config設定
+
+```
+EdgeConfig.DeviceConfig device = new EdgeConfig.DeviceConfig()
+{
+    Id = "Device1",
+    Name = "Device1",
+    Type = "Smart Device 1",
+    Description = "Device 1",
+};
+```
+
+Analog Tag Config設定
+
+```
+EdgeConfig.AnalogTagConfig analogTag = new EdgeConfig.AnalogTagConfig()
+{
+    Name = "Volt",
+    Description = "Volt",
+    ReadOnly = false,
+    ArraySize = 0,
+    AlarmStatus = false,
+    SpanHigh = 1000,
+    SpanLow = 0,
+    EngineerUnit = "V",
+    IntegerDisplayFormat = 4,
+    FractionDisplayFormat = 2,
+    HHPriority = 0,
+    HHAlarmLimit = 0,
+    HighPriority = 0,
+    HighAlarmLimit = 0,
+    LowPriority = 0,
+    LowAlarmLimit = 0,
+    LLPriority = 0,
+    LLAlarmLimit = 0
+};
+```
+
+Discrete Tag Config設定
+
+```
+EdgeConfig.DiscreteTagConfig discreteTag = new EdgeConfig.DiscreteTagConfig()
+{
+    Name = "DTag",
+    Description = "DTag " + j,
+    ReadOnly = false,
+    ArraySize = 0,
+    AlarmStatus = false,
+    State0 = "0",
+    State1 = "1",
+    State2 = "",
+    State3 = "",
+    State4 = "",
+    State5 = "",
+    State6 = "",
+    State7 = "",
+    State0AlarmPriority = 0,
+    State1AlarmPriority = 0,
+    State2AlarmPriority = 0,
+    State3AlarmPriority = 0,
+    State4AlarmPriority = 0,
+    State5AlarmPriority = 0,
+    State6AlarmPriority = 0,
+    State7AlarmPriority = 0
+};
+```
+
+Text Tag Config設定
+
+```
+EdgeConfig.TextTagConfig textTag = new EdgeConfig.TextTagConfig()
+{
+    Name = "Text",
+    Description = "Text",
+    ReadOnly = false,
+    ArraySize = 0,
+    AlarmStatus = false
+};
+```
+
 ### 6. SendData\( EdgeData data \)
 
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
-
-
 
 
 
