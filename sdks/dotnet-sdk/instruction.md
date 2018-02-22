@@ -1,3 +1,5 @@
+#  {#development-environement}
+
 # 使用說明 {#development-environement}
 
 ---
@@ -109,6 +111,10 @@ edgeAgent.Connect();
 
 ```
 EdgeConfig config = new EdgeConfig();
+// set scada condig
+// set device config
+// set tag config
+bool result = _edgeAgent.UploadConfig( ActionType.Create, config ).Result;
 ```
 
 SCADA Config設定
@@ -204,7 +210,62 @@ EdgeConfig.TextTagConfig textTag = new EdgeConfig.TextTagConfig()
 
 ### 6. SendData\( EdgeData data \)
 
+上傳設備的Tag Value。
+
+```
+Random random = new Random();
+EdgeData data = new EdgeData();
+for ( int i = 1; i <= 2; i++ )
+{
+    EdgeData.Device device = new EdgeData.Device()
+    {
+        Id = "Device" + i,
+        TagList = new List<EdgeData.Tag>()
+    };
+
+    for ( int j = 1; j <= 5; j++ )
+    {
+        EdgeData.Tag aTag = new EdgeData.Tag()
+        {
+            Name = "ATag" + j,
+            Value = random.NextDouble()
+        };
+        EdgeData.Tag dTag = new EdgeData.Tag()
+        {
+            Name = "DTag" + j,
+            Value = j % 2
+        };
+        EdgeData.Tag tTag = new EdgeData.Tag()
+        {
+            Name = "TTag" + j,
+            Value = "TEST " + j.ToString()
+        };
+        device.TagList.Add( aTag );
+        device.TagList.Add( dTag );
+        device.TagList.Add( tTag );
+    }
+    data.DeviceList.Add( device );
+}
+data.Timestamp = DateTime.UtcNow;
+bool result = edgeAgent.SendData( data ).Result;
+```
+
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
+
+```
+EdgeDeviceStatus deviceStatus = new EdgeDeviceStatus();
+for ( int i = 1; i <= 2; i++ )
+{
+    EdgeDeviceStatus.Device device = new EdgeDeviceStatus.Device()
+    {
+        Id = "Device" + i,
+        Status = Status.Online
+    };
+    deviceStatus.DeviceList.Add( device );
+}
+deviceStatus.Timestamp = DateTime.UtcNow;
+bool result = edgeAgent.SendDeviceStatus( deviceStatus ).Result;
+```
 
 
 
