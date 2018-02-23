@@ -11,3 +11,17 @@
 
 
 
+專案安裝Nuget Package流程:
+
+1. 選擇管理NuGet套件
+
+![](/assets/Nuget1.PNG)
+
+2. 於線上搜尋 WISEPaaS.SCADA.DotNet.SDK 並安裝
+
+![](/assets/nuget2.PNG)
+
+3. 安裝完畢確認是否有參考到 WISEPaaS.SCADA.DotNet.SDK，即可開始使用。
+
+![](/assets/nuget3.png)
+
