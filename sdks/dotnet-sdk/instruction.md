@@ -22,7 +22,8 @@ EdgeAgentOptions options = new EdgeAgentOptions()
     AutoReconnect = true,
     ReconnectInterval = 1000,
     ScadaId = "5095cf13-f005-4c81-b6c9-68cf038e2b87",    // getting from SCADA portal
-    Heartbeat = 60000   // default is 60 seconds
+    Heartbeat = 60000,   // default is 60 seconds,
+    DataRecover = true    // need to recover data or not when disconnected
 };
 EdgeAgent edgeAgent = new EdgeAgent( options );
 ```
