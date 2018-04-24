@@ -100,10 +100,10 @@ edgeAgent.Connect();
 
 ### 4. Disconnect\(\)
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
+與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Disonnected 事件。
 
 ```
-edgeAgent.Connect();
+edgeAgent.Disconnect();
 ```
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
