@@ -256,7 +256,7 @@ for ( int i = 1; i <= 2; i++ )
     }
     data.DeviceList.Add( device );
 }
-data.Timestamp = DateTime.UtcNow;
+data.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendData( data ).Result;
 ```
 
