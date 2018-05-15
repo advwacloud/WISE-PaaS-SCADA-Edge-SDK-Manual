@@ -275,7 +275,7 @@ for ( int i = 1; i <= 2; i++ )
     };
     deviceStatus.DeviceList.Add( device );
 }
-deviceStatus.Timestamp = DateTime.UtcNow;
+deviceStatus.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendDeviceStatus( deviceStatus ).Result;
 ```
 
