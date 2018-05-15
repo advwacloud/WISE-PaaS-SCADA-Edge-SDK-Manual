@@ -13,11 +13,20 @@
 ```
 EdgeAgentOptions options = new EdgeAgentOptions()
 {
-    HostName = "127.0.0.1",
-    Port = 1883,
-    Username = "admin",
-    Password = "admin",
-    ProtocolType = Protocol.TCP,
+    ConnectType = ConnectType.DCCS,    // Connection Type (DCCS, MQTT), Default is DCCS
+    DCCS = new DCCSOptions()    // If ConnectType is DCCS, must fill this options
+    {
+        CredentialKey = "1e0e5365c3af88ad3233336c23d43bav",    // Credential Key
+        APIUrl = "https://api-dccs.wise-paas.com/"            // DCCS API Url
+    },
+    MQTT = new MQTTOptions()    // If ConnectType is MQTT, must fill this options
+    {
+        HostName = "127.0.0.1",
+        Port = 1883,
+        Username = "admin",
+        Password = "admin",
+        ProtocolType = Protocol.TCP
+    },
     UseSecure = false,
     AutoReconnect = true,
     ReconnectInterval = 1000,
