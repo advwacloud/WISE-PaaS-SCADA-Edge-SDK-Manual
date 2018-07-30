@@ -260,6 +260,47 @@ data.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendData( data ).Result;
 ```
 
+若是測點是屬於Array tag，則測點的Value參數必須使用Dictionary&lt;string, T&gt;，T根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)。
+
+```
+// analog array tag
+Dictionary<string, double> dicVal = new Dictionary<string, double>();
+dicVal.Add( "0", 0.5 );    // tag index is 0, and it's value is 0.5
+dicVal.Add( "1", 1.42 );    // tag index is 1, and it's value is 1.42
+dicVal.Add( "2", 2.89 );    // tag index is 2, and it's value is 2.89
+EdgeData.Tag aTag = new EdgeData.Tag()
+{
+    Name = "ATag",
+    Value = dicVal
+};
+
+// discrete array tag
+Dictionary<string, int> dicVal = new Dictionary<string, int>();
+dicVal.Add( "0", 0 );    // tag index is 0, and it's value is 0
+dicVal.Add( "1", 1 );    // tag index is 1, and it's value is 1
+dicVal.Add( "2", 2 );    // tag index is 2, and it's value is 2
+EdgeData.Tag dTag = new EdgeData.Tag()
+{
+    Name = "DTag",
+    Value = dicVal
+};
+
+// text array tag
+Dictionary<string, string> dicVal = new Dictionary<string, string>();
+dicVal.Add( "0", "zero" );    // tag index is 0, and it's value is "zero"
+dicVal.Add( "1", "one" );    // tag index is 1, and it's value is "one"
+dicVal.Add( "2", "two" );    // tag index is 2, and it's value is "two"
+EdgeData.Tag tTag = new EdgeData.Tag()
+{
+    Name = "TTag",
+    Value = dicVal
+};
+```
+
+
+
+
+
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
 
 上傳Device Status \(狀態有改變再送即可\)。
