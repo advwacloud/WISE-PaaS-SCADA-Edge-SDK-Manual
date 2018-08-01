@@ -297,10 +297,6 @@ EdgeData.Tag tTag = new EdgeData.Tag()
 };
 ```
 
-
-
-
-
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
 
 上傳Device Status \(狀態有改變再送即可\)。
@@ -319,6 +315,12 @@ for ( int i = 1; i <= 2; i++ )
 deviceStatus.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendDeviceStatus( deviceStatus ).Result;
 ```
+
+### 8. 屬性
+
+| Property Name | Data Type | Description |
+| :--- | :--- | :--- |
+| IsConnected | boolean | 判斷連線狀態 \(read only\) |
 
 
 
