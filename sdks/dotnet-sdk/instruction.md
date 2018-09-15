@@ -31,6 +31,8 @@ EdgeAgentOptions options = new EdgeAgentOptions()
     AutoReconnect = true,
     ReconnectInterval = 1000,
     ScadaId = "5095cf13-f005-4c81-b6c9-68cf038e2b87",    // getting from SCADA portal
+    Type = EdgeType.Gateway,    // Choice your edge is Gateway or Device, Default is Gateway
+    DeviceId = "SmartDevice1",    // If type is Device, DeviceId must be filled
     Heartbeat = 60000,   // default is 60 seconds,
     DataRecover = true    // need to recover data or not when disconnected
 };
@@ -89,7 +91,7 @@ private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs 
             break;
         case MessageType.ConfigAck:
             ConfigAck cfgAckMsg = ( ConfigAck ) e.Message;
-            Console.WriteLine( string.Format( "Upload Config Result: {0}", cfgAckMsg.Result.ToString() ) );
+            Console.WriteLine( "Upload Config Result: {0}", cfgAckMsg.Result.ToString() );
             break;
     }
 }
