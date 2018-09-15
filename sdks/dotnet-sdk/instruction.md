@@ -44,10 +44,9 @@ EdgeAgent 有三種事件供訂閱，分別如下:
 * Connected: 當 EdgeAgent 成功連上 Broker 後觸發
 * Disconnected: 當 EdgeAgent 連線中斷後觸發
 * MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型
-  * DataOn: 資料開始上傳
-  * DataOff: 資料停止上傳
   * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
   * WriteConfig: Cloud 端改變 Config 同步到 Edge 端
+  * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
 ```
@@ -72,28 +71,25 @@ private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs 
     switch ( e.Type )
     {
         case MessageType.WriteValue:
-            WriteValueCommandMessage wvCmdMsg = (WriteValueCommandMessage)e.Message;
-            foreach ( var item in wvCmdMsg.D.Val )
+            WriteValueCommand wvcMsg = ( WriteValueCommand ) e.Message;
+            foreach ( var device in wvcMsg.DeviceList )
             {
-                Console.Write( "Tag: {0}, ", item.Key );
-                Console.WriteLine( "Value: {0}", item.Value );
+                Console.WriteLine( "DeviceId: {0}", device.Id );
+                foreach ( var tag in device.TagList )
+                {
+                    Console.WriteLine( "TagName: {0}, Value: {1}", tag.Name, tag.Value.ToString() );
+                }
             }
             break;
         case MessageType.WriteConfig:
-            break;
-        case MessageType.DataOn:
-            DataOnCommandMessage dataOnMsg = (DataOnCommandMessage)e.Message;
-            // ready to send tag value
-            EdgeData data = new EdgeData();
-            bool result = edgeAgent.SendData( data ).Result;
-            break;
-        case MessageType.DataOff:
-            DataOffCommandMessage dataOffMsg = (DataOffCommandMessage)e.Message;
-            timer1.Enabled = false;
+            break
+        case MessageType.TimeSync:
+            TimeSyncCommand tscMsg = ( TimeSyncCommand ) e.Message;
+            Console.WriteLine( "UTC Time: {0}", tscMsg.UTCTime.ToString() );
             break;
         case MessageType.ConfigAck:
-            ConfigAckMessage cfgAckMsg = (ConfigAckMessage)e.Message;
-            Console.WriteLine( "Upload Config Result: {0}", cfgAckMsg.D.Cfg.ToString() );
+            ConfigAck cfgAckMsg = ( ConfigAck ) e.Message;
+            Console.WriteLine( string.Format( "Upload Config Result: {0}", cfgAckMsg.Result.ToString() ) );
             break;
     }
 }
