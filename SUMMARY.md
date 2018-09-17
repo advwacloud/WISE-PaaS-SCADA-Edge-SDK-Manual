@@ -11,5 +11,5 @@
     * [開發環境](sdks/c-sdk/environement.md)
     * [使用說明](sdks/c-sdk/instruction.md)
     * [Sample Code](sdks/c-sdk/sample-code.md)
-    * [Release Note](sdks/dotnet-sdk/release-note.md)
+    * [Release Note](sdks/c-sdk/release-note.md)
 
