@@ -12,4 +12,8 @@
     * [使用說明](sdks/c-sdk/instruction.md)
     * [Sample Code](sdks/c-sdk/sample-code.md)
     * [Release Note](sdks/c-sdk/release-note.md)
-
+  * [Python SDK](sdks/python-sdk.md)
+    * [開發環境](sdks/python-sdk/environement.md)
+    * [使用說明](sdks/python-sdk/instruction.md)
+    * [Sample Code](sdks/python-sdk/sample-code.md)
+    * [Release Note](sdks/python-sdk/release-note.md)
