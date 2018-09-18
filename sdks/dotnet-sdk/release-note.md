@@ -2,6 +2,14 @@
 
 ---
 
+* \[UnRelease\] - 
+
+  * * Updated
+
+      *  EdgeData Property
+      * 每個Data Message若包含超過100 Tag, 則會被切割成多個Message傳送
+      * 重新定義Message Received中各種Message類型物件, 讓使用上更直覺
+
 * \[1.0.6\] - 2018-08-01
 
   * Added
