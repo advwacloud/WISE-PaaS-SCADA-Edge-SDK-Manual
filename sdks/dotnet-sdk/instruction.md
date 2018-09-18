@@ -225,34 +225,30 @@ Random random = new Random();
 EdgeData data = new EdgeData();
 for ( int i = 1; i <= 2; i++ )
 {
-    EdgeData.Device device = new EdgeData.Device()
-    {
-        Id = "Device" + i,
-        TagList = new List<EdgeData.Tag>()
-    };
-
     for ( int j = 1; j <= 5; j++ )
     {
         EdgeData.Tag aTag = new EdgeData.Tag()
         {
-            Name = "ATag" + j,
+            DeviceId = "Device" + i,
+            TagName = "ATag" + j,
             Value = random.NextDouble()
         };
         EdgeData.Tag dTag = new EdgeData.Tag()
         {
-            Name = "DTag" + j,
+            DeviceId = "Device" + i,
+            TagName = "DTag" + j,
             Value = j % 2
         };
         EdgeData.Tag tTag = new EdgeData.Tag()
         {
-            Name = "TTag" + j,
+            DeviceId = "Device" + i,
+            TagName = "TTag" + j,
             Value = "TEST " + j.ToString()
         };
-        device.TagList.Add( aTag );
-        device.TagList.Add( dTag );
-        device.TagList.Add( tTag );
+        data.TagList.Add( aTag );
+        data.TagList.Add( dTag );
+        data.TagList.Add( tTag );
     }
-    data.DeviceList.Add( device );
 }
 data.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendData( data ).Result;
@@ -268,7 +264,8 @@ dicVal.Add( "1", 1.42 );    // tag index is 1, and it's value is 1.42
 dicVal.Add( "2", 2.89 );    // tag index is 2, and it's value is 2.89
 EdgeData.Tag aTag = new EdgeData.Tag()
 {
-    Name = "ATag",
+    DeviceId = "Device1",
+    TagName = "ATag",
     Value = dicVal
 };
 
@@ -279,7 +276,8 @@ dicVal.Add( "1", 1 );    // tag index is 1, and it's value is 1
 dicVal.Add( "2", 2 );    // tag index is 2, and it's value is 2
 EdgeData.Tag dTag = new EdgeData.Tag()
 {
-    Name = "DTag",
+    DeviceId = "Device1",
+    TagName = "DTag",
     Value = dicVal
 };
 
@@ -290,7 +288,8 @@ dicVal.Add( "1", "one" );    // tag index is 1, and it's value is "one"
 dicVal.Add( "2", "two" );    // tag index is 2, and it's value is "two"
 EdgeData.Tag tTag = new EdgeData.Tag()
 {
-    Name = "TTag",
+    DeviceId = "Device1",
+    TagName = "TTag",
     Value = dicVal
 };
 ```
