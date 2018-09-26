@@ -130,7 +130,6 @@ SCADA Config設定
 ```
 config.Scada = new EdgeConfig.ScadaConfig()
 {
-    Id = "5095cf13-f005-4c81-b6c9-68cf038e2b87",
     Name = "TEST_SCADA",
     Description = "For Test"
 };
