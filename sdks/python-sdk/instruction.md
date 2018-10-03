@@ -28,7 +28,7 @@ options = EdgeAgentOptions(
   )
 )
 
-edgeAgent = EdgeAgent( options );
+edgeAgent = EdgeAgent( options = options );
 ```
 
 ### 2. Event
@@ -71,3 +71,183 @@ def edgeAgent_on_message(agent, messageReceivedEventArgs):
     # message format: Model.Edge.ConfigAck
     print("Upload Config Result: {0}}.format(str(message.result)))
 ```
+
+### 3. Connect\(\)
+與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
+
+```
+edgeAgent.connect();
+```
+
+### 4. Disconnect\(\)
+與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Disconnected 事件。
+
+```
+edgeAgent.disconnect();
+```
+
+### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
+上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
+
+```
+config = EdgeConfig()
+# set scada config
+# set device config
+# set tag config
+
+result = edgeAgent.uploadConfig(constants.ActionType['Create'], edgeConfig = config)
+```
+
+SCADA config setting
+
+```
+scadaConfig = ScadaConfig(
+  name = 'scadaName',
+  description = 'For Test',
+  primaryIP = None,
+  backupIP = None,
+  primaryPort = None,
+  backupPort = None,
+  scadaType = constant.EdgeType['Gateway'] # EdgeType (Gatewat, Device)
+)
+config.scada = scadaConfig
+```
+
+Device config setting
+
+```
+deviceConfig = DeviceConfig(
+  id = 'DeviceId',
+  name = 'DeviceName',
+  comPortNumber = None,
+  deviceType = 'Device Type',
+  description = 'Description',
+  ip = None,
+  port = None
+)
+config.scada.deviceList.append(deviceConfig)
+```
+
+Analog Tag config setting
+
+```
+analogTag = AnalogTagConfig(
+  name = 'AnalogTag',
+  description = 'AnalogTag',
+  readOnly = True,
+  arraySize = 0,
+  spanHigh = 10,
+  spanLow = 0,
+  engineerUnit = 'cm',
+  integerDisplayFormat = 2,
+  fractionDisplayFormat = 4
+)
+config.scada.deviceList[0].analogTagList.append(analogTag)
+```
+
+Discrete Tag config setting
+
+```
+discreteTag = DiscreteTagConfig(
+  name = 'DiscreteTag',
+  description = 'DiscreteTag',
+  readOnly = False,
+  arraySize = 2,
+  state0 = '1',
+  state1 = '0',
+  state2 = None,
+  state3 = None,
+  state4 = None,
+  state5 = None,
+  state6 = None,
+  state7 = None
+)
+config.scada.deviceList[0].discreteTagList.append(discreteTag)
+```
+
+Text Tag config setting
+
+```
+textTag = TextTagConfig(
+  name = 'TextTag',
+  description = 'TextTag',
+  readOnly = True,
+  arraySize = 0
+)
+config.scada.deviceList[0].textTagList.append(textTag)
+```
+
+### 6. SendData\( EdgeData data \)
+上傳設備的Tag Value。
+
+```
+edgeData = EdgeData()
+for i in range(1, 3):
+  for j in range(1, 5):
+    deviceId = 'Device' + str(i)
+    tagName = 'ATag' + str(j)
+    value = random.uniform(0, 100)
+    tag = EdgeTag(deviceId, tagName, value)
+    edgeData.tagList.append(tag)
+  for j in range(1, 5):
+    deviceId = 'Device' + str(i)
+    tagName = 'DTag' + str(j)
+    value = random.randint(0,99)
+    value = value % 2
+    tag = EdgeTag(deviceId, tagName, value)
+    edgeData.tagList.append(tag)
+  for j in range(1, 5):
+    deviceId = 'Device' + str(i)
+    tagName = 'TTag' + str(j)
+    value = random.uniform(0, 100)
+    value = 'TEST ' + str(value)
+    tag = EdgeTag(deviceId, tagName, value)
+    edgeData.tagList.append(tag)
+
+result = edgeAgent.sendData(data = edgeData)
+```
+
+若是測點是屬於Array tag，則測點的Value參數必須使用Dictionary&lt;string, T&gt;，T根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
+
+```
+# analog array tag
+dicVal = {
+  "0": 0.5,
+  "1": 1.42
+};
+tag = EdgeTag(deviceId = 'deviceId', tagName = 'ATag', value = dicVal)
+
+# discrete array tag
+dicVal = {
+  "0": 0,
+  "1": 1
+};
+tag = EdgeTag(deviceId = 'deviceId', tagName = 'DTag', value = dicVal)
+
+# text array tag
+dicVal = {
+  "0": 'zero',
+  "1": 'one'
+};
+tag = EdgeTag(deviceId = 'deviceId', tagName = 'TTag', value = dicVal)
+```
+
+### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
+上傳Device Status \(狀態有改變再送即可\)。
+
+```
+deviceStatus = EdgeDeviceStatus()
+for i in range(1, 3):
+  id = 'deviceId' + str(i)
+  status = EdgeDevice(id = id, status = constant.Status['Online'])
+  
+  deviceStatus.deviceList.append( status )
+
+result = edgeAgent.sendDeviceStatus( deviceStatus )
+```
+
+### 8. 屬性
+
+| Property Name | Data Type | Description |
+| :--- | :--- | :--- |
+| isConnected | boolean | 判斷連線狀態 \(read only\) |
