@@ -61,7 +61,7 @@ EdgeAgent 有三種事件供訂閱，分別如下:
 與 MQTT Broker 連線，連線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，連線成功後會觸發 Connected 事件。
 
 ```
-edgeAgent.Connect();
+Connect();
 ```
 
 ### 4. Disconnect\(\)
@@ -69,7 +69,7 @@ edgeAgent.Connect();
 與 MQTT Broker 連線，離線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，離線成功後會觸發 Disconnected 事件。
 
 ```
-edgeAgent.Disconnect();
+Disconnect();
 ```
 
 ### 5. UploadConfig\( ActionType action, TSCADA_CONFIG_STRUCT edgeConfig \)
