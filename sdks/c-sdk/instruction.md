@@ -54,6 +54,30 @@ EdgeAgent 有三種事件供訂閱，分別如下:
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
 ```
+void edgeAgent_Connected(){
+    printf("Connect success\n");
+    IsConnected = true;
+}
+
+void edgeAgent_Disconnected(){
+    printf("Disconnected\n");
+    IsConnected = false;
+}
+
+void edgeAgent_Recieve(char *cmd, char *val){
+
+    if(strcmp(cmd, WirteValueCommand) == 0){
+        printf("write value: %s\n", val);
+    }
+    else if(strcmp(cmd, WriteConfigCommand) == 0){
+        printf("write config: %s\n", val);
+    }
+}
+
+/*  Set Event */
+SetConnectEvent(edgeAgent_Connected);
+SetDisconnectEvent(edgeAgent_Disconnected);
+SetMessageReceived(edgeAgent_Recieve);
 ```
 
 ### 3. Connect\(\)
