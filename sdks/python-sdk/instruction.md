@@ -239,7 +239,7 @@ tag = EdgeTag(deviceId = 'deviceId', tagName = 'TTag', value = dicVal)
 deviceStatus = EdgeDeviceStatus()
 for i in range(1, 3):
   id = 'deviceId' + str(i)
-  status = EdgeDevice(id = id, status = constant.Status['Online'])
+  status = EdgeStatus(id = id, status = constant.Status['Online'])
   
   deviceStatus.deviceList.append( status )
 
