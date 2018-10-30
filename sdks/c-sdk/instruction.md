@@ -6,7 +6,57 @@
 
 ## EdgeAgent
 
-### 1. Constructor\(TOPTION_STRUCT option\)
+### 1. Load Library
+
+將 Dynamic Library 載入，並且引用 WISEPaas.h。在使用 API 時需遵從下列定義:
+* EDGE_AGENT_OPTION.h: 定義 Construct function 的 Structure
+* EDGE_CONFIG.h: 定義 UploadConfig 的 Structure
+* EDGE_DATA.h: 定義 SendData 的 Structure
+* EDGE_DEVICE_STATUS.h: 定義 SendDeviceStatus 的 Structure
+
+```
+/*  load library */
+
+#include "WISEPaaS.h"
+
+void (*SetConnectEvent)();
+void (*SetDisconnectEvent)();
+void (*SetMessageReceived)();
+void (*Constructor)(TOPTION_STRUCT);
+void (*Connect)();
+void (*Disconnect)();
+int (*UploadConfig)(ActionType, TSCADA_CONFIG_STRUCT);
+int (*SendData)(TEDGE_DATA_STRUCT);
+int (*SendDeviceStatus)(TEDGE_DEVICE_STATUS_STRUCT);
+
+char *error;
+
+void *handle;
+handle = dlopen ("./WISEPaaS.so.1.0.0", RTLD_LAZY);
+
+if (!handle) {
+    fputs (dlerror(), stderr);
+    exit(1);
+}
+
+SetConnectEvent = dlsym(handle, "SetConnectEvent");
+SetDisconnectEvent = dlsym(handle, "SetDisconnectEvent");
+SetMessageReceived = dlsym(handle, "SetMessageReceived");
+
+Constructor = dlsym(handle, "Constructor");
+Connect = dlsym(handle, "Connect");
+Disconnect = dlsym(handle, "Disconnect");
+UploadConfig = dlsym(handle, "UploadConfig");
+SendData = dlsym(handle, "SendData");
+SendDeviceStatus = dlsym(handle, "SendDeviceStatus");
+
+if ((error = dlerror()) != NULL)  {
+    fputs(error, stderr);
+    exit(1);
+}
+```
+
+### 2. Constructor\(TOPTION_STRUCT option\)
 
 引用 EDGE_AGENT_OPTION.h 內所定義的結構來初始化 EdgeAgent，根據傳入參數 option 建立 MQTT 連線客戶端以及 SCADA 相關設定。
 
@@ -41,7 +91,7 @@ switch (options.ConnectType)
 Constructor(options);
 ```
 
-### 2. Event
+### 3. Event
 
 EdgeAgent 有三種事件供訂閱，分別如下:
 
@@ -54,9 +104,33 @@ EdgeAgent 有三種事件供訂閱，分別如下:
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
 ```
+void edgeAgent_Connected(){
+    printf("Connect success\n");
+    IsConnected = true;
+}
+
+void edgeAgent_Disconnected(){
+    printf("Disconnected\n");
+    IsConnected = false;
+}
+
+void edgeAgent_Recieve(char *cmd, char *val){
+
+    if(strcmp(cmd, WirteValueCommand) == 0){
+        printf("write value: %s\n", val);
+    }
+    else if(strcmp(cmd, WriteConfigCommand) == 0){
+        printf("write config: %s\n", val);
+    }
+}
+
+/*  Set Event */
+SetConnectEvent(edgeAgent_Connected);
+SetDisconnectEvent(edgeAgent_Disconnected);
+SetMessageReceived(edgeAgent_Recieve);
 ```
 
-### 3. Connect\(\)
+### 4. Connect\(\)
 
 與 MQTT Broker 連線，連線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，連線成功後會觸發 Connected 事件。
 
@@ -64,7 +138,7 @@ EdgeAgent 有三種事件供訂閱，分別如下:
 Connect();
 ```
 
-### 4. Disconnect\(\)
+### 5. Disconnect\(\)
 
 與 MQTT Broker 連線，離線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，離線成功後會觸發 Disconnected 事件。
 
@@ -72,7 +146,7 @@ Connect();
 Disconnect();
 ```
 
-### 5. UploadConfig\( ActionType action, TSCADA_CONFIG_STRUCT edgeConfig \)
+### 6. UploadConfig\( ActionType action, TSCADA_CONFIG_STRUCT edgeConfig \)
 
 上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
 
@@ -82,7 +156,7 @@ ActionType action = Create; // Create, Update od Delete
 // set scada condig
 // set device config
 // set tag config
-bool result = Constructor(options);;
+bool result = UploadConfig(action, config);
 ```
 
 SCADA Config設定
@@ -205,7 +279,7 @@ bool result = SendData(data);
 
 ```
 
-### 7. SendDeviceStatus\( TEDGE_DEVICE_STATUS_STRUCT deviceStatus \)
+### 8. SendDeviceStatus\( TEDGE_DEVICE_STATUS_STRUCT deviceStatus \)
 
 上傳Device Status \(狀態有改變再送即可\)。
 
@@ -223,7 +297,7 @@ status.DeviceList = dev_list;
 bool result = SendDeviceStatus(status);
 ```
 
-### 8. 屬性
+### 9. 屬性
 
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
