@@ -40,7 +40,7 @@ EdgeAgent 有三種事件供訂閱，分別如下:
   * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
-```
+``` go
 edgeAgent.SetOnConnectHandler()
 edgeAgent.SetOnDisconnectHandler()
 edgeAgent.SetOnMessageReceiveHandler()
@@ -74,29 +74,29 @@ func onMessageReceiveHandler (args agent.MessageReceivedEventArgs) {
 ### 3. Connect\(\)
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 OnConnect 事件。
 
-```
+``` go
 edgeAgent.Connect();
 ```
 
 ### 4. Disconnect\(\)
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 OnDisconnect 事件。
 
-```
+``` go
 edgeAgent.Disconnect();
 ```
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
 上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
 
-```
+``` go
 config = agent.EdgeConfig()
 
-result = edgeAgent.UploadConfig(agent.Action['Create'], config)
+result = edgeAgent.UploadConfig(agent.Action["Create"], config)
 ```
 
 SCADA config setting
 
-```
+``` go
 scadaConfig = agent.NewScadaConfig("scadaName")
 scadaConfig.SetDescription("For Test")
 scadaConfig.SetPrimaryIP("127.0.0.1")
@@ -112,7 +112,7 @@ config.Scada = scadaConfig
 
 Device config setting
 
-```
+``` go
 deviceConfig = agent.NewDeviceConfig("deviceId")
 deviceConfig.SetName("DeviceName")
 deviceConfig.SetComPortNumber(0)
@@ -127,7 +127,7 @@ scadaConfig.DeviceList = append(scadaConfig.DeviceList, deviceConfig)
 
 Analog Tag config setting
 
-```
+``` go
 analogConfig = agent.NewAnaglogTagConfig("AnalogTag")
 analogConfig.SetDescription("AnalogTag")
 analogConfig.SetReadOnly(True)
@@ -144,7 +144,7 @@ deviceConfig.AnalogTagList = append(deviceConfig.AnalogTagList, analogConfig)
 
 Discrete Tag config setting
 
-```
+``` go
 discreteConfig = agent.NewDiscreteTagConfig("DiscreteTag")
 discreteConfig.SetDescription("DiscreteTag")
 discreteConfig.SetReadOnly(false)
@@ -165,7 +165,7 @@ deviceConfig.DiscreteTagList = append(deviceConfig.DiscreteTagList, discreteConf
 
 Text Tag config setting
 
-```
+``` go
 textConfig = agent.NewTextTagConfig("TextTag")
 textConfig.SetDescription("TextTag")
 textConfig.SetReadOnly(true)
