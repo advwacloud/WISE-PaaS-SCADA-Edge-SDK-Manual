@@ -3,7 +3,7 @@
 ---
 
 ## EdgeAgent
-### 1. Constructor\(EdgeAgentOptions options\)
+### 1. NewAgent\( options agent.EdgeAgentOptions options \)
 初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
 
 ```
@@ -41,9 +41,9 @@ EdgeAgent 有三種事件供訂閱，分別如下:
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
 ``` go
-edgeAgent.SetOnConnectHandler()
-edgeAgent.SetOnDisconnectHandler()
-edgeAgent.SetOnMessageReceiveHandler()
+edgeAgent.SetOnConnectHandler(onConnectHandler)
+edgeAgent.SetOnDisconnectHandler(onDisconnectHandler)
+edgeAgent.SetOnMessageReceiveHandler(onMessageReceiveHandler)
 
 func onConnectHandler (a agent.Agent) {
   fmt.Println("Connect success")
@@ -85,7 +85,7 @@ edgeAgent.Connect();
 edgeAgent.Disconnect();
 ```
 
-### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
+### 5. UploadConfig\( action agent.Action, config agent.EdgeConfig \)
 上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
 
 ``` go
@@ -175,77 +175,116 @@ textConfig.SetArraySize(0)
 deviceConfig.TextTagList = append(deviceConfig.TextTagList, textConfig)
 ```
 
-### 6. SendData\( EdgeData data \)
+### 6. SendData\( data agent.EdgeData \)
 上傳設備的Tag Value。
 
-```
-edgeData = EdgeData()
-for i in range(1, 3):
-  for j in range(1, 5):
-    deviceId = 'Device' + str(i)
-    tagName = 'ATag' + str(j)
-    value = random.uniform(0, 100)
-    tag = EdgeTag(deviceId, tagName, value)
-    edgeData.tagList.append(tag)
-  for j in range(1, 5):
-    deviceId = 'Device' + str(i)
-    tagName = 'DTag' + str(j)
-    value = random.randint(0,99)
+``` go
+edgeData := agent.EdgeData{
+  TimeStamp: time.Now(),
+}
+
+// deviceNum: 3
+// tagNum: 5
+for i := 1; i < 4; i++ {
+  for j := 1; j < 6; j++ {
+    deviceId := fmt.Sprintf("%s%d", "Device", i)
+    tagName := fmt.Sprintf("%s%d", "ATag" + j)
+    value := random.uniform(0, 100)
+    tag := agent.EdgeTag{
+      DeviceID: deviceId,
+      TagName: tagName,
+      Value: value,
+    }
+    edgeData.TagList = append(edgeData.TagList, tag)
+  }
+  for j := 1; j < 6; j++ {
+    deviceId := fmt.Sprintf("%s%d", "Device", i)
+    tagName := fmt.Sprintf("%s%d", "DTag" + j)
+    value := random.randint(0,99)
     value = value % 2
-    tag = EdgeTag(deviceId, tagName, value)
-    edgeData.tagList.append(tag)
-  for j in range(1, 5):
-    deviceId = 'Device' + str(i)
-    tagName = 'TTag' + str(j)
+    tag := agent.EdgeTag{
+      DeviceID: deviceId,
+      TagName: tagName,
+      Value: value,
+    }
+    edgeData.TagList = append(edgeData.TagList, tag)
+  }
+  for j := 1; j < 6; j++ {
+    deviceId := fmt.Sprintf("%s%d", "Device", i)
+    tagName := fmt.Sprintf("%s%d", "TTag" + j)
     value = random.uniform(0, 100)
-    value = 'TEST ' + str(value)
+    value = "TEST " + str(value)
     tag = EdgeTag(deviceId, tagName, value)
-    edgeData.tagList.append(tag)
+    tag := agent.EdgeTag{
+      DeviceID: deviceId,
+      TagName: tagName,
+      Value: value,
+    }
+    edgeData.TagList = append(edgeData.TagList, tag)
+  }
+}
 
-result = edgeAgent.sendData(data = edgeData)
+result = edgeAgent.SendData(edgeData)
 ```
 
-若是測點是屬於Array tag，則測點的Value參數必須使用Dictionary&lt;string, T&gt;，T根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
+若是測點是屬於Array tag，則測點的Value參數必須使用`Map[string]interface{}`, interface{}根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
 
-```
+``` go
 # analog array tag
-dicVal = {
+dicVal := map[string]int {
   "0": 0.5,
-  "1": 1.42
-};
-tag = EdgeTag(deviceId = 'deviceId', tagName = 'ATag', value = dicVal)
+  "1": 1.42,
+}
+tag := agent.EdgeTag{
+  DeviceID: "deviceId", 
+  TagName: "ATag",
+  Value: dicVal
+}
 
 # discrete array tag
-dicVal = {
+dicVal = map[string]int {
   "0": 0,
-  "1": 1
-};
-tag = EdgeTag(deviceId = 'deviceId', tagName = 'DTag', value = dicVal)
+  "1": 1,
+}
+tag = agent.EdgeTag{
+  DeviceID: "deviceId",
+  TagName: "DTag",
+  Value: dicVal.
+}
 
 # text array tag
-dicVal = {
-  "0": 'zero',
-  "1": 'one'
-};
-tag = EdgeTag(deviceId = 'deviceId', tagName = 'TTag', value = dicVal)
+dicVal = map[string]int {
+  "0": "zero",
+  "1": "one"
+}
+tag = agent.EdgeTag{
+  DeviceID: "deviceId",
+  TagName: "TTag",
+  Value: dicVal
+}
 ```
 
-### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
+### 7. SendDeviceStatus\( status agent.EdgeDeviceStatus \)
 上傳Device Status \(狀態有改變再送即可\)。
 
-```
-deviceStatus = EdgeDeviceStatus()
-for i in range(1, 3):
-  id = 'deviceId' + str(i)
-  status = EdgeStatus(id = id, status = constant.Status['Online'])
-  
-  deviceStatus.deviceList.append( status )
+``` go
+status := agent.EdgeDeviceStatus{
+  TimeStamp: time.Now(),
+}
 
-result = edgeAgent.sendDeviceStatus( deviceStatus )
+// deviceNum: 3
+for i := 1; i < 4; i++ {
+  s := {
+    ID: fmt.Sprintf("%s%d", "Device", i),
+    Status: agent.Status["Online"], // Online, Offline
+  }
+  status.DeviceList = append(status.DeviceList, s)
+
+result = edgeAgent.SendDeviceStatus( status )
 ```
 
 ### 8. 屬性
 
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
-| isConnected | boolean | 判斷連線狀態 \(read only\) |
+| IsConnected | boolean | 判斷連線狀態 \(read only\) |
