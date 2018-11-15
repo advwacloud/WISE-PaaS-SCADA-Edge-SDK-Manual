@@ -20,5 +20,5 @@
   * [Go SDK](sdks/go-sdk.md)
     * [開發環境](sdks/go-sdk/environement.md)
     * [使用說明](sdks/go-sdk/instruction.md)
-    * [Sample Code](sdks/go-sdk/sample-code.md)
-    * [Release Note](sdks/go-sdk/release-note.md)
+    <!--- * [Sample Code](sdks/go-sdk/sample-code.md)
+    * [Release Note](sdks/go-sdk/release-note.md) --->

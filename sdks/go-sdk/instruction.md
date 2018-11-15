@@ -3,7 +3,7 @@
 ---
 
 ## EdgeAgent
-### 1. NewAgent\( options agent.EdgeAgentOptions options \)
+### 1. NewAgent\( options agent.EdgeAgentOptions \)
 初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
 
 ```
@@ -227,7 +227,7 @@ for i := 1; i < 4; i++ {
 result = edgeAgent.SendData(edgeData)
 ```
 
-若是測點是屬於Array tag，則測點的Value參數必須使用`Map[string]interface{}`, interface{}根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
+若是測點是屬於Array tag，則測點的Value參數必須使用`Map[string]interface{}`, `interface{}`根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
 
 ``` go
 # analog array tag
@@ -279,6 +279,7 @@ for i := 1; i < 4; i++ {
     Status: agent.Status["Online"], // Online, Offline
   }
   status.DeviceList = append(status.DeviceList, s)
+}
 
 result = edgeAgent.SendDeviceStatus( status )
 ```
