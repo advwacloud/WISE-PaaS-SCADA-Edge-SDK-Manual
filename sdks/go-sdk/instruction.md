@@ -2,7 +2,7 @@
 
 ---
 
-## EdgeAgent
+## agent
 ### 1. NewAgent\( options agent.EdgeAgentOptions \)
 初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
 
