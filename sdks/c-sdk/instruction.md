@@ -9,10 +9,11 @@
 ### 1. Load Library
 
 將 Dynamic Library 載入，並且引用 WISEPaas.h。在使用 API 時需遵從下列定義:
-* EDGE_AGENT_OPTION.h: 定義 Construct function 的 Structure
-* EDGE_CONFIG.h: 定義 UploadConfig 的 Structure
-* EDGE_DATA.h: 定義 SendData 的 Structure
-* EDGE_DEVICE_STATUS.h: 定義 SendDeviceStatus 的 Structure
+
+* EDGE\_AGENT\_OPTION.h: 定義 Construct function 的 Structure
+* EDGE\_CONFIG.h: 定義 UploadConfig 的 Structure
+* EDGE\_DATA.h: 定義 SendData 的 Structure
+* EDGE\_DEVICE\_STATUS.h: 定義 SendDeviceStatus 的 Structure
 
 ```
 /*  load library */
@@ -56,9 +57,9 @@ if ((error = dlerror()) != NULL)  {
 }
 ```
 
-### 2. Constructor\(TOPTION_STRUCT option\)
+### 2. Constructor\(TOPTION\_STRUCT option\)
 
-引用 EDGE_AGENT_OPTION.h 內所定義的結構來初始化 EdgeAgent，根據傳入參數 option 建立 MQTT 連線客戶端以及 SCADA 相關設定。
+引用 EDGE\_AGENT\_OPTION.h 內所定義的結構來初始化 EdgeAgent，根據傳入參數 option 建立 MQTT 連線客戶端以及 SCADA 相關設定。
 
 ```
 TOPTION_STRUCT options;
@@ -67,7 +68,7 @@ options.ReconnectInterval = 1000;
 options.ScadaId = "c9851920-ca7f-4cfd-964a-1969aef958f6";
 options.Heartbeat = 60;
 options.DataRecover = true;
-options.ConnectType = DCCS; 	// Connection Type (DCCS, MQTT), Default is DCCS
+options.ConnectType = DCCS;     // Connection Type (DCCS, MQTT), Default is DCCS
 options.Type = Gatway;
 options.UseSecure = false;
 
@@ -75,18 +76,18 @@ TMQTT_OPTION_STRUCT mqtt;
 
 switch (options.ConnectType)
 {
-	case 1: // If ConnectType is DCCS, must fill this options
-		options.DCCS.CredentialKey = "9b03e5524c70b6e4c503173c6553abrh"; // Credential Key
-		options.DCCS.APIUrl = "https://api-dccs.wise-paas.com/";		 // DCCS API Url
-		break;
+    case 1: // If ConnectType is DCCS, must fill this options
+        options.DCCS.CredentialKey = "9b03e5524c70b6e4c503173c6553abrh"; // Credential Key
+        options.DCCS.APIUrl = "https://api-dccs.wise-paas.com/";         // DCCS API Url
+        break;
 
-	case 0: // If ConnectType is MQTT, must fill this options
-		options.MQTT.HostName = "";
-		options.MQTT.Port = 1883;
-		options.MQTT.Username = "";
-		options.MQTT.Password = "";
-		options.MQTT.ProtocolType = TCP;
-		break;
+    case 0: // If ConnectType is MQTT, must fill this options
+        options.MQTT.HostName = "";
+        options.MQTT.Port = 1883;
+        options.MQTT.Username = "";
+        options.MQTT.Password = "";
+        options.MQTT.ProtocolType = TCP;
+        break;
 }
 Constructor(options);
 ```
@@ -132,7 +133,7 @@ SetMessageReceived(edgeAgent_Recieve);
 
 ### 4. Connect\(\)
 
-與 MQTT Broker 連線，連線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，連線成功後會觸發 Connected 事件。
+與 MQTT Broker 連線，連線資訊可經由定義 TOPTION\_STRUCT 結構後的 options 取得，連線成功後會觸發 Connected 事件。
 
 ```
 Connect();
@@ -140,13 +141,13 @@ Connect();
 
 ### 5. Disconnect\(\)
 
-與 MQTT Broker 連線，離線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，離線成功後會觸發 Disconnected 事件。
+與 MQTT Broker 連線，離線資訊可經由定義 TOPTION\_STRUCT 結構後的 options 取得，離線成功後會觸發 Disconnected 事件。
 
 ```
 Disconnect();
 ```
 
-### 6. UploadConfig\( ActionType action, TSCADA_CONFIG_STRUCT edgeConfig \)
+### 6. UploadConfig\( ActionType action, TSCADA\_CONFIG\_STRUCT edgeConfig \)
 
 上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
 
@@ -182,7 +183,7 @@ device.IP = "127.0.0.1";
 device.Port = 1;
 
 config.DeviceNumber = device_num;
-config.DeviceList = device;   
+config.DeviceList = device;
 ```
 
 Analog Tag Config設定
@@ -276,10 +277,9 @@ data.DeviceNumber = 1;
 data.DeviceList = data_device;
 
 bool result = SendData(data);
-
 ```
 
-### 8. SendDeviceStatus\( TEDGE_DEVICE_STATUS_STRUCT deviceStatus \)
+### 8. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
 
 上傳Device Status \(狀態有改變再送即可\)。
 

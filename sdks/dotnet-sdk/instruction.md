@@ -1,6 +1,6 @@
 #  {#development-environement}
 
-# 使用說明 {#development-environement}
+# Instructions {#development-environement}
 
 ---
 
@@ -8,7 +8,7 @@
 
 ### 1. Constructor\(EdgeAgentOptions options\)
 
-初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
+New a EdgeAgent object according to EdgeAgentOptions.
 
 ```
 EdgeAgentOptions options = new EdgeAgentOptions()
@@ -41,15 +41,15 @@ EdgeAgent edgeAgent = new EdgeAgent( options );
 
 ### 2. Event
 
-EdgeAgent 有三種事件供訂閱，分別如下:
+EdgeAgent has three event for subscribing.
 
-* Connected: 當 EdgeAgent 成功連上 Broker 後觸發
-* Disconnected: 當 EdgeAgent 連線中斷後觸發
-* MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型
-  * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
-  * WriteConfig: Cloud 端改變 Config 同步到 Edge 端
-  * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
-  * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
+* Connected: When EdgeAgent is connected to IoTHub.
+* Disconnected: When EdgeAgent is disconnected to IoTHub.
+* MessageReceived: When EdgeAgent received MQTT message from cloud. The message type as follows:
+  * WriteValue: Change tag value from cloud.
+  * WriteConfig: Change config from cloud.
+  * TimeSync: Returns the current time from cloud.
+  * ConfigAck: The response of uploading config from edge to cloud.
 
 ```
 edgeAgent.Connected += edgeAgent_Connected;
@@ -99,6 +99,8 @@ private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs 
 
 ### 3. Connect\(\)
 
+Connect to IoTHub. When connect success, the connected event will be triggered.
+
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
 
 ```
@@ -107,7 +109,7 @@ edgeAgent.Connect();
 
 ### 4. Disconnect\(\)
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Disconnected 事件。
+Disonnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
 ```
 edgeAgent.Disconnect();
@@ -115,7 +117,7 @@ edgeAgent.Disconnect();
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
 
-上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
+Upload SCADA/Device/Tag Config, and the ActionType決定是Create/Update/Delete。
 
 ```
 EdgeConfig config = new EdgeConfig();
