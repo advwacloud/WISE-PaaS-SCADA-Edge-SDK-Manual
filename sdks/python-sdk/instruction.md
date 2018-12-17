@@ -35,15 +35,15 @@ edgeAgent = EdgeAgent( options = options );
 
 ### 2. Event
 
-EdgeAgent 有三種事件供訂閱，分別如下:
+EdgeAgent has three event for subscribing.
 
-* on\_connected: 當 EdgeAgent 成功連上 Broker 後觸發
-* on\_disconnected: 當 EdgeAgent 連線中斷後觸發
-* on\_message: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 Constants.MessageType 可以分成以下訊息類型
-  * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
-  * WriteConfig: Cloud 端改變 Config 同步到 Edge 端
-  * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
-  * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
+* Connected: When EdgeAgent is connected to IoTHub.
+* Disconnected: When EdgeAgent is disconnected to IoTHub.
+* MessageReceived: When EdgeAgent received MQTT message from cloud. The message type as follows:
+  * WriteValue: Change tag value from cloud.
+  * WriteConfig: Change config from cloud.
+  * TimeSync: Returns the current time from cloud.
+  * ConfigAck: The response of uploading config from edge to cloud.
 
 ```
 edgeAgent.on_connected = edgeAgent_on_connected
@@ -78,7 +78,7 @@ def edgeAgent_on_message(agent, messageReceivedEventArgs):
 
 ### 3. Connect\(\)
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
+Connect to IoTHub. When connect success, the connected event will be triggered.
 
 ```
 edgeAgent.connect();
@@ -86,7 +86,7 @@ edgeAgent.connect();
 
 ### 4. Disconnect\(\)
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Disconnected 事件。
+Disconnect to IoTHub. When disconnect success, the disonnected event will be triggered.
 
 ```
 edgeAgent.disconnect();
@@ -94,7 +94,7 @@ edgeAgent.disconnect();
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
 
-上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
+Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```
 config = EdgeConfig()
@@ -186,7 +186,7 @@ config.scada.deviceList[0].textTagList.append(textTag)
 
 ### 6. SendData\( EdgeData data \)
 
-上傳設備的Tag Value。
+Send tag value to cloud.
 
 ```
 edgeData = EdgeData()
@@ -215,7 +215,7 @@ for i in range(1, 3):
 result = edgeAgent.sendData(data = edgeData)
 ```
 
-若是測點是屬於Array tag，則測點的Value參數必須使用Dictionary&lt;string, T&gt;，T根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
+An array tag value have to use Dictionary&lt;string, T&gt;, T is defined according to the tag type \(Analog: double, Discrete: int, Text: string\).
 
 ```
 # analog array tag
@@ -242,7 +242,7 @@ tag = EdgeTag(deviceId = 'deviceId', tagName = 'TTag', value = dicVal)
 
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
 
-上傳Device Status \(狀態有改變再送即可\)。
+Send Device status to cloud when status changed.
 
 ```
 deviceStatus = EdgeDeviceStatus()
@@ -255,11 +255,11 @@ for i in range(1, 3):
 result = edgeAgent.sendDeviceStatus( deviceStatus )
 ```
 
-### 8. 屬性
+### 8. Property
 
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
-| isConnected | boolean | 判斷連線狀態 \(read only\) |
+| isConnected | boolean | Connection Status \(read only\) |
 
 
 

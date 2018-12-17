@@ -1,4 +1,4 @@
-# 使用說明 {#development-environement}
+# Instructions {#development-environement}
 
 ---
 
@@ -35,14 +35,15 @@ edgeAgent := agent.NewAgent( options )
 
 ### 2. Event
 
-EdgeAgent 有三種事件供訂閱，分別如下:
+EdgeAgent has three event for subscribing.
 
-* OnConnect: 當 EdgeAgent 成功連上 Broker 後觸發
-* OnDisconnect: 當 EdgeAgent 連線中斷後觸發
-* OnMessageReceive: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 agent.MessageType 可以分成以下訊息類型
-  * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
-  * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
-  * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
+* Connected: When EdgeAgent is connected to IoTHub.
+* Disconnected: When EdgeAgent is disconnected to IoTHub.
+* MessageReceived: When EdgeAgent received MQTT message from cloud. The message type as follows:
+  * WriteValue: Change tag value from cloud.
+  * WriteConfig: Change config from cloud.
+  * TimeSync: Returns the current time from cloud.
+  * ConfigAck: The response of uploading config from edge to cloud.
 
 ```go
 edgeAgent.SetOnConnectHandler(onConnectHandler)
@@ -77,7 +78,7 @@ func onMessageReceiveHandler (args agent.MessageReceivedEventArgs) {
 
 ### 3. Connect\(\)
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 OnConnect 事件。
+Connect to IoTHub. When connect success, the connected event will be triggered.
 
 ```go
 edgeAgent.Connect();
@@ -85,7 +86,7 @@ edgeAgent.Connect();
 
 ### 4. Disconnect\(\)
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 OnDisconnect 事件。
+Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
 ```go
 edgeAgent.Disconnect();
@@ -93,7 +94,7 @@ edgeAgent.Disconnect();
 
 ### 5. UploadConfig\( action agent.Action, config agent.EdgeConfig \)
 
-上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
+Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```go
 config = agent.EdgeConfig()
@@ -184,7 +185,7 @@ deviceConfig.TextTagList = append(deviceConfig.TextTagList, textConfig)
 
 ### 6. SendData\( data agent.EdgeData \)
 
-上傳設備的Tag Value。
+Send tag value to cloud.
 
 ```go
 edgeData := agent.EdgeData{
@@ -235,7 +236,7 @@ for i := 1; i < 4; i++ {
 result = edgeAgent.SendData(edgeData)
 ```
 
-若是測點是屬於Array tag，則測點的Value參數必須使用`Map[string]interface{}`, `interface{}`根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
+An array tag value have to use Dictionary&lt;string, T&gt;, T is defined according to the tag type \(Analog: double, Discrete: int, Text: string\).
 
 ```go
 # analog array tag
@@ -274,7 +275,7 @@ tag = agent.EdgeTag{
 
 ### 7. SendDeviceStatus\( status agent.EdgeDeviceStatus \)
 
-上傳Device Status \(狀態有改變再送即可\)。
+Send Device status to cloud when status changed.
 
 ```go
 status := agent.EdgeDeviceStatus{
@@ -293,11 +294,11 @@ for i := 1; i < 4; i++ {
 result = edgeAgent.SendDeviceStatus( status )
 ```
 
-### 8. 屬性
+### 8. Property
 
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
-| IsConnected | boolean | 判斷連線狀態 \(read only\) |
+| IsConnected | boolean | Connection Status \(read only\) |
 
 
 
