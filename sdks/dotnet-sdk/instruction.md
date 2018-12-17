@@ -101,8 +101,6 @@ private void edgeAgent_MessageReceived( object sender, MessageReceivedEventArgs 
 
 Connect to IoTHub. When connect success, the connected event will be triggered.
 
-與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
-
 ```
 edgeAgent.Connect();
 ```
@@ -117,7 +115,7 @@ edgeAgent.Disconnect();
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
 
-Upload SCADA/Device/Tag Config, and the ActionType決定是Create/Update/Delete。
+Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```
 EdgeConfig config = new EdgeConfig();
@@ -127,7 +125,7 @@ EdgeConfig config = new EdgeConfig();
 bool result = _edgeAgent.UploadConfig( ActionType.Create, config ).Result;
 ```
 
-SCADA Config設定
+SCADA Config:
 
 ```
 config.Scada = new EdgeConfig.ScadaConfig()
@@ -137,7 +135,7 @@ config.Scada = new EdgeConfig.ScadaConfig()
 };
 ```
 
-Device Config設定
+Device Config:
 
 ```
 EdgeConfig.DeviceConfig device = new EdgeConfig.DeviceConfig()
@@ -149,7 +147,7 @@ EdgeConfig.DeviceConfig device = new EdgeConfig.DeviceConfig()
 };
 ```
 
-Analog Tag Config設定
+Analog Tag Config:
 
 ```
 EdgeConfig.AnalogTagConfig analogTag = new EdgeConfig.AnalogTagConfig()
@@ -157,25 +155,16 @@ EdgeConfig.AnalogTagConfig analogTag = new EdgeConfig.AnalogTagConfig()
     Name = "Volt",
     Description = "Volt",
     ReadOnly = false,
-    ArraySize = 0,
-    AlarmStatus = false,
+    ArraySize = 0
     SpanHigh = 1000,
     SpanLow = 0,
     EngineerUnit = "V",
     IntegerDisplayFormat = 4,
-    FractionDisplayFormat = 2,
-    HHPriority = 0,
-    HHAlarmLimit = 0,
-    HighPriority = 0,
-    HighAlarmLimit = 0,
-    LowPriority = 0,
-    LowAlarmLimit = 0,
-    LLPriority = 0,
-    LLAlarmLimit = 0
+    FractionDisplayFormat = 2
 };
 ```
 
-Discrete Tag Config設定
+Discrete Tag Config:
 
 ```
 EdgeConfig.DiscreteTagConfig discreteTag = new EdgeConfig.DiscreteTagConfig()
@@ -183,8 +172,7 @@ EdgeConfig.DiscreteTagConfig discreteTag = new EdgeConfig.DiscreteTagConfig()
     Name = "DTag",
     Description = "DTag " + j,
     ReadOnly = false,
-    ArraySize = 0,
-    AlarmStatus = false,
+    ArraySize = 0
     State0 = "0",
     State1 = "1",
     State2 = "",
@@ -192,19 +180,11 @@ EdgeConfig.DiscreteTagConfig discreteTag = new EdgeConfig.DiscreteTagConfig()
     State4 = "",
     State5 = "",
     State6 = "",
-    State7 = "",
-    State0AlarmPriority = 0,
-    State1AlarmPriority = 0,
-    State2AlarmPriority = 0,
-    State3AlarmPriority = 0,
-    State4AlarmPriority = 0,
-    State5AlarmPriority = 0,
-    State6AlarmPriority = 0,
-    State7AlarmPriority = 0
+    State7 = ""
 };
 ```
 
-Text Tag Config設定
+Text Tag Config:
 
 ```
 EdgeConfig.TextTagConfig textTag = new EdgeConfig.TextTagConfig()
@@ -212,14 +192,13 @@ EdgeConfig.TextTagConfig textTag = new EdgeConfig.TextTagConfig()
     Name = "Text",
     Description = "Text",
     ReadOnly = false,
-    ArraySize = 0,
-    AlarmStatus = false
+    ArraySize = 0
 };
 ```
 
 ### 6. SendData\( EdgeData data \)
 
-上傳設備的Tag Value。
+Send tag value to cloud.
 
 ```
 Random random = new Random();
@@ -255,7 +234,7 @@ data.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendData( data ).Result;
 ```
 
-若是測點是屬於Array tag，則測點的Value參數必須使用Dictionary&lt;string, T&gt;，T根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)。
+An array tag value have to use Dictionary&lt;string, T&gt;, T is defined according to the tag type \(Analog: double, Discrete: int, Text: string\).
 
 ```
 // analog array tag
@@ -297,7 +276,7 @@ EdgeData.Tag tTag = new EdgeData.Tag()
 
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
 
-上傳Device Status \(狀態有改變再送即可\)。
+Send Device status when status changed.
 
 ```
 EdgeDeviceStatus deviceStatus = new EdgeDeviceStatus();
@@ -314,11 +293,11 @@ deviceStatus.Timestamp = DateTime.Now;
 bool result = edgeAgent.SendDeviceStatus( deviceStatus ).Result;
 ```
 
-### 8. 屬性
+### 8. Property
 
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
-| IsConnected | boolean | 判斷連線狀態 \(read only\) |
+| IsConnected | boolean | Connection status \(read only\) |
 
 
 
