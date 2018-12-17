@@ -1,10 +1,12 @@
-# 使用說明 {#development-environement}
+# Instructions {#development-environement}
 
 ---
 
 ## EdgeAgent
+
 ### 1. Constructor\(EdgeAgentOptions options\)
-初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
+
+New a EdgeAgent object.
 
 ```
 options = EdgeAgentOptions(
@@ -32,10 +34,12 @@ edgeAgent = EdgeAgent( options = options );
 ```
 
 ### 2. Event
+
 EdgeAgent 有三種事件供訂閱，分別如下:
-* on_connected: 當 EdgeAgent 成功連上 Broker 後觸發
-* on_disconnected: 當 EdgeAgent 連線中斷後觸發
-* on_message: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 Constants.MessageType 可以分成以下訊息類型
+
+* on\_connected: 當 EdgeAgent 成功連上 Broker 後觸發
+* on\_disconnected: 當 EdgeAgent 連線中斷後觸發
+* on\_message: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 Constants.MessageType 可以分成以下訊息類型
   * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
   * WriteConfig: Cloud 端改變 Config 同步到 Edge 端
   * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
@@ -73,6 +77,7 @@ def edgeAgent_on_message(agent, messageReceivedEventArgs):
 ```
 
 ### 3. Connect\(\)
+
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Connected 事件。
 
 ```
@@ -80,6 +85,7 @@ edgeAgent.connect();
 ```
 
 ### 4. Disconnect\(\)
+
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 Disconnected 事件。
 
 ```
@@ -87,6 +93,7 @@ edgeAgent.disconnect();
 ```
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
+
 上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
 
 ```
@@ -178,6 +185,7 @@ config.scada.deviceList[0].textTagList.append(textTag)
 ```
 
 ### 6. SendData\( EdgeData data \)
+
 上傳設備的Tag Value。
 
 ```
@@ -233,6 +241,7 @@ tag = EdgeTag(deviceId = 'deviceId', tagName = 'TTag', value = dicVal)
 ```
 
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
+
 上傳Device Status \(狀態有改變再送即可\)。
 
 ```
@@ -240,7 +249,7 @@ deviceStatus = EdgeDeviceStatus()
 for i in range(1, 3):
   id = 'deviceId' + str(i)
   status = EdgeStatus(id = id, status = constant.Status['Online'])
-  
+
   deviceStatus.deviceList.append( status )
 
 result = edgeAgent.sendDeviceStatus( deviceStatus )
@@ -251,3 +260,6 @@ result = edgeAgent.sendDeviceStatus( deviceStatus )
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
 | isConnected | boolean | 判斷連線狀態 \(read only\) |
+
+
+

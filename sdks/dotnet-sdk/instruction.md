@@ -8,7 +8,7 @@
 
 ### 1. Constructor\(EdgeAgentOptions options\)
 
-New a EdgeAgent object according to EdgeAgentOptions.
+New a EdgeAgent object.
 
 ```
 EdgeAgentOptions options = new EdgeAgentOptions()
@@ -276,7 +276,7 @@ EdgeData.Tag tTag = new EdgeData.Tag()
 
 ### 7. SendDeviceStatus\( EdgeDeviceStatus deviceStatus \)
 
-Send Device status when status changed.
+Send Device status to cloud when status changed.
 
 ```
 EdgeDeviceStatus deviceStatus = new EdgeDeviceStatus();

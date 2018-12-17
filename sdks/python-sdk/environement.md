@@ -1,32 +1,35 @@
-# 開發環境 {#development-environement}
+# Environement {#development-environement}
 
 ---
 
-- Runtime
-    - Python: 3.6
-    - Pip: 1.8
-- Python Package:
-    - WISE_PaaS_SCADA_Python_SDK
+* Runtime
+  * Python: 3.6
+  * Pip: 1.8
+* Python Package:
+  * WISE\_PaaS\_SCADA\_Python\_SDK
 
 #### Installation
 
-- via command line
-```
-pip install WISE_PaaS_SCADA_Python_SDK
-```
+* via command line
 
-- upgrade package version
-```
-pip install WISE_PaaS_SCADA_Python_SDK --upgrade
-```
+  ```
+  pip install WISE_PaaS_SCADA_Python_SDK
+  ```
 
-- check installed version
-```
-pip show WISE_PaaS_SCADA_Python_SDK
+* upgrade package version
 
-output>>
-Name: WISE-PaaS-SCADA-Python-SDK
-Version: 1.0.9
-Summary: The WISEPaaS_SCADA_Python_SDK package allows developers to write Python applications which access the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.
-...
-```
+  ```
+  pip install WISE_PaaS_SCADA_Python_SDK --upgrade
+  ```
+
+* check installed version  
+  \`\`\`  
+  pip show WISE\_PaaS\_SCADA\_Python\_SDK
+
+output&gt;&gt;  
+Name: WISE-PaaS-SCADA-Python-SDK  
+Version: 1.0.9  
+Summary: The WISEPaaS\_SCADA\_Python\_SDK package allows developers to write Python applications which access the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.  
+...  
+\`\`\`
+

@@ -3,8 +3,10 @@
 ---
 
 ## agent
+
 ### 1. NewAgent\( options agent.EdgeAgentOptions \)
-初始化 EdgeAgent 實例，並根據傳入參數 EdgeAgentOptions 建立 MQTT 連線客戶端以及 SCADA 相關設定。
+
+New a EdgeAgent object.
 
 ```
 options := agent.NewEdgeAgentOptions()  // set default value
@@ -32,7 +34,9 @@ edgeAgent := agent.NewAgent( options )
 ```
 
 ### 2. Event
+
 EdgeAgent 有三種事件供訂閱，分別如下:
+
 * OnConnect: 當 EdgeAgent 成功連上 Broker 後觸發
 * OnDisconnect: 當 EdgeAgent 連線中斷後觸發
 * OnMessageReceive: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 agent.MessageType 可以分成以下訊息類型
@@ -40,7 +44,7 @@ EdgeAgent 有三種事件供訂閱，分別如下:
   * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
   * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
 
-``` go
+```go
 edgeAgent.SetOnConnectHandler(onConnectHandler)
 edgeAgent.SetOnDisconnectHandler(onDisconnectHandler)
 edgeAgent.SetOnMessageReceiveHandler(onMessageReceiveHandler)
@@ -72,23 +76,26 @@ func onMessageReceiveHandler (args agent.MessageReceivedEventArgs) {
 ```
 
 ### 3. Connect\(\)
+
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 OnConnect 事件。
 
-``` go
+```go
 edgeAgent.Connect();
 ```
 
 ### 4. Disconnect\(\)
+
 與 MQTT Broker 連線，連線資訊為建構子的傳入參數 EdgeAgentOptions 取得，連線成功後會觸發 OnDisconnect 事件。
 
-``` go
+```go
 edgeAgent.Disconnect();
 ```
 
 ### 5. UploadConfig\( action agent.Action, config agent.EdgeConfig \)
+
 上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
 
-``` go
+```go
 config = agent.EdgeConfig()
 
 result = edgeAgent.UploadConfig(agent.Action["Create"], config)
@@ -96,7 +103,7 @@ result = edgeAgent.UploadConfig(agent.Action["Create"], config)
 
 SCADA config setting
 
-``` go
+```go
 scadaConfig = agent.NewScadaConfig("scadaName")
 scadaConfig.SetDescription("For Test")
 scadaConfig.SetPrimaryIP("127.0.0.1")
@@ -112,7 +119,7 @@ config.Scada = scadaConfig
 
 Device config setting
 
-``` go
+```go
 deviceConfig = agent.NewDeviceConfig("deviceId")
 deviceConfig.SetName("DeviceName")
 deviceConfig.SetComPortNumber(0)
@@ -127,7 +134,7 @@ scadaConfig.DeviceList = append(scadaConfig.DeviceList, deviceConfig)
 
 Analog Tag config setting
 
-``` go
+```go
 analogConfig = agent.NewAnaglogTagConfig("AnalogTag")
 analogConfig.SetDescription("AnalogTag")
 analogConfig.SetReadOnly(True)
@@ -144,7 +151,7 @@ deviceConfig.AnalogTagList = append(deviceConfig.AnalogTagList, analogConfig)
 
 Discrete Tag config setting
 
-``` go
+```go
 discreteConfig = agent.NewDiscreteTagConfig("DiscreteTag")
 discreteConfig.SetDescription("DiscreteTag")
 discreteConfig.SetReadOnly(false)
@@ -165,7 +172,7 @@ deviceConfig.DiscreteTagList = append(deviceConfig.DiscreteTagList, discreteConf
 
 Text Tag config setting
 
-``` go
+```go
 textConfig = agent.NewTextTagConfig("TextTag")
 textConfig.SetDescription("TextTag")
 textConfig.SetReadOnly(true)
@@ -176,9 +183,10 @@ deviceConfig.TextTagList = append(deviceConfig.TextTagList, textConfig)
 ```
 
 ### 6. SendData\( data agent.EdgeData \)
+
 上傳設備的Tag Value。
 
-``` go
+```go
 edgeData := agent.EdgeData{
   TimeStamp: time.Now(),
 }
@@ -229,7 +237,7 @@ result = edgeAgent.SendData(edgeData)
 
 若是測點是屬於Array tag，則測點的Value參數必須使用`Map[string]interface{}`, `interface{}`根據測點類型定義 \(Analog: double, Discrete: int, Text: string\)
 
-``` go
+```go
 # analog array tag
 dicVal := map[string]int {
   "0": 0.5,
@@ -265,9 +273,10 @@ tag = agent.EdgeTag{
 ```
 
 ### 7. SendDeviceStatus\( status agent.EdgeDeviceStatus \)
+
 上傳Device Status \(狀態有改變再送即可\)。
 
-``` go
+```go
 status := agent.EdgeDeviceStatus{
   TimeStamp: time.Now(),
 }
@@ -289,3 +298,6 @@ result = edgeAgent.SendDeviceStatus( status )
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
 | IsConnected | boolean | 判斷連線狀態 \(read only\) |
+
+
+
