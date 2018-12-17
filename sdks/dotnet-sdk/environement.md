@@ -15,9 +15,7 @@
 
 Select Manage NuGet Packages...
 
-![](/assets/Nuget1.png)
-
-
+![](/assets/nuget1.png)
 
 Search WISEPaaS.SCADA.DotNet.SDK and install
 
