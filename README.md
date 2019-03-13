@@ -2,9 +2,7 @@
 
 ---
 
-### **WISE-PaaS SCADA資料上傳標準流程**
+### **WISE-PaaS SCADA Standard Flow**
 
 ![](/assets/flow.PNG)
-
-
 

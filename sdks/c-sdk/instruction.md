@@ -1,6 +1,6 @@
 #  {#development-environement}
 
-# 使用說明 {#development-environement}
+# Instructions {#development-environement}
 
 ---
 
@@ -8,11 +8,12 @@
 
 ### 1. Load Library
 
-將 Dynamic Library 載入，並且引用 WISEPaas.h。在使用 API 時需遵從下列定義:
-* EDGE_AGENT_OPTION.h: 定義 Construct function 的 Structure
-* EDGE_CONFIG.h: 定義 UploadConfig 的 Structure
-* EDGE_DATA.h: 定義 SendData 的 Structure
-* EDGE_DEVICE_STATUS.h: 定義 SendDeviceStatus 的 Structure
+Load dynamic library，and includ WISEPaas.h。Must follow the definition as follows when use API:
+
+* EDGE\_AGENT\_OPTION.h: Define construct function structure
+* EDGE\_CONFIG.h: Define UploadConfig structure
+* EDGE\_DATA.h: Define SendData structure
+* EDGE\_DEVICE\_STATUS.h: Define SendDeviceStatus structure
 
 ```
 /*  load library */
@@ -56,9 +57,9 @@ if ((error = dlerror()) != NULL)  {
 }
 ```
 
-### 2. Constructor\(TOPTION_STRUCT option\)
+### 2. Constructor\(TOPTION\_STRUCT option\)
 
-引用 EDGE_AGENT_OPTION.h 內所定義的結構來初始化 EdgeAgent，根據傳入參數 option 建立 MQTT 連線客戶端以及 SCADA 相關設定。
+New a EdgeAgent object.
 
 ```
 TOPTION_STRUCT options;
@@ -67,7 +68,7 @@ options.ReconnectInterval = 1000;
 options.ScadaId = "c9851920-ca7f-4cfd-964a-1969aef958f6";
 options.Heartbeat = 60;
 options.DataRecover = true;
-options.ConnectType = DCCS; 	// Connection Type (DCCS, MQTT), Default is DCCS
+options.ConnectType = DCCS;     // Connection Type (DCCS, MQTT), Default is DCCS
 options.Type = Gatway;
 options.UseSecure = false;
 
@@ -75,33 +76,33 @@ TMQTT_OPTION_STRUCT mqtt;
 
 switch (options.ConnectType)
 {
-	case 1: // If ConnectType is DCCS, must fill this options
-		options.DCCS.CredentialKey = "9b03e5524c70b6e4c503173c6553abrh"; // Credential Key
-		options.DCCS.APIUrl = "https://api-dccs.wise-paas.com/";		 // DCCS API Url
-		break;
+    case 1: // If ConnectType is DCCS, must fill this options
+        options.DCCS.CredentialKey = "9b03e5524c70b6e4c503173c6553abrh"; // Credential Key
+        options.DCCS.APIUrl = "https://api-dccs.wise-paas.com/";         // DCCS API Url
+        break;
 
-	case 0: // If ConnectType is MQTT, must fill this options
-		options.MQTT.HostName = "";
-		options.MQTT.Port = 1883;
-		options.MQTT.Username = "";
-		options.MQTT.Password = "";
-		options.MQTT.ProtocolType = TCP;
-		break;
+    case 0: // If ConnectType is MQTT, must fill this options
+        options.MQTT.HostName = "";
+        options.MQTT.Port = 1883;
+        options.MQTT.Username = "";
+        options.MQTT.Password = "";
+        options.MQTT.ProtocolType = TCP;
+        break;
 }
 Constructor(options);
 ```
 
 ### 3. Event
 
-EdgeAgent 有三種事件供訂閱，分別如下:
+EdgeAgent has three event for subscribing.
 
-* Connected: 當 EdgeAgent 成功連上 Broker 後觸發
-* Disconnected: 當 EdgeAgent 連線中斷後觸發
-* MessageReceived: 當 EdgeAgent 接收到 MQTT 訊息後觸發，根據 MessageReceivedEventArgs.Type 可以分成以下訊息類型
-  * WriteValue: Cloud 端改變 Tag 值同步到 Edge 端
-  * WriteConfig: Cloud 端改變 Config 同步到 Edge 端
-  * TimeSync: Cloud端回傳目前時間給Edge端，讓Edge端更新OS時間使時間一致
-  * ConfigAck: Cloud 端接收 Edge 端 Config 同步的結果回應
+* Connected: When EdgeAgent is connected to IoTHub.
+* Disconnected: When EdgeAgent is disconnected to IoTHub.
+* MessageReceived: When EdgeAgent received MQTT message from cloud. The message type as follows:
+  * WriteValue: Change tag value from cloud.
+  * WriteConfig: Change config from cloud.
+  * TimeSync: Returns the current time from cloud.
+  * ConfigAck: The response of uploading config from edge to cloud.
 
 ```
 void edgeAgent_Connected(){
@@ -132,7 +133,7 @@ SetMessageReceived(edgeAgent_Recieve);
 
 ### 4. Connect\(\)
 
-與 MQTT Broker 連線，連線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，連線成功後會觸發 Connected 事件。
+Connect to IoTHub. When connect success, the connected event will be triggered.
 
 ```
 Connect();
@@ -140,15 +141,15 @@ Connect();
 
 ### 5. Disconnect\(\)
 
-與 MQTT Broker 連線，離線資訊可經由定義 TOPTION_STRUCT 結構後的 options 取得，離線成功後會觸發 Disconnected 事件。
+Disonnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
 ```
 Disconnect();
 ```
 
-### 6. UploadConfig\( ActionType action, TSCADA_CONFIG_STRUCT edgeConfig \)
+### 6. UploadConfig\( ActionType action, TSCADA\_CONFIG\_STRUCT edgeConfig \)
 
-上傳SCADA/Device/Tag Config，並根據ActionType決定是Create/Update/Delete。
+Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```
 TSCADA_CONFIG_STRUCT config;
@@ -159,7 +160,7 @@ ActionType action = Create; // Create, Update od Delete
 bool result = UploadConfig(action, config);
 ```
 
-SCADA Config設定
+SCADA Config:
 
 ```
 config.Id = Scada ID"; 
@@ -170,7 +171,7 @@ config.BackupPort = 1883;
 config.Type = 1;
 ```
 
-Device Config設定
+Device Config:
 
 ```
 PTDEVICE_CONFIG_STRUCT device = malloc(sizeof(struct DEVICE_CONFIG_STRUCT));
@@ -182,10 +183,10 @@ device.IP = "127.0.0.1";
 device.Port = 1;
 
 config.DeviceNumber = device_num;
-config.DeviceList = device;   
+config.DeviceList = device;
 ```
 
-Analog Tag Config設定
+Analog Tag Config:
 
 ```
 PTANALOG_TAG_CONFIG analogTag = malloc(sizeof(struct ANALOG_TAG_CONFIG));
@@ -194,24 +195,14 @@ analogTag.Name = "TestName";
 analogTag.Description = "description";          
 analogTag.ReadOnly = false;
 analogTag.ArraySize = 0;
-analogTag.AlarmStatus = false;
 analogTag.SpanHigh = 1000;
 analogTag.SpanLow = 0;
 analogTag.EngineerUnit = "enuit";
 analogTag.IntegerDisplayFormat = 4;
 analogTag.FractionDisplayFormat = 2;
-analogTag.HHPriority = 1;
-analogTag.HHAlarmLimit = 1;
-analogTag.HighPriority = 1;
-analogTag.HighAlarmLimit = 1;
-analogTag.LowPriority = 1;
-analogTag.LowAlarmLimit = 1;
-analogTag.LLPriority = 1;
-analogTag.LLAlarmLimit = 1;
-analogTag.NeedLog = true;
 ```
 
-Discrete Tag Config設定
+Discrete Tag Config:
 
 ```
 PTDISCRETE_TAG_CONFIG discreteTag = malloc(sizeof(struct DISCRETE_TAG_CONFIG));
@@ -220,7 +211,6 @@ discreteTag.NAme = "TestName"
 discreteTag.Description = "description";
 discreteTag.ReadOnly = false;
 discreteTag.ArraySize = 0;
-discreteTag.AlarmStatus = false;
 discreteTag.State0 = "0";
 discreteTag.State1 = "1";
 discreteTag.State2 = "";
@@ -229,17 +219,9 @@ discreteTag.State4 = "";
 discreteTag.State5 = "";
 discreteTag.State6 = "";
 discreteTag.State7 = "";
-discreteTag.State0AlarmPriority = 0;
-discreteTag.State1AlarmPriority = 0;
-discreteTag.State2AlarmPriority = 0;
-discreteTag.State3AlarmPriority = 0;
-discreteTag.State4AlarmPriority = 0;
-discreteTag.State5AlarmPriority = 0;
-discreteTag.State6AlarmPriority = 0;
-discreteTag.State7AlarmPriority = 0;
 ```
 
-Text Tag Config設定
+Text Tag Config:
 
 ```
 PTTEXT_TAG_CONFIG textTag = malloc(sizeof(struct TEXT_TAG_CONFIG));
@@ -248,12 +230,11 @@ textTag.Name = "TestName";
 textTag.Description = "description";
 textTag.ReadOnly = false;
 textTag.ArraySize = 0;
-textTag.AlarmStatus = false;
 ```
 
-### 6. SendData\( EdgeData data \)
+### 7. SendData\( EdgeData data \)
 
-上傳設備的Tag Value。
+Send tag value to cloud.
 
 ```
 TEDGE_DATA_STRUCT data;
@@ -276,12 +257,11 @@ data.DeviceNumber = 1;
 data.DeviceList = data_device;
 
 bool result = SendData(data);
-
 ```
 
-### 8. SendDeviceStatus\( TEDGE_DEVICE_STATUS_STRUCT deviceStatus \)
+### 8. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
 
-上傳Device Status \(狀態有改變再送即可\)。
+Send Device status to cloud when status changed.
 
 ```
 TEDGE_DEVICE_STATUS_STRUCT status;
@@ -297,11 +277,11 @@ status.DeviceList = dev_list;
 bool result = SendDeviceStatus(status);
 ```
 
-### 9. 屬性
+### 9. Property
 
 | Property Name | Data Type | Description |
 | :--- | :--- | :--- |
-| IsConnected | boolean | 判斷連線狀態 \(read only\) |
+| IsConnected | boolean | Connection status \(read only\) |
 
 
 

@@ -1,9 +1,9 @@
-# 開發環境 {#development-environement}
+# Environement {#development-environement}
 
 ---
 
 * IDE
-  * Visual Studio 2013含以上
+  * Visual Studio 2013 above version
 * Runtime
   * .Net Framework 4.5.2
 * Nuget Package
@@ -11,21 +11,17 @@
 
 #### 
 
-#### 專案安裝Nuget Package流程:
+#### Installing Nuget pakcage on your project:
 
+Select Manage NuGet Packages...
 
+![](/assets/nuget1.png)
 
-選擇管理NuGet套件
-
-![](/assets/Nuget1.PNG)
-
-
-
-於線上搜尋 WISEPaaS.SCADA.DotNet.SDK 並安裝
+Search WISEPaaS.SCADA.DotNet.SDK and install
 
 ![](/assets/nuget2.PNG)
 
-安裝完畢確認是否有參考到 WISEPaaS.SCADA.DotNet.SDK，即可開始使用。
+Confirm WISEPaaS.SCADA.DotNet.SDK exists in the refrerence of your project.
 
 ![](/assets/nuget3.png)
 
