@@ -8,6 +8,10 @@
   * GNU/Linux, MinGW(Windows), Unix
   * calling /usr/bin/gcc or /usr/bin/c99
 
+* Reference Package
+	* libmosquitto-dev
+	* https://packages.debian.org/sid/libmosquitto-dev
+  
 #### Build dynamic libraries (WISEPaaS.so files). 
 
 - via command line
