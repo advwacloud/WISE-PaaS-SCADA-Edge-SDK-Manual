@@ -3,7 +3,8 @@
 ---
 
 * IDE
-  * Android Studio 3.5
+  * VS Code 1.37.1
+  * Android Studio 3.5 
 * Runtime
   * Java SE 8
   * Android SDK 26 (API level 26) 以上
