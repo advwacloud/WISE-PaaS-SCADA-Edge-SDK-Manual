@@ -273,19 +273,6 @@ Boolean result = agent.SendDeviceStatus(deviceStatus);
 
 Connection status
 
-```
-EdgeDeviceStatus deviceStatus = new EdgeDeviceStatus();
-
-for (int i = 1; i <= deviceCount; i++) {
-    EdgeDeviceStatus.Device device = new EdgeDeviceStatus.Device();
-    device.Id = "Device" + i;
-    device.Status = Const.Status.Online;
-
-    deviceStatus.DeviceList.add(device);
-}
-
-deviceStatus.Timestamp = Instant.now();
-Boolea
 
 ```
  Boolean status = IsConnected();
