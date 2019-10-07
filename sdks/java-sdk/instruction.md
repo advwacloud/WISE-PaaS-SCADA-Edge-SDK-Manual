@@ -279,6 +279,20 @@ Connection status
 
 ```
 
+### 9. Data Recover in Android
+
+You must specify android package name of constructor to use dataRevocer on andorid. 
+Because Scada SDK is a JavaSE project, there is no way to use `getPackageName()`.
+
+```
+EdgeAgentOptions options = new EdgeAgentOptions();
+options.ScadaId = scadaIdInput.getText().toString();
+options.UseSecure = useSecureBox.isChecked();
+options.ConnectType = ConnectType.DCCS;
+options.DCCS.CredentialKey = dccsKeyInput.getText().toString();
+options.DCCS.APIUrl = dccsUrlInput.getText().toString();
+options.AndroidPackageName = getPackageName();
+```
 
 
 
