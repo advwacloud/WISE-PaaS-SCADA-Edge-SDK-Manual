@@ -8,13 +8,22 @@
 * Runtime
   * Java SE 8
   * Android SDK 26 (API level 26) 以上
-* Maven Repo
-  * 目前還沒將SDK上傳至遠端Repo, 可以先在本地端使用mavenLocal()來測試
-    * 將SDK專案maven install至local maven repo, 接著在android
-    * 接著在android build.gradle裡相依套件加入sdk
-    ```
-    dependencies {
-        implementation 'wisepaas.scada:sdk:1.0.0'
-    }
-    ```
+* Installation
+  * Repo: JCenter (https://bintray.com/advwacloud/scada-java-sdk/scada-sdk)
+  * download by Maven
+  ```
+<dependency>
+	<groupId>wisepaas.scada</groupId>
+	<artifactId>sdk</artifactId>
+	<version>1.0.0</version>
+	<type>pom</type>
+</dependency>
+  ```
+  * download by gradle
+  ```
+  dependencies {
+      implementation 'wisepaas.scada:sdk:1.0.0'
+  }
+  ```
+  
 
