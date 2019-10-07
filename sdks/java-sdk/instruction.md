@@ -82,7 +82,6 @@ EdgeAgentListener agentListener = new EdgeAgentListener() {
 };
 
 EdgeAgent edgeAgent  = new EdgeAgent(options, agentListener);
-
 ```
 
 ### 3. Connect\(\)
@@ -226,7 +225,7 @@ EdgeData.Tag aTag = new EdgeData.Tag();
 aTag.DeviceId = "Device1";
 aTag.TagName = "ATag1";
 aTag.Value = mapVal;
-   
+
 // discrete array tag
 HashMap<String, int> mapVal = new HashMap<String, int>();
 mapVal.put("0", 0); // tag index is 0, and it's value is 0
@@ -269,31 +268,26 @@ deviceStatus.Timestamp = Instant.now();
 Boolean result = agent.SendDeviceStatus(deviceStatus);
 ```
 
-### 8. IsConnected()
+### 8. IsConnected\(\)
 
 Connection status
 
-
 ```
  Boolean status = IsConnected();
-
 ```
 
 ### 9. Data Recover in Android
 
-You must specify android package name of constructor to use dataRevocer on andorid. 
+- You must specify `AndroidPackageName`  of constructor to use dataRevocer on andorid.   
 Because Scada SDK is a JavaSE project, there is no way to use `getPackageName()`.
+- **If it is in a non-android environment, you can use the datarecover function without any other settings.**
 
 ```
 EdgeAgentOptions options = new EdgeAgentOptions();
-options.ScadaId = scadaIdInput.getText().toString();
-options.UseSecure = useSecureBox.isChecked();
-options.ConnectType = ConnectType.DCCS;
-options.DCCS.CredentialKey = dccsKeyInput.getText().toString();
-options.DCCS.APIUrl = dccsUrlInput.getText().toString();
+// ...
 options.AndroidPackageName = getPackageName();
+EdgeAgent edgeAgent  = new EdgeAgent(options, agentListener);
 ```
-
 
 
 
