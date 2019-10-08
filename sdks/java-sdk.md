@@ -1,8 +1,8 @@
 # WISE-PaaS SCADA Java SDK
 
 ---
-* [Environement](environement.md)
-* [Instructions](instruction.md)
-* [Sample Code](sample-code.md)
-* [Release Note](release-note.md)
+* [Environement](java-sdk/environement.md)
+* [Instructions](java-sdk/instruction.md)
+* [Sample Code](java-sdk/sample-code.md)
+* [Release Note](java-sdk/release-note.md)
 
