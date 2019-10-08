@@ -8,5 +8,5 @@
 
 * \[1.0.0-beta\] - 2019-09-27
     * Added
-        * The main functions is completed, the data recover and mqtt secure connection are not supported yet.
+        * The main functions are completed, the data recover and mqtt secure connection are not supported yet.
 
