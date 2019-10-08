@@ -28,6 +28,8 @@ options.DeviceId = "SmartDevice1"; // If type is Device, DeviceId must be filled
 options.Heartbeat = 60000; // default is 60 seconds,
 options.DataRecover = true; // need to recover data or not when disconnected
 
+options.AndroidPackageName = getPackageName(); // If OS is Android, you need to pass this parameter to use dataRecover
+
 EdgeAgent edgeAgent  = new EdgeAgent(options, agentListener);
 ```
 
@@ -52,8 +54,6 @@ EdgeAgentListener agentListener = new EdgeAgentListener() {
     @Override
     public void Disconnected(EdgeAgent agent, DisconnectedEventArgs args) {
         System.out.println("Disconnected");
-        connected.setBackgroundColor(Color.parseColor("#373C3F41"));
-        connected.setText(R.string.disconnected_status);
     }
 
     @Override
@@ -276,7 +276,7 @@ Connection status
  Boolean status = IsConnected();
 ```
 
-### 9. Data Recover in Android
+### 9. Data Recover on Android
 
 - You must specify `AndroidPackageName`  of constructor to use dataRevocer on andorid.   
 Because Scada SDK is a JavaSE project, there is no way to use `getPackageName()`.
