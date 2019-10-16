@@ -20,7 +20,6 @@ options.MQTT = new MQTTOptions("127.0.0.1", 1883, "admin", "pwd", Protocol.TCP);
 
 options.UseSecure = false;
 options.AutoReconnect = true;
-options.ReconnectInterval = 1000;
 
 options.ScadaId = "5095cf13-f005-4c81-b6c9-68cf038e2b87"; // getting from SCADA portal
 options.Type = EdgeType.Gateway; // Choice your edge is Gateway or Device, Default is Gateway
@@ -208,7 +207,7 @@ for (int i = 1; i <= 2; i++) {
         data.TagList.add(tTag);
     }
 }
-data.Timestamp = Instant.now();
+data.Timestamp = new Date();
 Boolean result = agent.SendData(data);
 ```
 
@@ -264,7 +263,7 @@ for (int i = 1; i <= deviceCount; i++) {
     deviceStatus.DeviceList.add(device);
 }
 
-deviceStatus.Timestamp = Instant.now();
+deviceStatus.Timestamp = new Date();
 Boolean result = agent.SendDeviceStatus(deviceStatus);
 ```
 
