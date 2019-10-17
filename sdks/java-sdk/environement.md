@@ -7,7 +7,7 @@
   * Android Studio 3.5 
 * **Runtime**
   * **Java 7** or higher \(Java 8 is recommended\)
-  * **Android SDK 22** or higher \(SDK 26 is recommended\)
+  * **Android SDK 22** or higher \(SDK 26 or higher is recommended\)
 * **Installation**
 
   * Repo: JCenter \([https://bintray.com/advwacloud/scada-java-sdk/scada-sdk](https://bintray.com/advwacloud/scada-java-sdk/scada-sdk)\)
