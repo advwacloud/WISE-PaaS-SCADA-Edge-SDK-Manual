@@ -45,7 +45,7 @@ EdgeAgent has three event for subscribing.
 
 * Connected: When EdgeAgent is connected to IoTHub.
 * Disconnected: When EdgeAgent is disconnected to IoTHub.
-* MessageReceived: When EdgeAgent received MQTT message from cloud. The message type as follows:
+* MessageReceived: When EdgeAgent receives MQTT message from cloud. The message type as follows:
   * WriteValue: Change tag value from cloud.
   * WriteConfig: Change config from cloud.
   * TimeSync: Returns the current time from cloud.
