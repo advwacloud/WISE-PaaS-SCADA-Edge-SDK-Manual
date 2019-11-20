@@ -2,8 +2,15 @@
 
 ---
 
-* Runtime
-  * Go: 1.11.1
+#### Installation
+
+* via command line
+
+  ```
+  go get github.com/advwacloud/WISEPaaS.SCADA.Go.SDK
+  ```
+
+
 
 
 
