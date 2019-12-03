@@ -28,8 +28,10 @@
 
 output&gt;&gt;  
 Name: WISE-PaaS-SCADA-Python-SDK  
-Version: 1.0.9  
+Version: 1.0.10  
 Summary: The WISEPaaS\_SCADA\_Python\_SDK package allows developers to write Python applications which access the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.  
 ...  
 \`\`\`
+
+
 
