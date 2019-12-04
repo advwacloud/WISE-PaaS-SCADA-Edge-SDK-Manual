@@ -38,11 +38,28 @@ the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.
 
 #### FAQ
 
-* If you get some error messages about SSL certificate as follows on Windows, please install [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html).
+1. If you get some error messages about SSL certificate as follows:
 
-> \[SSL: CERTIFICATE\_VERIFY\_FAILED\] certificate verify failed \(\_ssl.c:720\)
+```
+[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:720
+```
 
+* Windows
+  * Install [Win32/Win64 OpenSSL](https://slproweb.com/products/Win32OpenSSL.html).
+* MacOS
+  * You have two options:
 
+  Run an install command shipped with Python 3.6
+  ```
+  cd /Applications/Python\ 3.6/
+  ./Install\ Certificates.command
+  ```
+
+  Or install the [certifi package](https://pypi.org/project/certifi/) with
+
+  ```
+  pip install certifi
+  ```
 
 
 
