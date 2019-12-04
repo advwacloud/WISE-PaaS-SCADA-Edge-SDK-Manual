@@ -22,16 +22,23 @@
   pip install WISE_PaaS_SCADA_Python_SDK --upgrade
   ```
 
-* check installed version  
-  \`\`\`  
-  pip show WISE\_PaaS\_SCADA\_Python\_SDK
+* check installed version
 
-output&gt;&gt;  
-Name: WISE-PaaS-SCADA-Python-SDK  
-Version: 1.0.10  
-Summary: The WISEPaaS\_SCADA\_Python\_SDK package allows developers to write Python applications which access the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.  
-...  
-\`\`\`
+```
+pip show WISE_PaaS_SCADA_Python_SDK
+
+/*
+output>>
+Name: WISE-PaaS-SCADA-Python-SDK
+Version: 1.0.10
+Summary: The WISEPaaS_SCADA_Python_SDK package allows developers to write Python applications which access 
+the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.
+*/
+```
+
+
+
+
 
 
 
