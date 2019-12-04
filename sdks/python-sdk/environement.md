@@ -36,7 +36,11 @@ the WISE-PaaS Platform via MQTT or MQTT over the Secure WebSocket Protocol.
 */
 ```
 
+#### FAQ
 
+* If you get some error messages about SSL certificate as follows on Windows, please install [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html).
+
+> \[SSL: CERTIFICATE\_VERIFY\_FAILED\] certificate verify failed \(\_ssl.c:720\)
 
 
 
