@@ -143,8 +143,8 @@ analogConfig.SetArraySize(0)
 analogConfig.SetSpanHigh(10)
 analogConfig.SetSpanLow(0)
 analogConfig.SetEngineerUnit("cm")
-analogConfig.SetIntegerDisplayFormat(2)
-analogConfig.SetFractionDisplayFormat(4)
+analogConfig.SetIntegerDisplayFormat(4)
+analogConfig.SetFractionDisplayFormat(2)
 
 // add tags
 deviceConfig.AnalogTagList = append(deviceConfig.AnalogTagList, analogConfig)
