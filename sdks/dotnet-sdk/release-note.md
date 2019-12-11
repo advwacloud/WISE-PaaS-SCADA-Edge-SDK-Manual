@@ -2,6 +2,14 @@
 
 ---
 
+* \[1.0.8\] - 2019-12-xx
+
+  * Added
+
+    * UploadConfig增加"Delsert" action, 作用是讓雲端強制直接套用本次上傳的Config
+
+    * DeviceConfig增加RetentionPolicyName欄位, 透過該欄位可自動與雲端設定的Retention Policy綁定
+
 * \[1.0.7\] - 2018-10-02
 
   * Updated
