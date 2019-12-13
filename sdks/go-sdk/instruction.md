@@ -105,8 +105,7 @@ result = edgeAgent.UploadConfig(agent.Action["Create"], config)
 SCADA config setting
 
 ```go
-scadaConfig = agent.NewScadaConfig("scadaName")
-scadaConfig.SetDescription("For Test")
+scadaConfig = agent.NewScadaConfig()
 scadaConfig.SetPrimaryIP("127.0.0.1")
 // scadaConfig.SetBackupIP()
 scadaConfig.SetPrimaryPort(80)

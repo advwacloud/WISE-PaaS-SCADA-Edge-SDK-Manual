@@ -163,9 +163,6 @@ bool result = UploadConfig(action, config);
 SCADA Config:
 
 ```
-config.Id = Scada ID"; 
-config.Description = "description";
-config.Name = "For Test";
 config.PrimaryPort = 1883;
 config.BackupPort = 1883;
 config.Type = 1;
@@ -180,7 +177,7 @@ device.Name = simDevName;
 device.Type = "DType";
 device.Description = "DDESC";
 device.IP = "127.0.0.1";
-device.Port = 1;
+device.Port = 1883;
 
 config.DeviceNumber = device_num;
 config.DeviceList = device;

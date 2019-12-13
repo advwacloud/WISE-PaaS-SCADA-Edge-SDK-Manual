@@ -128,11 +128,7 @@ bool result = _edgeAgent.UploadConfig( ActionType.Create, config ).Result;
 SCADA Config:
 
 ```
-config.Scada = new EdgeConfig.ScadaConfig()
-{
-    Name = "TEST_SCADA",
-    Description = "For Test"
-};
+config.Scada = new EdgeConfig.ScadaConfig();
 ```
 
 Device Config:

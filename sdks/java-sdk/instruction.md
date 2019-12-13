@@ -115,8 +115,6 @@ SCADA Config:
 
 ```
 config.Scada = new EdgeConfig.ScadaConfig();
-config.Scada.Name = "TEST_SCADA";
-config.Scada.Description = "For Test";
 ```
 
 Device Config:

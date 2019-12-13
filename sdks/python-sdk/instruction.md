@@ -109,8 +109,6 @@ SCADA config setting
 
 ```
 scadaConfig = ScadaConfig(
-  name = 'scadaName',
-  description = 'For Test',
   primaryIP = None,
   backupIP = None,
   primaryPort = None,

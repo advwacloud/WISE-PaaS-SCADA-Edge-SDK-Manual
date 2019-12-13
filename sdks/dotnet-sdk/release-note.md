@@ -10,6 +10,10 @@
 
     * DeviceConfig增加RetentionPolicyName欄位, 透過該欄位可自動與雲端設定的Retention Policy綁定
 
+  * Updated
+
+    * 移除EdgeConfig.ScadaConfig中的ID, Name和Description屬性
+
 * \[1.0.7\] - 2018-10-02
 
   * Updated
