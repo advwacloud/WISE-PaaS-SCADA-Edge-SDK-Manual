@@ -62,16 +62,16 @@ func onMessageReceiveHandler (args agent.MessageReceivedEventArgs) {
 
   switch msgType {
     case MessageType["WriteValue"]:  // message format: WriteDataMessage
-      for _, device := range message.DeviceList {
+      for _, device := range message.(agent.WriteDataMessage).DeviceList {
         fmt.Println("DeviceId: ", device.ID)
         for _, tag := range device.TagList {
           fmt.Println("TagName: ", tag.Name, ", Value: ", tag.Value)
         }
       }
     case MessageType["ConfigAck"]:  // message format: ConfigAckMessage
-      fmt.Println(message.Result)
+      fmt.Println(message.(agent.ConfigAckMessage).Result)
     case MessageType["TimeSync"]: //message format: TimeSyncMessage
-      fmt.Println(message.UTCTime)
+      fmt.Println(message.(agent.TimeSyncMessage).UTCTime)
   }
 }
 ```
