@@ -256,6 +256,30 @@ data.DeviceList = data_device;
 bool result = SendData(data);
 ```
 
+Similar to allocate tag value in normal tags, an array tag value have to create a new array data instance (PTEDGE_ARRAY_TAG_STRUCT) and reference it in another tag instance (PTEDGE_TAG_STRUCT)
+
+```
+PTEDGE_TAG_STRUCT data_tag = malloc(tag_num * sizeof(struct EDGE_TAG_STRUCT));
+PTEDGE_ARRAY_TAG_STRUCT data_array_tag = malloc(array_size * sizeof(struct EDGE_ARRAY_TAG_STRUCT));
+
+for(int i = 0; i< array_size; i++){
+    asprintf(&simValue, "%d", value);
+    data_array_tag[k].Index = i;        // array index
+    data_array_tag[k].Value = simValue; // array value
+}
+data_tag[j].ArraySize = array_size;
+data_tag[j].ArrayList = data_array_tag;
+
+data_device.TagNumber = tag_num;
+data_device.TagList = data_tag;
+data_device.Id = "DeviceID";
+
+data.DeviceNumber = 1;
+data.DeviceList = data_device;
+
+bool result = SendData(data); 
+```
+
 ### 8. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
 
 Send Device status to cloud when status changed.
