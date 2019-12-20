@@ -10,7 +10,7 @@
 
 New a EdgeAgent object.
 
-```
+```cs
 EdgeAgentOptions options = new EdgeAgentOptions()
 {
     ConnectType = ConnectType.DCCS,    // Connection Type (DCCS, MQTT), Default is DCCS
@@ -51,7 +51,7 @@ EdgeAgent has three event for subscribing.
   * TimeSync: Returns the current time from cloud.
   * ConfigAck: The response of uploading config from edge to cloud.
 
-```
+```cs
 edgeAgent.Connected += edgeAgent_Connected;
 edgeAgent.Disconnected += edgeAgent_Disconnected;
 edgeAgent.MessageReceived += edgeAgent_MessageReceived;
@@ -117,7 +117,7 @@ edgeAgent.Disconnect();
 
 Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
-```
+```cs
 EdgeConfig config = new EdgeConfig();
 // set scada condig
 // set device config
@@ -133,7 +133,7 @@ config.Scada = new EdgeConfig.ScadaConfig();
 
 Device Config:
 
-```
+```cs
 EdgeConfig.DeviceConfig device = new EdgeConfig.DeviceConfig()
 {
     Id = "Device1",
@@ -145,7 +145,7 @@ EdgeConfig.DeviceConfig device = new EdgeConfig.DeviceConfig()
 
 Analog Tag Config:
 
-```
+```cs
 EdgeConfig.AnalogTagConfig analogTag = new EdgeConfig.AnalogTagConfig()
 {
     Name = "Volt",
@@ -162,7 +162,7 @@ EdgeConfig.AnalogTagConfig analogTag = new EdgeConfig.AnalogTagConfig()
 
 Discrete Tag Config:
 
-```
+```cs
 EdgeConfig.DiscreteTagConfig discreteTag = new EdgeConfig.DiscreteTagConfig()
 {
     Name = "DTag",
@@ -182,7 +182,7 @@ EdgeConfig.DiscreteTagConfig discreteTag = new EdgeConfig.DiscreteTagConfig()
 
 Text Tag Config:
 
-```
+```cs
 EdgeConfig.TextTagConfig textTag = new EdgeConfig.TextTagConfig()
 {
     Name = "Text",
@@ -196,7 +196,7 @@ EdgeConfig.TextTagConfig textTag = new EdgeConfig.TextTagConfig()
 
 Send tag value to cloud.
 
-```
+```cs
 Random random = new Random();
 EdgeData data = new EdgeData();
 for ( int i = 1; i <= 2; i++ )
@@ -232,7 +232,7 @@ bool result = edgeAgent.SendData( data ).Result;
 
 An array tag value have to use Dictionary&lt;string, T&gt;, T is defined according to the tag type \(Analog: double, Discrete: int, Text: string\).
 
-```
+```cs
 // analog array tag
 Dictionary<string, double> dicVal = new Dictionary<string, double>();
 dicVal.Add( "0", 0.5 );    // tag index is 0, and it's value is 0.5
@@ -274,7 +274,7 @@ EdgeData.Tag tTag = new EdgeData.Tag()
 
 Send Device status to cloud when status changed.
 
-```
+```cs
 EdgeDeviceStatus deviceStatus = new EdgeDeviceStatus();
 for ( int i = 1; i <= 2; i++ )
 {
