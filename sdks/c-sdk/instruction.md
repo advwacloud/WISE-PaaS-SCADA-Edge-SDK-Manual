@@ -15,7 +15,7 @@ Load dynamic library，and includ WISEPaas.h。Must follow the definition as fol
 * EDGE\_DATA.h: Define SendData structure
 * EDGE\_DEVICE\_STATUS.h: Define SendDeviceStatus structure
 
-```
+```C
 /*  load library */
 
 #include "WISEPaaS.h"
@@ -61,7 +61,7 @@ if ((error = dlerror()) != NULL)  {
 
 New a EdgeAgent object.
 
-```
+```C
 TOPTION_STRUCT options;
 options.AutoReconnect = true;
 options.ReconnectInterval = 1000;
@@ -104,7 +104,7 @@ EdgeAgent has three event for subscribing.
   * TimeSync: Returns the current time from cloud.
   * ConfigAck: The response of uploading config from edge to cloud.
 
-```
+```C
 void edgeAgent_Connected(){
     printf("Connect success\n");
     IsConnected = true;
@@ -151,7 +151,7 @@ Disconnect();
 
 Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
-```
+```C
 TSCADA_CONFIG_STRUCT config;
 ActionType action = Create; // Create, Update od Delete
 // set scada condig
@@ -162,7 +162,7 @@ bool result = UploadConfig(action, config);
 
 SCADA Config:
 
-```
+```C
 config.PrimaryPort = 1883;
 config.BackupPort = 1883;
 config.Type = 1;
@@ -170,7 +170,7 @@ config.Type = 1;
 
 Device Config:
 
-```
+```C
 PTDEVICE_CONFIG_STRUCT device = malloc(sizeof(struct DEVICE_CONFIG_STRUCT));
 
 device.Name = simDevName;
@@ -185,7 +185,7 @@ config.DeviceList = device;
 
 Analog Tag Config:
 
-```
+```C
 PTANALOG_TAG_CONFIG analogTag = malloc(sizeof(struct ANALOG_TAG_CONFIG));
 
 analogTag.Name = "TestName";    
@@ -201,7 +201,7 @@ analogTag.FractionDisplayFormat = 2;
 
 Discrete Tag Config:
 
-```
+```C
 PTDISCRETE_TAG_CONFIG discreteTag = malloc(sizeof(struct DISCRETE_TAG_CONFIG));
 
 discreteTag.NAme = "TestName"
@@ -220,7 +220,7 @@ discreteTag.State7 = "";
 
 Text Tag Config:
 
-```
+```C
 PTTEXT_TAG_CONFIG textTag = malloc(sizeof(struct TEXT_TAG_CONFIG));
 
 textTag.Name = "TestName";
@@ -233,7 +233,7 @@ textTag.ArraySize = 0;
 
 Send tag value to cloud.
 
-```
+```C
 TEDGE_DATA_STRUCT data;
 
 PTEDGE_DEVICE_STRUCT data_device = malloc(sizeof(struct EDGE_DEVICE_STRUCT));
@@ -258,7 +258,7 @@ bool result = SendData(data);
 
 Similar to allocate tag value in normal tags, an array tag value have to create a new array data instance (PTEDGE_ARRAY_TAG_STRUCT) and reference it in another tag instance (PTEDGE_TAG_STRUCT)
 
-```
+```c
 PTEDGE_TAG_STRUCT data_tag = malloc(tag_num * sizeof(struct EDGE_TAG_STRUCT));
 PTEDGE_ARRAY_TAG_STRUCT data_array_tag = malloc(array_size * sizeof(struct EDGE_ARRAY_TAG_STRUCT));
 
@@ -284,7 +284,7 @@ bool result = SendData(data);
 
 Send Device status to cloud when status changed.
 
-```
+```c
 TEDGE_DEVICE_STATUS_STRUCT status;
 status.DeviceNumber = device_num;
 
