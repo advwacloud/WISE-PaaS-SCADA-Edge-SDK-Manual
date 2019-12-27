@@ -122,7 +122,18 @@ error => {
 SCADA Config:
 
 ```
-edgeConfig.scada =  new EdgeSDK.EdgeAgent.ScadaConfig() 
+edgeConfig.scada =  new EdgeSDK.EdgeAgent.ScadaConfig()
+```
+
+Device Config:
+
+```
+const deviceConfig = new EdgeSDK.EdgeAgent.DeviceConfig();
+
+deviceConfig.id = 'Device1';
+deviceConfig.name = 'Device 1';
+deviceConfig.type = 'Smart Device';
+deviceConfig.description = 'Device 1';
 ```
 
 
