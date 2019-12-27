@@ -83,13 +83,23 @@ function edgeAgentMessageReceived (msg) {
 }
 ```
 
-### 3. Connected
+### 3. Connect\(\)
 
 Connect to IoTHub. When connect success, the connected event will be triggered.
 
 ```
 edgeAgent.connect();
 ```
+
+### 4. Disconnect\(\)
+
+Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
+
+```
+edgeAgent.disconnect();
+```
+
+
 
 
 
