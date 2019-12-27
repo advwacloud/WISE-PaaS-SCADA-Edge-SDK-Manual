@@ -240,8 +240,8 @@ Send Device status to cloud when status changed.
 ```
 const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
 
-  for (let i = 1; i <= numDeviceCount; i++) {
-    const device = new SDK.EdgeAgent.DeviceStatus();
+  for (let i = 1; i <= 2; i++) {
+    const device = new EdgeSDK.EdgeAgent.DeviceStatus();
     device.id = 'Device' + i;
     device.status = 1;
     devieStatus.deviceList.push(device);
