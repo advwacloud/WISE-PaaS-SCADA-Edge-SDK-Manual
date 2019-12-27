@@ -136,5 +136,20 @@ deviceConfig.type = 'Smart Device';
 deviceConfig.description = 'Device 1';
 ```
 
+Analog Tag Config:
+
+```
+const analogTagConfig = new EdgeSDK.EdgeAgent.AnalogTagConfig();
+analogTagConfig.name = 'ATag1';
+analogTagConfig.description = ' ATag1';
+analogTagConfig.readOnly = false
+analogTagConfig.arraySize = 0
+analogTagConfig.spanHigh = 1000
+analogTagConfig.spanLow = 0
+analogTagConfig.engineerUnit = ''
+analogTagConfig.integerDisplayFormat = 4
+analogTagConfig.fractionDisplayFormat = 2
+```
+
 
 
