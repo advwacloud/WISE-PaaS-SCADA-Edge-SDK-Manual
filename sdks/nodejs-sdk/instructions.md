@@ -213,7 +213,7 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
       ATag.deviceId = 'Device' + i;
       ATag.tagName = 'ATag' + j;
       ATag.value = Math.floor(Math.random() * 100) + 1;
-      
+
       const DTag = new EdgeSDK.EdgeAgent.Tag();
       DTag.deviceId = 'Device' + i;
       DTag.tagName = 'DTag' + j;
@@ -228,8 +228,10 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
       data.tagList.push(DTag);
       data.tagList.push(TTag);
     }
-
   }
+  
+edgeAgent.sendData(data);
+  
 ```
 
 
