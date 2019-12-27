@@ -246,7 +246,8 @@ const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
     device.status = 1;
     devieStatus.deviceList.push(device);
   }
-  edgeAgent.sendDeviceStatus(devieStatus);  
+
+edgeAgent.sendDeviceStatus(devieStatus);
 ```
 
 
