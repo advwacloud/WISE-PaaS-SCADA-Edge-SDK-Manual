@@ -200,5 +200,13 @@ deviceConfig.textTagList = tTagList; // add text tag list to device.textTagList
 edgeConfig.scada.deviceList.push(deviceConfig) // add the device config to scada.deviceList
 ```
 
+### 6. sendData\(data\)
+
+Send tag value to cloud.
+
+```
+const data = new EdgeSDK.EdgeAgent.EdgeData();
+```
+
 
 
