@@ -116,7 +116,13 @@ res => {
 error => {
     //if upload config occur any exception return error
     console.log(error);//show the error message of the exception
-}); 
+});
+```
+
+SCADA Config:
+
+```
+edgeConfig.scada =  new EdgeSDK.EdgeAgent.ScadaConfig() 
 ```
 
 
