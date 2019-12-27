@@ -6,6 +6,8 @@
 
 ### 1. New EdgeAgent\(Options\)
 
+New  an edgeAent object.
+
 ```
 const EdgeSDK= require('');
 const options = {
@@ -31,6 +33,24 @@ const options = {
   dataRecover: true // need to recover data or not when disconnected
 };
 const edgeAgent = new EdgeSDK.EdgeAgent(options);
+```
+
+### 2. Event
+
+EdgeAgent has three event for subscribing.
+
+* connected: When EdgeAgent is connected to IoTHub.
+* disconnected: When EdgeAgent is disconnected to IoTHub.
+* messageReceived: When EdgeAgent receives MQTT message from cloud. The message type as follows:
+  * WriteValue: Change tag value from cloud.
+
+  * ConfigAck: The response of uploading config from edge to cloud.
+
+```
+edgeAgent.connected = edgeAgentConnected;
+edgeAgent.disconnected = edgeAgentDisconnected;
+edgeAgent.messageReceived = edgeAgentMessageReceived;
+
 ```
 
 
