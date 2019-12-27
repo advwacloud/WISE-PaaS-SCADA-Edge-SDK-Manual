@@ -170,5 +170,18 @@ discreteTagConfig.state6 = 'NotUsed';
 discreteTagConfig.state7 = 'NotUsed';
 ```
 
+Text Tag Config:
+
+```
+const textTagConfig = new EdgeSDK.EdgeAgent.TextTagConfig();
+
+textTagConfig.name = 'TTag1';
+textTagConfig.description = 'TTag1';
+textTagConfig.readyOnly = false;
+textTagConfig.arraySize = 0;
+
+
+```
+
 
 
