@@ -140,6 +140,7 @@ Analog Tag Config:
 
 ```
 const analogTagConfig = new EdgeSDK.EdgeAgent.AnalogTagConfig();
+let anaTagList = [];
 
 analogTagConfig.name = 'ATag1';
 analogTagConfig.description = ' ATag1';
@@ -150,12 +151,15 @@ analogTagConfig.spanLow = 0;
 analogTagConfig.engineerUnit = '';
 analogTagConfig.integerDisplayFormat = 4;
 analogTagConfig.fractionDisplayFormat = 2;
+
+anaTagList.push(analogTagConfig);
 ```
 
 Discrete Tag Config:
 
 ```
 const discreteTagConfig = new EdgeSDK.EdgeAgent.DiscreteTagConfig();
+let disTagList = []; 
 
 discreteTagConfig.name = 'DTag1';
 discreteTagConfig.description  = 'DTag1';
@@ -168,19 +172,30 @@ discreteTagConfig.state4 = 'NotUsed';
 discreteTagConfig.state5 = 'NotUsed';
 discreteTagConfig.state6 = 'NotUsed';
 discreteTagConfig.state7 = 'NotUsed';
+
+disTagList.push(discreteTagConfig);
 ```
 
 Text Tag Config:
 
 ```
 const textTagConfig = new EdgeSDK.EdgeAgent.TextTagConfig();
+let tTagList = [];
 
 textTagConfig.name = 'TTag1';
 textTagConfig.description = 'TTag1';
 textTagConfig.readyOnly = false;
 textTagConfig.arraySize = 0;
 
+tTagList.push(textTagConfig)
+```
 
+Finally, add tags to tag list:
+
+```
+deviceConfig.analogTagList = anaTagList;
+deviceConfig.discreteTagList = disTagList;
+deviceConfig.textTagList = tTagList;
 ```
 
 
