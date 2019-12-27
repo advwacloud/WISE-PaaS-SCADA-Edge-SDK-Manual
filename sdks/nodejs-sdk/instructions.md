@@ -229,9 +229,23 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
       data.tagList.push(TTag);
     }
   }
-  
+
 edgeAgent.sendData(data);
-  
+```
+
+### 7. sendDeviceStatus\(devieStatus\)
+
+Send Device status to cloud when status changed.
+
+```
+const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
+
+  for (let i = 1; i <= numDeviceCount; i++) {
+    const device = new SDK.EdgeAgent.DeviceStatus();
+    device.id = 'Device' + i;
+    device.status = 1;
+    devieStatus.deviceList.push(device);
+  }
 ```
 
 
