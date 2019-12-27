@@ -83,5 +83,13 @@ function edgeAgentMessageReceived (msg) {
 }
 ```
 
+### 3. Connected
+
+Connect to IoTHub. When connect success, the connected event will be triggered.
+
+```
+edgeAgent.connect();
+```
+
 
 
