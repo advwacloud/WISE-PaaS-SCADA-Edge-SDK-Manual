@@ -55,6 +55,10 @@ edgeAgent.messageReceived = edgeAgentMessageReceived;
 function edgeAgentConnected () {
     console.log('Connect success !');
 }
+
+function edgeAgentDisconnected () {
+  console.log('Disconnected... ');
+}
 ```
 
 
