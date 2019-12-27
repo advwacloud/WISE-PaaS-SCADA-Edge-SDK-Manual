@@ -190,12 +190,14 @@ textTagConfig.arraySize = 0;
 tTagList.push(textTagConfig)
 ```
 
-Finally, add tags to tag list:
+Finally, add tag list to device config, and add deive to scada config:
 
 ```
-deviceConfig.analogTagList = anaTagList;
-deviceConfig.discreteTagList = disTagList;
-deviceConfig.textTagList = tTagList;
+deviceConfig.analogTagList = anaTagList; // add analog tag list to device.analogTagList
+deviceConfig.discreteTagList = disTagList; // add discrete tag list to device.discreteTagList
+deviceConfig.textTagList = tTagList; // add text tag list to device.textTagList 
+
+edgeConfig.scada.deviceList.push(deviceConfig) // add the device config to scada.deviceList
 ```
 
 
