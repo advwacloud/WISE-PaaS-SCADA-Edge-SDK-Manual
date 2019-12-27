@@ -99,7 +99,25 @@ Disconnect to IoTHub. When disconnect success, the disconnected event will be tr
 edgeAgent.disconnect();
 ```
 
+### 5. UploadConfig\(action, edgeConfig\)
 
+Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
+
+```
+const edgeConfig = new EdgeSDK.EdgeAgent.EdgeConfig();
+// set scada condig
+// set device config
+// set tag config
+
+edgeAgent.uploadConfig(actionType.create, edgeConfig).then(
+res => {
+    //if upload successful res return true
+},
+error => {
+    //if upload config occur any exception return error
+    console.log(error);//show the error message of the exception
+}); 
+```
 
 
 
