@@ -42,6 +42,7 @@ EdgeAgent has three event for subscribing.
 * connected: When EdgeAgent is connected to IoTHub.
 * disconnected: When EdgeAgent is disconnected to IoTHub.
 * messageReceived: When EdgeAgent receives MQTT message from cloud. The message type as follows:
+
   * WriteValue: Change tag value from cloud.
 
   * ConfigAck: The response of uploading config from edge to cloud.
@@ -51,6 +52,9 @@ edgeAgent.connected = edgeAgentConnected;
 edgeAgent.disconnected = edgeAgentDisconnected;
 edgeAgent.messageReceived = edgeAgentMessageReceived;
 
+function edgeAgentConnected () {
+    console.log('Connect success !');
+}
 ```
 
 
