@@ -7,6 +7,7 @@
 ### 1. New EdgeAgent\(Options\)
 
 ```
+const EdgeSDK= require('');
 const options = {
   connectType: 1, // MQTT=0 DCCS=1
   DCCS: {
@@ -29,6 +30,7 @@ const options = {
   heartbeat: 60000, // default is 60 seconds,
   dataRecover: true // need to recover data or not when disconnected
 };
+const edgeAgent = new EdgeSDK.EdgeAgent(options);
 ```
 
 
