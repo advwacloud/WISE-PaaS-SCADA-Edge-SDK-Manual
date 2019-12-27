@@ -140,15 +140,34 @@ Analog Tag Config:
 
 ```
 const analogTagConfig = new EdgeSDK.EdgeAgent.AnalogTagConfig();
+
 analogTagConfig.name = 'ATag1';
 analogTagConfig.description = ' ATag1';
-analogTagConfig.readOnly = false
-analogTagConfig.arraySize = 0
-analogTagConfig.spanHigh = 1000
-analogTagConfig.spanLow = 0
-analogTagConfig.engineerUnit = ''
-analogTagConfig.integerDisplayFormat = 4
-analogTagConfig.fractionDisplayFormat = 2
+analogTagConfig.readOnly = false;
+analogTagConfig.arraySize = 0;
+analogTagConfig.spanHigh = 1000;
+analogTagConfig.spanLow = 0;
+analogTagConfig.engineerUnit = '';
+analogTagConfig.integerDisplayFormat = 4;
+analogTagConfig.fractionDisplayFormat = 2;
+```
+
+Discrete Tag Config:
+
+```
+const discreteTagConfig = new EdgeSDK.EdgeAgent.DiscreteTagConfig();
+
+discreteTagConfig.name = 'DTag1';
+discreteTagConfig.description  = 'DTag1';
+discreteTagConfig.arraySize = 0;
+discreteTagConfig.state0 = '0';
+discreteTagConfig.state1 = '1';
+discreteTagConfig.state2 = 'NotUsed';
+discreteTagConfig.state3 = 'NotUsed';
+discreteTagConfig.state4 = 'NotUsed';
+discreteTagConfig.state5 = 'NotUsed';
+discreteTagConfig.state6 = 'NotUsed';
+discreteTagConfig.state7 = 'NotUsed';
 ```
 
 
