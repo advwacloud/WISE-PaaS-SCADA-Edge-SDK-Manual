@@ -206,6 +206,34 @@ Send tag value to cloud.
 
 ```
 const data = new EdgeSDK.EdgeAgent.EdgeData();
+
+  for (let i = 1; i <= 2; i++) {
+    for (let j = 1; j <= 5; j++) {
+      const ATag = new EdgeSDK.EdgeAgent.Tag();
+      ATag.deviceId = 'Device' + i;
+      ATag.tagName = 'ATag' + j;
+      ATag.value = Math.floor(Math.random() * 100) + 1;
+
+  
+
+      const DTag = new EdgeSDK.EdgeAgent.Tag();
+      DTag.deviceId = 'Device' + i;
+      DTag.tagName = 'DTag' + j;
+      DTag.value = j % 2;
+    
+    
+
+      const TTag = new EdgeSDK.EdgeAgent.Tag();
+      TTag.deviceId = 'Device' + i;
+      TTag.tagName = 'TTag' + j;
+      TTag.value = 'TEST' + j.toString();
+
+      data.tagList.push(ATag);
+      data.tagList.push(DTag);
+      data.tagList.push(TTag);
+    }
+
+  }
 ```
 
 
