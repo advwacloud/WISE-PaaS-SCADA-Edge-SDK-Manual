@@ -93,8 +93,8 @@ edgeAgent.connect();
 
 ```
 edgeAgent.connect().then((error,result) => {
-//if connect successful without error, result return true, error return null, and vice versa.
-//do something....
+//if connect successful without error, error return null, result return true, and vice versa.
+//do something...
 })
 ```
 
@@ -102,6 +102,8 @@ edgeAgent.connect().then((error,result) => {
 
 ```
 function costumerCallback(error,result){
+//if connect successful without error, error return null, result return true, and vice versa.
+//do something...
 }
 edgeAgent.connect(costumerCallback);
 ```
