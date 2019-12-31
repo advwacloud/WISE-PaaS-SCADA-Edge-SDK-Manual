@@ -89,6 +89,14 @@ connect\(\) supports both promise and callback.
 edgeAgent.connect();
 ```
 
+* Promise example
+
+```
+edgeAgent.connect().then((error,result)=>{
+//if connect successful without error, result return true, error return null, and vice versa.
+})
+```
+
 ### 4. disconnect\(\)
 
 Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
