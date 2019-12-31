@@ -48,9 +48,10 @@ EdgeAgent has three event for subscribing.
   * ConfigAck: The response of uploading config from edge to cloud.
 
 ```
-edgeAgent.connected = edgeAgentConnected;
-edgeAgent.disconnected = edgeAgentDisconnected;
-edgeAgent.messageReceived = edgeAgentMessageReceived;
+edgeAgent.events.on('connected',()=>{
+console.log('Connect success !');
+})
+
 
 function edgeAgentConnected () {
     console.log('Connect success !');
