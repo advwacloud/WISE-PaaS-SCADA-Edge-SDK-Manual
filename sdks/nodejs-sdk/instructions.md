@@ -95,7 +95,8 @@ edgeAgent.connect();
 edgeAgent.connect().then((result) => {
   //if connect successful without error, result return true, and vice versa.
   //do something...
-},error => {
+},
+error => {
   //if connection occurs error, error show the reason.
   //do something...
 })
@@ -127,7 +128,8 @@ edgeAgent.disconnect();
 edgeAgent.disconnect().then((result) => {
   //if connect successful without error, result return true, and vice versa.
   //do something...
-},error => {
+},
+error => {
   //if connection occurs error, error show the reason.
   //do something...
 })
@@ -270,6 +272,8 @@ Send tag value to cloud.
 
 sendData\(data, \[callback\]\) supports both promise and callback.
 
+* Promise example
+
 ```
 const data = new EdgeSDK.EdgeAgent.EdgeData();
 
@@ -296,7 +300,43 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
     }
   }
 
-edgeAgent.sendData(data);
+edgeAgent.sendData(data).then(result => {
+  //
+}, 
+error => {
+
+});
+```
+
+* Callback example
+
+```
+const data = new EdgeSDK.EdgeAgent.EdgeData();
+
+  for (let i = 1; i <= 2; i++) {
+    for (let j = 1; j <= 5; j++) {
+      const ATag = new EdgeSDK.EdgeAgent.Tag();
+      ATag.deviceId = 'Device' + i;
+      ATag.tagName = 'ATag' + j;
+      ATag.value = Math.floor(Math.random() * 100) + 1;
+
+      const DTag = new EdgeSDK.EdgeAgent.Tag();
+      DTag.deviceId = 'Device' + i;
+      DTag.tagName = 'DTag' + j;
+      DTag.value = j % 2;
+
+      const TTag = new EdgeSDK.EdgeAgent.Tag();
+      TTag.deviceId = 'Device' + i;
+      TTag.tagName = 'TTag' + j;
+      TTag.value = 'TEST' + j.toString();
+
+      data.tagList.push(ATag);
+      data.tagList.push(DTag);
+      data.tagList.push(TTag);
+    }
+  }
+
+
 ```
 
 ### 7. sendDeviceStatus\(devieStatus\)
