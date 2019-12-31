@@ -79,11 +79,11 @@ edgeAgent.events.on('messageReceived',(msg)=>{
 })
 ```
 
-### 3. connect\(\)
+### 3. connect\(\[callback\]\)
 
 Connect to IoTHub. When connect success, the connected event will be triggered.
 
-connect\(\) supports both promise and callback.
+connect\(\[callback\]\) supports both promise and callback.
 
 ```
 edgeAgent.connect();
@@ -111,11 +111,11 @@ function costumerCallback(error,result){
 edgeAgent.connect(costumerCallback);
 ```
 
-### 4. disconnect\(\)
+### 4. disconnect\(\[callback\]\)
 
 Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
-disconnect\(\) supports both promise and callback.
+disconnect\(\[callback\]\) supports both promise and callback.
 
 ```
 edgeAgent.disconnect();
