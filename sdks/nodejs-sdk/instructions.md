@@ -115,8 +115,32 @@ edgeAgent.connect(costumerCallback);
 
 Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
+disconnect\(\) supports both promise and callback.
+
 ```
 edgeAgent.disconnect();
+```
+
+* Promise example
+
+```
+edgeAgent.disconnect().then((result) => {
+  //if connect successful without error, result return true, and vice versa.
+  //do something...
+},error => {
+  //if connection occurs error, error show the reason.
+  //do something...
+})
+```
+
+* Callback example
+
+```
+function costumerCallback(error,result){
+//if connect successful without error, error return null, result return true, and vice versa.
+//do something...
+}
+edgeAgent.disconnect(costumerCallback);
 ```
 
 ### 5. uploadConfig\(action, edgeConfig\)
