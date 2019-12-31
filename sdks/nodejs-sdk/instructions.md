@@ -79,15 +79,17 @@ edgeAgent.events.on('messageReceived',(msg)=>{
 })
 ```
 
-### 3. Connect\(\)
+### 3. connect\(\)
 
 Connect to IoTHub. When connect success, the connected event will be triggered.
+
+connect\(\) supports both promise and callback.
 
 ```
 edgeAgent.connect();
 ```
 
-### 4. Disconnect\(\)
+### 4. disconnect\(\)
 
 Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
@@ -95,7 +97,7 @@ Disconnect to IoTHub. When disconnect success, the disconnected event will be tr
 edgeAgent.disconnect();
 ```
 
-### 5. UploadConfig\(action, edgeConfig\)
+### 5. uploadConfig\(action, edgeConfig\)
 
 Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
