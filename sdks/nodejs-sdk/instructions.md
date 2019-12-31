@@ -179,6 +179,7 @@ function customerCallback(error, result){
 //if connect successful without error, error return null, result return true, and vice versa.
 //do something...
 }
+
 edgeAgent.uploadConfig(actionType.create, edgeConfig, customerCallback);
 ```
 
