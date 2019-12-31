@@ -143,9 +143,13 @@ function costumerCallback(error,result){
 edgeAgent.disconnect(costumerCallback);
 ```
 
-### 5. uploadConfig\(action, edgeConfig\)
+### 5. uploadConfig\(action, edgeConfig, \[callback\]\)
 
 Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
+
+uploadConfig\(action, edgeConfig\) supports both promise and callback.
+
+* Promise example
 
 ```
 const edgeConfig = new EdgeSDK.EdgeAgent.EdgeConfig();
@@ -161,6 +165,21 @@ error => {
     //if upload config occur any exception return error
     console.log(error);//show the error message of the exception
 });
+```
+
+* Callback example
+
+```
+const edgeConfig = new EdgeSDK.EdgeAgent.EdgeConfig();
+// set scada condig
+// set device config
+// set tag config
+
+function customerCallback(error, result){
+//if connect successful without error, error return null, result return true, and vice versa.
+//do something...
+}
+edgeAgent.uploadConfig(actionType.create, edgeConfig, customerCallback);
 ```
 
 SCADA Config:
