@@ -98,6 +98,14 @@ edgeAgent.connect().then((error,result) => {
 })
 ```
 
+* Callback example
+
+```
+function costumerCallback(error,result){
+}
+edgeAgent.connect(costumerCallback);
+```
+
 ### 4. disconnect\(\)
 
 Disconnect to IoTHub. When disconnect success, the disconnected event will be triggered.
