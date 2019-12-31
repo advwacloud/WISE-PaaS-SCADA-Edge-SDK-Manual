@@ -49,17 +49,37 @@ EdgeAgent has three event for subscribing.
 
 ```
 edgeAgent.events.on('connected',()=>{
-console.log('Connect success !');
+  console.log('Connect success !');
+})
+
+edgeAgent.events.on('disconnected',()=>{
+  console.log('Disconnected... ');
+})
+
+edgeAgent.events.on('messageReceived',(msg)=>{
+  switch (msg.type) {
+    case MessageType.WriteValue:
+      for (const device of msg.message.deviceList) {
+        console.log('DeviceId: ' + device.id);
+        for (const tag of device.tagList) {
+          if (typeof tag.value === 'object') {
+            for (const aryTag in tag.value) {
+              console.log('TagName: ' + tag.name + ', Index: ' + aryTag + ', Value: ' + tag.value[aryTag]);
+            }
+          } else {
+            console.log('TagName: ' + tag.name + ', Value: ' + tag.value);
+          }
+        }
+      }
+      break;
+    case MessageType.ConfigAck:
+      console.log('Upload Config Result: ' + msg.message);
+      break;
+  }
 })
 
 
-function edgeAgentConnected () {
-    console.log('Connect success !');
-}
 
-function edgeAgentDisconnected () {
-  console.log('Disconnected... ');
-}
 
 function edgeAgentMessageReceived (msg) {
   switch (msg.type) {
