@@ -96,7 +96,7 @@ edgeAgent.connect().then((result) => {
   //if connect successful without error, result return true, and vice versa.
   //do something...
 },error => {
-  //if connection occurs error, return an error object.
+  //if connection occurs error, return an error.
 })
 ```
 
