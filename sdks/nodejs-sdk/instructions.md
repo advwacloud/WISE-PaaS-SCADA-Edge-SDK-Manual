@@ -268,7 +268,7 @@ edgeConfig.scada.deviceList.push(deviceConfig) // add the device config to scada
 
 Send tag value to cloud.
 
-sendData\(data\) supports both promise and callback.
+sendData\(data, \[callback\]\) supports both promise and callback.
 
 ```
 const data = new EdgeSDK.EdgeAgent.EdgeData();
