@@ -92,8 +92,9 @@ edgeAgent.connect();
 * Promise example
 
 ```
-edgeAgent.connect().then((error,result)=>{
+edgeAgent.connect().then((error,result) => {
 //if connect successful without error, result return true, error return null, and vice versa.
+//do something....
 })
 ```
 
