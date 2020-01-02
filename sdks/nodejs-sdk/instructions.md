@@ -387,7 +387,7 @@ const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
 function customerCallback(error, result){
   //if send device status successfully, error return null, and result return true, and vice versa.
 }
-edgeAgent.sendDeviceStatus(devieStatus, customerCallback)
+edgeAgent.sendDeviceStatus(devieStatus, customerCallback);
 ```
 
 
