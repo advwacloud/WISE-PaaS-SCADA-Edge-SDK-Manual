@@ -161,7 +161,7 @@ const edgeConfig = new EdgeSDK.EdgeAgent.EdgeConfig();
 
 edgeAgent.uploadConfig(actionType.create, edgeConfig).then(
 result => {
-    //if upload successful res return true
+    //if upload successful result return true
 },
 error => {
     //if upload config occur any exception return error
@@ -302,7 +302,7 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
 
 edgeAgent.sendData(data).then(
 result => {
-  //if send data successful without error, error return null, result return true, and vice versa.
+  //if send data successful, result return true, and vice versa.
 }, 
 error => {
  //if send data occur any exception return error
@@ -344,9 +344,13 @@ function customerCallback(error, result){
 edgeAgent.sendData(data, customerCallback);
 ```
 
-### 7. sendDeviceStatus\(devieStatus\)
+### 7. sendDeviceStatus\(devieStatus, \[callback\]\)
 
 Send Device status to cloud when status changed.
+
+sendDeviceStatus\(devieStatus, \[callback\]\) supports both promise and callback.
+
+* Promise example
 
 ```
 const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
@@ -358,8 +362,17 @@ const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
     devieStatus.deviceList.push(device);
   }
 
-edgeAgent.sendDeviceStatus(devieStatus);
+edgeAgent.sendDeviceStatus(devieStatus).then(
+result => {
+  //if send device status successful, result return true, and vice versa.
+},
+error => {
+
+}
+);
 ```
+
+* Callback example
 
 
 
