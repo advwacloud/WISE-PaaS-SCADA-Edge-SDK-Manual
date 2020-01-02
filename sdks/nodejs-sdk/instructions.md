@@ -126,7 +126,7 @@ edgeAgent.disconnect();
 
 ```
 edgeAgent.disconnect().then((result) => {
-  //if connect successful without error, result return true, and vice versa.
+  //if disconnect successfully without error, result return true, and vice versa.
   //do something...
 },
 error => {
