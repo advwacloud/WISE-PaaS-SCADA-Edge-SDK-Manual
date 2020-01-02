@@ -97,7 +97,7 @@ edgeAgent.connect().then((result) => {
   //do something...
 },
 error => {
-  //if connection unsuccessfully, show the reason of error.
+  //if connection unsuccessfully, shows the reason of error.
   //do something...
 })
 ```
