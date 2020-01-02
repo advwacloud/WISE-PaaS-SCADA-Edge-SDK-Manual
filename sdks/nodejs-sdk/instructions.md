@@ -160,7 +160,7 @@ const edgeConfig = new EdgeSDK.EdgeAgent.EdgeConfig();
 // set tag config
 
 edgeAgent.uploadConfig(actionType.create, edgeConfig).then(
-res => {
+result => {
     //if upload successful res return true
 },
 error => {
@@ -300,11 +300,12 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
     }
   }
 
-edgeAgent.sendData(data).then(result => {
-  //
+edgeAgent.sendData(data).then(
+result => {
+  //if send data successful without error, error return null, result return true, and vice versa.
 }, 
 error => {
-
+ //if send data occur any exception return error
 });
 ```
 
@@ -335,8 +336,12 @@ const data = new EdgeSDK.EdgeAgent.EdgeData();
       data.tagList.push(TTag);
     }
   }
+function customerCallback(error, result){
+//if send data successful without error, error return null, result return true, and vice versa.
+//do something...
+}
 
-
+edgeAgent.sendData(data,customerCallback)
 ```
 
 ### 7. sendDeviceStatus\(devieStatus\)
