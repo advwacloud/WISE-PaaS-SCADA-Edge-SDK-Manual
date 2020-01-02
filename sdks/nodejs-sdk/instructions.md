@@ -97,7 +97,7 @@ edgeAgent.connect().then((result) => {
   //do something...
 },
 error => {
-  //if connection unsuccessfully, shows the reason of error.
+  //if connection unsuccessfully, return an error object containing error message.
   //do something...
 })
 ```
@@ -130,7 +130,7 @@ edgeAgent.disconnect().then((result) => {
   //do something...
 },
 error => {
-  //if disconnection unsuccessfully, show the reason of error.
+  //if disconnection unsuccessfully, return an error object containing error message.
   //do something...
 })
 ```
@@ -164,7 +164,7 @@ result => {
     //if upload successfully result return true, and vice versa.
 },
 error => {
-    //if upload config unsuccessfully, show the reason of error.
+    //if upload config unsuccessfully, return an error object containing error message.
 });
 ```
 
@@ -304,7 +304,7 @@ result => {
   //if send data successful, result return true, and vice versa.
 }, 
 error => {
- //if send data unsuccessfully, show the reason of error.
+ //if send data unsuccessfully, return an error object containing error message.
 });
 ```
 
@@ -366,7 +366,7 @@ result => {
   //if send device status successfully, result return true, and vice versa.
 },
 error => {
-  //if send device status unsuccessfully, show the reason of error.
+  //if send device status unsuccessfully, return an error object containing error message.
 }
 );
 ```
