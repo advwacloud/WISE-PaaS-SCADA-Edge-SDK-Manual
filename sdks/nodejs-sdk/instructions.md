@@ -52,7 +52,7 @@ edgeAgent.events.on('connected', ()=>{
   console.log('Connect success !');
 })
 
-edgeAgent.events.on('disconnected',()=>{
+edgeAgent.events.on('disconnected', ()=>{
   console.log('Disconnected... ');
 })
 
