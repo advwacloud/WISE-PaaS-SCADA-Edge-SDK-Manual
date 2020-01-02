@@ -97,7 +97,7 @@ edgeAgent.connect().then((result) => {
   //do something...
 },
 error => {
-  //if connection occurs error, error show the reason.
+  //if connection unsuccessfully, show the reason of error.
   //do something...
 })
 ```
@@ -130,7 +130,7 @@ edgeAgent.disconnect().then((result) => {
   //do something...
 },
 error => {
-  //if disconnection occurs error, error show the reason.
+  //if disconnection unsuccessfully, show the reason of error.
   //do something...
 })
 ```
