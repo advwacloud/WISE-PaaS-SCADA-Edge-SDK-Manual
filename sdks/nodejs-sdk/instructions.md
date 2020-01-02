@@ -106,7 +106,7 @@ error => {
 
 ```
 function costumerCallback(error,result){
-//if connect successful without error, error return null, result return true, and vice versa.
+//if connect successfully without error, error return null, result return true, and vice versa.
 //do something...
 }
 edgeAgent.connect(costumerCallback);
