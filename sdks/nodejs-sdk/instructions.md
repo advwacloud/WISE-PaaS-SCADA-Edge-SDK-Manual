@@ -139,7 +139,7 @@ error => {
 
 ```
 function costumerCallback(error,result){
-//if connect successful without error, error return null, result return true, and vice versa.
+//if disconnect successfully without error, error return null, result return true, and vice versa.
 //do something...
 }
 edgeAgent.disconnect(costumerCallback);
