@@ -304,7 +304,7 @@ result => {
   //if send data successful, result return true, and vice versa.
 }, 
 error => {
- //if send data occur any exception return error
+ //if send data unsuccessfully, show the reason of error.
 });
 ```
 
