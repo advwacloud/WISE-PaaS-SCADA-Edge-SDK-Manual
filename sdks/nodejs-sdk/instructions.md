@@ -164,8 +164,8 @@ result => {
     //if upload successfully result return true, and vice versa.
 },
 error => {
-    //if upload config occur any exception return error
-    console.log(error);//show the error message of the exception
+    //if upload config occur any exception return error.
+    //show the error message of the exception
 });
 ```
 
