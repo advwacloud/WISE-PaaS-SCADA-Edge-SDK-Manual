@@ -126,11 +126,11 @@ edgeAgent.disconnect();
 
 ```
 edgeAgent.disconnect().then((result) => {
-  //if disconnect successfully without error, result return true, and vice versa.
+  //if disconnect successfully, result return true, and vice versa.
   //do something...
 },
 error => {
-  //if connection occurs error, error show the reason.
+  //if disconnection occurs error, error show the reason.
   //do something...
 })
 ```
