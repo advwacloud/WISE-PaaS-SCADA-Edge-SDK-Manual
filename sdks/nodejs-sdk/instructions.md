@@ -341,7 +341,7 @@ function customerCallback(error, result){
 //do something...
 }
 
-edgeAgent.sendData(data,customerCallback)
+edgeAgent.sendData(data, customerCallback);
 ```
 
 ### 7. sendDeviceStatus\(devieStatus\)
