@@ -93,7 +93,7 @@ edgeAgent.connect();
 
 ```
 edgeAgent.connect().then((result) => {
-  //if connect successful without error, result return true, and vice versa.
+  //if connect successful, result return true, and vice versa.
   //do something...
 },
 error => {
