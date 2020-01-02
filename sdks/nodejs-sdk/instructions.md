@@ -9,7 +9,7 @@
 New an edgeAent object.
 
 ```
-const EdgeSDK= require('');
+const EdgeSDK= require('wisepaas-scada-edge-nodejs-sdk');
 const options = {
   connectType: 1, // MQTT=0 DCCS=1
   DCCS: {
