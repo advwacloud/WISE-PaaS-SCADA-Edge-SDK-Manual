@@ -7,10 +7,9 @@
 * **Runtime**
   * Node 6.17.0 or above
 * **Installation**
-
-```
-npm install wisepaas-scada-edge-nodejs-sdk
-```
+  ```
+  npm install wisepaas-scada-edge-nodejs-sdk
+  ```
 
 
 
