@@ -161,7 +161,7 @@ const edgeConfig = new EdgeSDK.EdgeAgent.EdgeConfig();
 
 edgeAgent.uploadConfig(actionType.create, edgeConfig).then(
 result => {
-    //if upload successful result return true
+    //if upload successfully result return true
 },
 error => {
     //if upload config occur any exception return error
