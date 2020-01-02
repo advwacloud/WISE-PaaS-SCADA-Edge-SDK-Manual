@@ -364,15 +364,30 @@ const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
 
 edgeAgent.sendDeviceStatus(devieStatus).then(
 result => {
-  //if send device status successful, result return true, and vice versa.
+  //if send device status successfully, result return true, and vice versa.
 },
 error => {
-
+  //if send device status unsuccessfully, return error.
 }
 );
 ```
 
 * Callback example
+
+```
+const devieStatus = new EdgeSDK.EdgeAgent.EdgeDeviceStatus();
+
+  for (let i = 1; i <= 2; i++) {
+    const device = new EdgeSDK.EdgeAgent.DeviceStatus();
+    device.id = 'Device' + i;
+    device.status = 1;
+    devieStatus.deviceList.push(device);
+  }
+
+function customerCallback(error, result){
+  //if send device status successfully, error return null, and result return true, and vice versa.
+}
+```
 
 
 
