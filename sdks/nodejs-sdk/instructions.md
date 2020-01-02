@@ -6,7 +6,7 @@
 
 ### 1. New EdgeAgent\(Options\)
 
-New  an edgeAent object.
+New an edgeAent object.
 
 ```
 const EdgeSDK= require('');
