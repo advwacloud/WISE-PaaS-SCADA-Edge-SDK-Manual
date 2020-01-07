@@ -31,7 +31,7 @@ const options = {
   useSecure: false,
   autoReconnect: true,
   reconnectInterval: 1000,
-  scadaId: '5a8218f7-9cc2-4a2c-bbf7-bf190b2fe67a', // getting from SCADA portal
+  scadaId: '5095cf13-f005-4c81-b6c9-68cf038e2b87', // getting from SCADA portal
   type: type, // Choice your edge is Gateway or Device, Default is Gateway
   deviceId: 'Device1', // If type is Device, DeviceId must be filled
   heartbeat: 60000, // default is 60 seconds,
