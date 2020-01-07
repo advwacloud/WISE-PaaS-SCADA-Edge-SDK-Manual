@@ -10,10 +10,15 @@ New an edgeAent object.
 
 ```
 const edgeSDK= require('wisepaas-scada-edge-nodejs-sdk');
+
+const connectType = 2; // MQTT=1 DCCS=2
+const type = 1; // Gateway=1 Device=2
+// const TCP = 1;
+
 const options = {
-  connectType: 1, // MQTT=0 DCCS=1
+  connectType: connectType,
   DCCS: {
-    credentialKey: '1e0e5365c3af88ad3233336c23d43bav',
+    credentialKey: 'bd007eff5df15eb9e7dabbc0d4380d0g',
     APIUrl: 'https://api-dccs.wise-paas.com/'
   },
   // MQTT: {
@@ -21,13 +26,13 @@ const options = {
   //   port: 1883,
   //   username: 'admin',
   //   password: 'admin',
-  //   protocolType: 0
+  //   protocolType: TCP
   // },
   useSecure: false,
   autoReconnect: true,
   reconnectInterval: 1000,
-  scadaId: '5095cf13-f005-4c81-b6c9-68cf038e2b87', // getting from SCADA portal
-  type: 0, // Choice your edge is Gateway or Device, Default is Gateway
+  scadaId: '5a8218f7-9cc2-4a2c-bbf7-bf190b2fe67a', // getting from SCADA portal
+  type: type, // Choice your edge is Gateway or Device, Default is Gateway
   deviceId: 'Device1', // If type is Device, DeviceId must be filled
   heartbeat: 60000, // default is 60 seconds,
   dataRecover: true // need to recover data or not when disconnected
