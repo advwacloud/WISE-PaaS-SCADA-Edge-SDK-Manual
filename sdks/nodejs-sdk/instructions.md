@@ -18,7 +18,7 @@ const type = 1; // Gateway=1 Device=2
 const options = {
   connectType: connectType,
   DCCS: {
-    credentialKey: 'bd007eff5df15eb9e7dabbc0d4380d0g',
+    credentialKey: '1e0e5365c3af88ad3233336c23d43bav',
     APIUrl: 'https://api-dccs.wise-paas.com/'
   },
   // MQTT: {
