@@ -192,8 +192,8 @@ edgeAgent.uploadConfig(actionType.create, edgeConfig, customerCallback);
 SCADA Config:
 
 ```
-edgeConfig.scada.name = 'Test Scada' //
-edgeConfig.scada.description = 'Test Scada' //
+edgeConfig.scada.name = 'Test Scada' // required property
+edgeConfig.scada.description = 'Test Scada' // required property
 edgeConfig.scada.primaryIP = '' // optional property
 edgeConfig.scada.backupIP = '' // optional property
 edgeConfig.scada.primaryPort = '' // optional property
