@@ -200,6 +200,8 @@ edgeConfig.scada.primaryPort = '' // optional property
 edgeConfig.scada.backupPort = '' // optional property
 ```
 
+The optional properties are not neccessary
+
 Device Config:
 
 ```
