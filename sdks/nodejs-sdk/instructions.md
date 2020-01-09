@@ -193,13 +193,15 @@ SCADA Config:
 
 ```
 const scadaConfig = new edgeSDK.EdgeAgent.ScadaConfig();
-scadaConfig.name = 'Test Scada';
-scadaConfig.description = 'Test Scada'
+scadaConfig.name = 'Test Scada'; // required property
+scadaConfig.description = 'Test Scada' // required property
 scadaConfig.primaryIP = ''; // optional property
 scadaConfig.backupIP = ''; // optional property
 scadaConfig.primaryPort = ''; // optional property
 scadaConfig.backupPort = ''; // optional property
 ```
+
+If you do not need the optional properties, you can skip to set the properties.
 
 Device Config:
 
