@@ -199,6 +199,8 @@ scadaConfig.primaryIP = ''; // optional property
 scadaConfig.backupIP = ''; // optional property
 scadaConfig.primaryPort = ''; // optional property
 scadaConfig.backupPort = ''; // optional property
+
+edgeConfig.scada = scadaConfig;
 ```
 
 If you do not need the optional properties, you can skip to set the properties.
