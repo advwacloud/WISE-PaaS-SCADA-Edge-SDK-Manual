@@ -193,6 +193,7 @@ SCADA Config:
 
 ```
 const scadaConfig = new edgeSDK.EdgeAgent.ScadaConfig();
+
 //these are required properties below
 scadaConfig.name = 'Test Scada'; 
 scadaConfig.description = 'Test Scada';
