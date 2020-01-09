@@ -406,7 +406,7 @@ const devieStatus = new edgeSDK.EdgeAgent.EdgeDeviceStatus();
   for (let i = 1; i <= 2; i++) {
     const device = new edgeSDK.EdgeAgent.DeviceStatus();
     device.id = 'Device' + i;
-    device.status = 1;
+    device.status = 1;// offline = 0, online = 1
     devieStatus.deviceList.push(device);
   }
 
