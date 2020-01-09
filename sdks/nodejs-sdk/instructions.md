@@ -199,10 +199,10 @@ scadaConfig.name = 'Test Scada';
 
 // these are optional properties below
 scadaConfig.description = 'Test Scada';
-scadaConfig.primaryIP = ''; // optional property
-scadaConfig.backupIP = ''; // optional property
-scadaConfig.primaryPort = ''; // optional property
-scadaConfig.backupPort = ''; // optional property
+scadaConfig.primaryIP = ''; 
+scadaConfig.backupIP = ''; 
+scadaConfig.primaryPort = ''; 
+scadaConfig.backupPort = ''; 
 
 edgeConfig.scada = scadaConfig;
 ```
