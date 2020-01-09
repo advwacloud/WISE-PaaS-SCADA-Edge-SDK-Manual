@@ -139,7 +139,7 @@ EdgeConfig.DeviceConfig device = new EdgeConfig.DeviceConfig()
     Id = "Device1",
     Name = "Device1",
     Type = "Smart Device 1",
-    Description = "Device 1",
+    Description = "Device 1"
 };
 ```
 
