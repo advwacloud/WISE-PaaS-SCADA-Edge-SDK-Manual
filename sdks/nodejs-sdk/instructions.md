@@ -209,12 +209,19 @@ Device Config:
 
 ```
 const deviceConfig = new edgeSDK.EdgeAgent.DeviceConfig();
+// these are required properties below
+deviceConfig.id = 'Device1'; 
+deviceConfig.name = 'Device 1'; 
+deviceConfig.type = 'Smart Device'; 
+deviceConfig.description = 'Device 1'; 
 
-deviceConfig.id = 'Device1';
-deviceConfig.name = 'Device 1';
-deviceConfig.type = 'Smart Device';
-deviceConfig.description = 'Device 1';
+// these are optional properties below
+deviceConfig.IP = '';
+deviceConfig.port = '';
+deviceConfig.portNumber = '';
 ```
+
+If you do not need the optional properties, you can skip to set the properties.
 
 Analog Tag Config:
 
