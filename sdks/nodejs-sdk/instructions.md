@@ -218,9 +218,9 @@ const deviceConfig = new edgeSDK.EdgeAgent.DeviceConfig();
 deviceConfig.id = 'Device1'; 
 deviceConfig.name = 'Device 1'; 
 deviceConfig.type = 'Smart Device'; 
-deviceConfig.description = 'Device 1'; 
 
 // these are optional properties below
+deviceConfig.description = 'Device 1'; 
 deviceConfig.IP = '';
 deviceConfig.port = '';
 deviceConfig.portNumber = '';
