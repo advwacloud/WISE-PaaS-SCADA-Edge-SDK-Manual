@@ -213,6 +213,7 @@ Device Config:
 
 ```
 const deviceConfig = new edgeSDK.EdgeAgent.DeviceConfig();
+
 // these are required properties below
 deviceConfig.id = 'Device1'; 
 deviceConfig.name = 'Device 1'; 
@@ -290,6 +291,8 @@ deviceConfig.textTagList = tTagList; // add text tag list to device.textTagList
 
 edgeConfig.scada.deviceList.push(deviceConfig) // add the device config to scada.deviceList
 ```
+
+If you have multiple devices, set the devices config separately and push them to the scada.deviceList.
 
 ### 6. sendData\(data, \[callback\]\)
 
