@@ -182,7 +182,7 @@ const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
 // set tag config
 
 function customerCallback(error, result){
-//if connect successful without error, error return null, result return true, and vice versa.
+//if upload successfully without error, error return null, result return true, and vice versa.
 //do something...
 }
 
