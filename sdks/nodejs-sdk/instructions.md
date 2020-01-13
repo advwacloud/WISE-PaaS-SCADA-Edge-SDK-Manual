@@ -224,7 +224,7 @@ deviceConfig.description = 'Device 1';
 deviceConfig.IP = '';
 deviceConfig.port = '';
 deviceConfig.portNumber = '';
-deviceConfig.rp = '';//retention policy name
+deviceConfig.rp = ''; //retention policy name
 ```
 
 If you do not need the optional properties, you can skip to set the properties.
