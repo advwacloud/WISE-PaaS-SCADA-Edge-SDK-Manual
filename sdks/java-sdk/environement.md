@@ -10,7 +10,9 @@
   * **Android SDK 22** or higher \(SDK 26 or higher is recommended\)
 * **Installation**
 
-  * Repo: JCenter \([https://bintray.com/advwacloud/scada-java-sdk/scada-sdk](https://bintray.com/advwacloud/scada-java-sdk/scada-sdk)\)
+  * JCenter Repo
+    * https://bintray.com/advwacloud/scada-java-sdk/scada-sdk
+    * https://bintray.com/advwacloud/wisepaas-datahub/wisepaas.datahub:edge-sdk
   * download by Maven
     ```
     #### Before version 1.0.2 ######
