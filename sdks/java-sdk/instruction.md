@@ -21,7 +21,7 @@ options.MQTT = new MQTTOptions("127.0.0.1", 1883, "admin", "pwd", Protocol.TCP);
 options.UseSecure = false;
 options.AutoReconnect = true;
 
-options.ScadaId = "5095cf13-f005-4c81-b6c9-68cf038e2b87"; // getting from SCADA portal
+options.NodeId = "5095cf13-f005-4c81-b6c9-68cf038e2b87"; // getting from Datahub portal
 options.Type = EdgeType.Gateway; // Choice your edge is Gateway or Device, Default is Gateway
 options.DeviceId = "SmartDevice1"; // If type is Device, DeviceId must be filled
 options.Heartbeat = 60000; // default is 60 seconds,
@@ -101,20 +101,20 @@ edgeAgent.Disconnect();
 
 ### 5. UploadConfig\( ActionType action, EdgeConfig edgeConfig \)
 
-Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
+Upload NODE/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```
 EdgeConfig config = new EdgeConfig();
-// set scada condig
+// set node condig
 // set device config
 // set tag config
 Boolean result = agent.UploadConfig(Const.ActionType.Create, config);
 ```
 
-SCADA Config:
+NODE Config:
 
 ```
-config.Scada = new EdgeConfig.ScadaConfig();
+config.Node= new EdgeConfig.NodeConfig();
 ```
 
 Device Config:
@@ -276,7 +276,7 @@ Connection status
 ### 9. Data Recover on Android
 
 * You must specify `AndroidPackageName`  of constructor to use dataRevocer on andorid.   
-  Because Scada SDK is a JavaSE project, there is no way to use `getPackageName()`.
+  Because Node SDK is a JavaSE project, there is no way to use `getPackageName()`.
 * **If it is in a non-android environment, you can use the datarecover function without any other settings.**
 
 ```
