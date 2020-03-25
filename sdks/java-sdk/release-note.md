@@ -9,6 +9,7 @@
   * Fix
     - 修正斷線後data recover每次只會緩存一個封包的問題
   * Update
+    - 將nscada改名成node (or datahub), topic name除外 
     - remove deprecation properties: node's ID, name, and description
     - support "Delsert" action of UploadConfig
     - remove deprecation properties about alarm
