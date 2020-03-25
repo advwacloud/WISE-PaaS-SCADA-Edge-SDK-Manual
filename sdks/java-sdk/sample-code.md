@@ -4,7 +4,7 @@
 
 * GitHub
 
-  * [WISEPaaS.SCADA.Java.SDK.Sample](https://github.com/advwacloud/WISEPaaS.SCADA.Java.SDK.Sample)
+  * [WISEPaaS.DataHub.Edge.Java.SDK.Sample](https://github.com/advwacloud/WISEPaaS.DataHub.Edge.Java.SDK.Sample)
 
 
 
