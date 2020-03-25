@@ -276,7 +276,7 @@ Connection status
 ### 9. Data Recover on Android
 
 * You must specify `AndroidPackageName`  of constructor to use dataRevocer on andorid.   
-  Because Node SDK is a JavaSE project, there is no way to use `getPackageName()`.
+  Because Datahub SDK is a JavaSE project, there is no way to use `getPackageName()`.
 * **If it is in a non-android environment, you can use the datarecover function without any other settings.**
 
 ```
