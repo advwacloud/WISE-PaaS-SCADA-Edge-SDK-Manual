@@ -17,17 +17,29 @@
   * libsqlite3 >= 3.18 [https://cppget.org/libsqlite3](https://cppget.org/libsqlite3)
   * cJSON > 1.7.5 [https://github.com/DaveGamble/cJSON](https://github.com/DaveGamble/cJSON)
 
-#### Build dynamic libraries \(WISEPaaS.so files\).
+#### Build 
 
 * Open a terminal/console/command prompt, change to the directory where you cloned Processing, and type:
-  ```
-  make build
-  ```
 
+	* Build DataHub Edge dynamic libraries
+	  ```
+	  make build
+	  ```
+	* build sample
+	  ```
+	  gcc sample.c -ldl -g -o sample -std=c99 \(or -std=iso9899:1999\)
+	  ```
+	* Build statically linked OpenVPN client
+		```
+	  make openvpn
+	  ```
+	* Build both DataHub Edge libraries and OpenVPN client
+		```
+	  make all
+	  ```
+	
   This points to a script which invokes gcc after having added the -std=c99 flag
 
-* build sample
-  ```
-  gcc test.c -ldl -g -o sample -std=c99 \(or -std=iso9899:1999\)
-  ```
+
+
 

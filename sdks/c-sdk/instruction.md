@@ -71,6 +71,7 @@ options.DataRecover = true;
 options.ConnectType = DCCS;     // Connection Type (DCCS, MQTT), Default is DCCS
 options.Type = Gatway;
 options.UseSecure = false;
+options.OvpnPath = "Your_OVPN_FILE_PATH//C.ovpn";
 
 TMQTT_OPTION_STRUCT mqtt;
 
@@ -131,7 +132,20 @@ SetDisconnectEvent(edgeAgent_Disconnected);
 SetMessageReceived(edgeAgent_Recieve);
 ```
 
-### 4. Connect\(\)
+### 4. Using OpenVPN Client to connect \(\)
+
+To connect a VPN connection, start OpenVPN Connect, select an imported .ovpn file
+
+You can use the options.OvpnPath to determine whether the OpenVPN Connect or not.
+
+```
+TOPTION_STRUCT options; // your edge object
+options.OvpnPath = "Your_OVPN_FILE_PATH//YOUR_OVPN_FILE.ovpn"; // use openvpn connect
+options.OvpnPath = ""; // do not use openvpn connect
+```
+
+
+### 5. Connect\(\)
 
 Connect to IoTHub. When connect success, the connected event will be triggered.
 
@@ -139,7 +153,7 @@ Connect to IoTHub. When connect success, the connected event will be triggered.
 Connect();
 ```
 
-### 5. Disconnect\(\)
+### 6. Disconnect\(\)
 
 Disonnect to IoTHub. When disconnect success, the disconnected event will be triggered.
 
@@ -147,7 +161,7 @@ Disonnect to IoTHub. When disconnect success, the disconnected event will be tri
 Disconnect();
 ```
 
-### 6. UploadConfig\( ActionType action, TSCADA\_CONFIG\_STRUCT edgeConfig \)
+### 7. UploadConfig\( ActionType action, TSCADA\_CONFIG\_STRUCT edgeConfig \)
 
 Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
