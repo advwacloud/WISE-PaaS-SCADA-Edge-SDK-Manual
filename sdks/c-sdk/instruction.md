@@ -8,7 +8,7 @@
 
 ### 1. Load Library
 
-Load dynamic library，and includ WISEPaas.h。Must follow the definition as follows when use API:
+Load dynamic library，and includ DatahubEdge.h。Must follow the definition as follows when use API:
 
 * EDGE\_AGENT\_OPTION.h: Define construct function structure
 * EDGE\_CONFIG.h: Define UploadConfig structure
@@ -18,7 +18,7 @@ Load dynamic library，and includ WISEPaas.h。Must follow the definition as fol
 ```C
 /*  load library */
 
-#include "WISEPaaS.h"
+#include "DatahubEdge.h"
 
 void (*SetConnectEvent)();
 void (*SetDisconnectEvent)();
@@ -33,7 +33,7 @@ int (*SendDeviceStatus)(TEDGE_DEVICE_STATUS_STRUCT);
 char *error;
 
 void *handle;
-handle = dlopen ("./WISEPaaS.so.1.0.0", RTLD_LAZY);
+handle = dlopen ("./DatahubEdge.so.1.0.0", RTLD_LAZY);
 
 if (!handle) {
     fputs (dlerror(), stderr);
@@ -65,7 +65,7 @@ New a EdgeAgent object.
 TOPTION_STRUCT options;
 options.AutoReconnect = true;
 options.ReconnectInterval = 1000;
-options.ScadaId = "c9851920-ca7f-4cfd-964a-1969aef958f6";
+options.NodeId = "c9851920-ca7f-4cfd-964a-1969aef958f6";
 options.Heartbeat = 60;
 options.DataRecover = true;
 options.ConnectType = DCCS;     // Connection Type (DCCS, MQTT), Default is DCCS
