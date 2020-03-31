@@ -216,7 +216,6 @@ ActionType action = Create;
 config.Id = options.NodeId; 
 config.Description = "YOUR_NODE_DESCRIPTION";
 config.Name = "YOUR_NODE_NAME";
-config.Port = 1883;
 config.Type = 1;
 ```
 
@@ -228,9 +227,6 @@ PTDEVICE_CONFIG_STRUCT device = malloc(sizeof(struct DEVICE_CONFIG_STRUCT));
 device.Name = "YOUR_DEVICE_NAME";
 device.Type = "YOUR_DEVICE_TYPE";
 device.Description = "YOUR_DEVICE_DESCRIPTION";
-device.IP = "127.0.0.1";
-device.Port = 1883;
-
 config.DeviceNumber = device_num;
 config.DeviceList = device;
 ```
@@ -288,7 +284,7 @@ Attributes：According to Tag type, properties can be used as follows:
 
 | EdgeData Structure | Tag Type Structure |Property | Data Type | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| TEDGE_DATA_STRUCT | AnalogTagList | Value | integer | analog tag value |
+| TEDGE_DATA_STRUCT | AnalogTagList | Value | double | analog tag value |
 | TEDGE_DATA_STRUCT | DiscreteTagList | Value | unsigned integer | discrete tag value |
 | TEDGE_DATA_STRUCT | TextTagList | Value | pointer to character | text tag value |
 
@@ -307,7 +303,7 @@ PTEDGE_DISCRETE_TAG_STRUCT discrete_data_tag = malloc(discrete_tag_num * sizeof(
 PTEDGE_TEXT_TAG_STRUCT text_data_tag = malloc(text_tag_num * sizeof(struct EDGE_TEXT_TAG_STRUCT));
 
 analog_data_tag.Name = "AnalogTagName";
-analog_data_tag.Value = YOUR_TAG_VALUE; // type: integer
+analog_data_tag.Value = YOUR_TAG_VALUE; // type: double
 
 discrete_data_tag.Name = "DiscreteTagName";
 discrete_data_tag.Value = YOUR_TAG_VALUE; // type: unsigned integer
