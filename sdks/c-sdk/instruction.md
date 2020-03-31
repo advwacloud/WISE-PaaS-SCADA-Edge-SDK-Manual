@@ -194,7 +194,7 @@ Upload Node/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```C
 TNODE_CONFIG_STRUCT config;
-ActionType action = Create; // Create, Update od Delete
+ActionType action = Create; // Create, Update or Delete
 
 /* Set Edge Config here */
 // ---- Ref 7.1.Set node condig 
