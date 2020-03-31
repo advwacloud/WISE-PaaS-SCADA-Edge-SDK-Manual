@@ -8,37 +8,39 @@
 
 ### 1. Load Library
 
-Load dynamic library，and includ DatahubEdge.h。Must follow the definition as follows when use API:
+Load shared library and include the header file named DatahubEdge.h
+This header file contains the other statements as below:
 
-* EDGE\_AGENT\_OPTION.h: Define construct function structure
-* EDGE\_CONFIG.h: Define UploadConfig structure
-* EDGE\_DATA.h: Define SendData structure
+* EDGE\_AGENT\_OPTION.h:  Define construct function structure
+* EDGE\_CONFIG.h: 		  Define UploadConfig structure
+* EDGE\_DATA.h: 		  Define SendData structure>
 * EDGE\_DEVICE\_STATUS.h: Define SendDeviceStatus structure
 
 ```C
-/*  load library */
-
+/*  load shared object library (DatahubEdge.so.1.0.2) */
 #include "DatahubEdge.h"
 
+char *error;
+void *handle;
+handle = dlopen ("./DatahubEdge.so.1.0.2", RTLD_LAZY);
+if (!handle) {
+    fputs (dlerror(), stderr);
+    exit(1);
+}
+```
+
+Load all of the EdgeAgent function declarations
+
+```C
 void (*SetConnectEvent)();
 void (*SetDisconnectEvent)();
 void (*SetMessageReceived)();
 void (*Constructor)(TOPTION_STRUCT);
 void (*Connect)();
 void (*Disconnect)();
-int (*UploadConfig)(ActionType, TSCADA_CONFIG_STRUCT);
-int (*SendData)(TEDGE_DATA_STRUCT);
-int (*SendDeviceStatus)(TEDGE_DEVICE_STATUS_STRUCT);
-
-char *error;
-
-void *handle;
-handle = dlopen ("./DatahubEdge.so.1.0.0", RTLD_LAZY);
-
-if (!handle) {
-    fputs (dlerror(), stderr);
-    exit(1);
-}
+int  (*UploadConfig)(ActionType, TSCADA_CONFIG_STRUCT);
+int  (*SendData)(TEDGE_DATA_STRUCT);
+int  (*SendDeviceStatus)(TEDGE_DEVICE_STATUS_STRUCT);
 
 SetConnectEvent = dlsym(handle, "SetConnectEvent");
 SetDisconnectEvent = dlsym(handle, "SetDisconnectEvent");
@@ -57,22 +59,46 @@ if ((error = dlerror()) != NULL)  {
 }
 ```
 
-### 2. Constructor\(TOPTION\_STRUCT option\)
+### 2. Constructor\(TOPTION\_STRUCT options\)
 
-New a EdgeAgent object.
+Construct EdgeAgent object by using a symbolic structure which refer to TOPTION_STRUCT 
 
 ```C
+/*  Set Construct */
 TOPTION_STRUCT options;
+```
+This header shows how the members of this object act.
+
+inc/EDGE_AGENT_OPTION.h
+```C
+typedef struct OPTION_STRUCT {
+	bool AutoReconnect;
+	int ReconnectInterval;
+	char * NodeId;
+	char * DeviceId;
+	EdgeType Type;
+	int Heartbeat;
+	bool DataRecover;
+	ConnectType ConnectType;
+	bool UseSecure;
+	char * OvpnPath;
+	TMQTT_OPTION_STRUCT MQTT;
+	TDCCS_OPTION_STRUCT DCCS;
+} TOPTION_STRUCT, * PTOPTION_STRUCT;
+```
+
+Declare Connection Variable
+```C
 options.AutoReconnect = true;
 options.ReconnectInterval = 1000;
-options.NodeId = "c9851920-ca7f-4cfd-964a-1969aef958f6";
-options.Heartbeat = 60;
-options.DataRecover = true;
-options.ConnectType = DCCS;     // Connection Type (DCCS, MQTT), Default is DCCS
-options.Type = Gatway;
+options.NodeId = "YOUR_NODE_ID"; 	// getting from SCADA portal
+options.Heartbeat = 60; 			// default is 60 seconds
+options.DataRecover = true;			// need to recover data or not when disconnected
+options.ConnectType = MQTT; 		// set your connect type: DCCS or MQTT
+options.Type = Gatway;				// Choice your edge is Gateway or Device, Default is Gateway
 options.UseSecure = false;
-options.OvpnPath = "Your_OVPN_FILE_PATH//C.ovpn";
-
+options.OvpnPath = "Your_OVPN_FILE_PATH//YOUR_OVPN_FILE_NAME";
+	
 TMQTT_OPTION_STRUCT mqtt;
 
 switch (options.ConnectType)
@@ -83,10 +109,10 @@ switch (options.ConnectType)
         break;
 
     case 0: // If ConnectType is MQTT, must fill this options
-        options.MQTT.HostName = "";
+        options.MQTT.HostName = "127.0.0.1";
         options.MQTT.Port = 1883;
-        options.MQTT.Username = "";
-        options.MQTT.Password = "";
+        options.MQTT.Username = "admin";
+        options.MQTT.Password = "admin";
         options.MQTT.ProtocolType = TCP;
         break;
 }
@@ -160,35 +186,48 @@ Disonnect to IoTHub. When disconnect success, the disconnected event will be tri
 Disconnect();
 ```
 
-### 7. UploadConfig\( ActionType action, TSCADA\_CONFIG\_STRUCT edgeConfig \)
+### 7. UploadConfig\( ActionType action, TNODE\_CONFIG\_STRUCT edgeConfig \)
 
-Upload SCADA/Device/Tag Config with Action Type \(Create/Update/Delete\).
+Upload Node/Device/Tag Config with Action Type \(Create/Update/Delete\).
+
+
 
 ```C
-TSCADA_CONFIG_STRUCT config;
+TNODE_CONFIG_STRUCT config;
 ActionType action = Create; // Create, Update od Delete
-// set scada condig
-// set device config
-// set tag config
+
+/* Set Edge Config here */
+// ---- Ref 7.1.Set node condig 
+// ---- Ref 7.2.Set device config 
+//      |---- Ref 7.3.Set tag config:
+//          |--Ref 7.3.1 Set analog tag config
+//          |--Ref 7.3.2 Set discrete tag config 
+//          |--Ref 7.3.3 Set text tag config 
+
 bool result = UploadConfig(action, config);
 ```
 
-SCADA Config:
+##### 7.1. Set NODE Config:
 
 ```C
-config.PrimaryPort = 1883;
-config.BackupPort = 1883;
+TNODE_CONFIG_STRUCT config;
+ActionType action = Create;
+
+config.Id = options.NodeId; 
+config.Description = "YOUR_NODE_DESCRIPTION";
+config.Name = "YOUR_NODE_NAME";
+config.Port = 1883;
 config.Type = 1;
 ```
 
-Device Config:
+##### 7.2. Set Device Config:
 
 ```C
 PTDEVICE_CONFIG_STRUCT device = malloc(sizeof(struct DEVICE_CONFIG_STRUCT));
 
-device.Name = simDevName;
-device.Type = "DType";
-device.Description = "DDESC";
+device.Name = "YOUR_DEVICE_NAME";
+device.Type = "YOUR_DEVICE_TYPE";
+device.Description = "YOUR_DEVICE_DESCRIPTION";
 device.IP = "127.0.0.1";
 device.Port = 1883;
 
@@ -196,7 +235,7 @@ config.DeviceNumber = device_num;
 config.DeviceList = device;
 ```
 
-Analog Tag Config:
+##### 7.3.1 Set Analog Tag Config:
 
 ```C
 PTANALOG_TAG_CONFIG analogTag = malloc(sizeof(struct ANALOG_TAG_CONFIG));
@@ -212,7 +251,7 @@ analogTag.IntegerDisplayFormat = 4;
 analogTag.FractionDisplayFormat = 2;
 ```
 
-Discrete Tag Config:
+##### 7.3.2 Set Discrete Tag Config:
 
 ```C
 PTDISCRETE_TAG_CONFIG discreteTag = malloc(sizeof(struct DISCRETE_TAG_CONFIG));
@@ -231,7 +270,7 @@ discreteTag.State6 = "";
 discreteTag.State7 = "";
 ```
 
-Text Tag Config:
+##### 7.3.3 Set Text Tag Config:
 
 ```C
 PTTEXT_TAG_CONFIG textTag = malloc(sizeof(struct TEXT_TAG_CONFIG));
@@ -242,10 +281,18 @@ textTag.ReadOnly = false;
 textTag.ArraySize = 0;
 ```
 
-### 7. SendData\( EdgeData data \)
+### 8. SendData\( TEDGE_DATA_STRUCT data \)
 
 Send tag value to cloud.
+Attributes：According to Tag type, properties can be used as follows:
 
+| EdgeData Structure | Tag Type Structure |Property | Data Type | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| TEDGE_DATA_STRUCT | AnalogTagList | Value | integer | analog tag value |
+| TEDGE_DATA_STRUCT | DiscreteTagList | Value | unsigned integer | discrete tag value |
+| TEDGE_DATA_STRUCT | TextTagList | Value | pointer to character | text tag value |
+
+Use TEDGE_DATA_STRUCT structure to conscruct your data object
 ```C
 TEDGE_DATA_STRUCT data;
 
@@ -284,7 +331,6 @@ data.DeviceList = data_device;
 
 bool result = SendData(data);
 ```
-
 Similar to allocate tag value in normal tags, an array tag value have to create a new array data instance (PTEDGE_ARRAY_TAG_STRUCT) and reference it in another tag instance (PTEDGE_TAG_STRUCT)
 
 ```c
@@ -316,7 +362,7 @@ data.DeviceList = data_device;
 bool result = SendData(data); 
 ```
 
-### 8. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
+### 9. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
 
 Send Device status to cloud when status changed.
 
@@ -333,12 +379,6 @@ status.DeviceList = dev_list;
 
 bool result = SendDeviceStatus(status);
 ```
-
-### 9. Property
-
-| Property Name | Data Type | Description |
-| :--- | :--- | :--- |
-| IsConnected | boolean | Connection status \(read only\) |
 
 
 
