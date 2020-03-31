@@ -194,7 +194,7 @@ Upload Node/Device/Tag Config with Action Type \(Create/Update/Delete\).
 
 ```C
 TNODE_CONFIG_STRUCT config;
-ActionType action = Create; // Create, Update or Delete
+ActionType action = Create; // Create, Update od Delete
 
 /* Set Edge Config here */
 // ---- Ref 7.1.Set node condig 
@@ -216,7 +216,6 @@ ActionType action = Create;
 config.Id = options.NodeId; 
 config.Description = "YOUR_NODE_DESCRIPTION";
 config.Name = "YOUR_NODE_NAME";
-config.Type = 1;
 ```
 
 ##### 7.2. Set Device Config:
@@ -288,74 +287,69 @@ Attributes：According to Tag type, properties can be used as follows:
 | TEDGE_DATA_STRUCT | DiscreteTagList | Value | unsigned integer | discrete tag value |
 | TEDGE_DATA_STRUCT | TextTagList | Value | pointer to character | text tag value |
 
-Use TEDGE_DATA_STRUCT structure to conscruct your data object
+Use TEDGE_DATA_STRUCT structure to conscruct your data object.
+
+Send Analog Tag Data
 ```C
 TEDGE_DATA_STRUCT data;
 
 PTEDGE_DEVICE_STRUCT data_device = malloc(device_num * sizeof(struct EDGE_DEVICE_STRUCT));
 
 int analog_tag_num = 1;
-int discrete_tag_num = 1;
-int text_tag_num = 1;
-
 PTEDGE_ANALOG_TAG_STRUCT analog_data_tag = malloc(analog_tag_num * sizeof(struct EDGE_ANALOG_TAG_STRUCT));
-PTEDGE_DISCRETE_TAG_STRUCT discrete_data_tag = malloc(discrete_tag_num * sizeof(struct EDGE_DISCRETE_TAG_STRUCT));
-PTEDGE_TEXT_TAG_STRUCT text_data_tag = malloc(text_tag_num * sizeof(struct EDGE_TEXT_TAG_STRUCT));
-
 analog_data_tag.Name = "AnalogTagName";
 analog_data_tag.Value = YOUR_TAG_VALUE; // type: double
-
-discrete_data_tag.Name = "DiscreteTagName";
-discrete_data_tag.Value = YOUR_TAG_VALUE; // type: unsigned integer
-
-text_data_tag.Name = "TextTagName";
-text_data_tag.Value = YOUR_TAG_VALUE; // type: pointer to character
 
 data_device.AnalogTagNumber = analog_tag_num;
 data_device.AnalogTagList = analog_data_tag;
 
+data_device.Id = "DeviceID";
+data.DeviceNumber = 1;
+data.DeviceList = data_device;
+bool result = SendData(data);
+```
+
+Send Discrete Tag Data
+```C
+TEDGE_DATA_STRUCT data;
+
+PTEDGE_DEVICE_STRUCT data_device = malloc(device_num * sizeof(struct EDGE_DEVICE_STRUCT));
+
+int discrete_tag_num = 1;
+PTEDGE_DISCRETE_TAG_STRUCT discrete_data_tag = malloc(discrete_tag_num * sizeof(struct EDGE_DISCRETE_TAG_STRUCT));
+discrete_data_tag.Name = "DiscreteTagName";
+discrete_data_tag.Value = YOUR_TAG_VALUE; // type: unsigned integer
+
 data_device.DiscreteTagNumber = discrete_tag_num;
 data_device.DiscreteTagList = discrete_data_tag;
+
+data_device.Id = "DeviceID";
+data.DeviceNumber = 1;
+data.DeviceList = data_device;
+bool result = SendData(data);
+```
+
+Send Text Tag Data
+```C
+TEDGE_DATA_STRUCT data;
+
+PTEDGE_DEVICE_STRUCT data_device = malloc(device_num * sizeof(struct EDGE_DEVICE_STRUCT));
+
+int discrete_tag_num = 1;
+PTEDGE_TEXT_TAG_STRUCT text_data_tag = malloc(text_tag_num * sizeof(struct EDGE_TEXT_TAG_STRUCT));
+text_data_tag.Name = "TextTagName";
+text_data_tag.Value = YOUR_TAG_VALUE; // type: pointer to character
 
 data_device.TextTagNumber = text_tag_num;
 data_device.TextTagList = text_data_tag;
 
 data_device.Id = "DeviceID";
-
 data.DeviceNumber = 1;
 data.DeviceList = data_device;
-
 bool result = SendData(data);
 ```
 Similar to allocate tag value in normal tags, an array tag value have to create a new array data instance (PTEDGE_ARRAY_TAG_STRUCT) and reference it in another tag instance (PTEDGE_TAG_STRUCT)
 
-```c
-
-/* analog array sample */
-PTEDGE_ANALOG_TAG_STRUCT analog_data_tag = malloc(analog_tag_num * sizeof(struct EDGE_ANALOG_TAG_STRUCT));
-PTEDG_ANALOG_ARRAY_TAG_STRUCT analog_data_array_tag = malloc(3 * sizeof(struct EDGE_ANALOG_ARRAY_TAG_STRUCT));
-
-for ( int tag_num = 0; tag_num < analog_tag_num; tag_num++ ){
-
-	/* construct array tag data */
-	for(int idx = 0; idx< array_size; idx++){
-		analog_data_array_tag[idx].Index = idx;
-		analog_data_array_tag[idx].Value = value;
-	}
-
-	analog_data_tag[tag_num].ArraySize = array_size;
-	analog_data_tag[tag_num].ArrayList = analog_data_array_tag;
-
-}
-
-data_device[YOUR_DEVICE_IDX].AnalogTagNumber = analog_tag_num;
-data_device[YOUR_DEVICE_IDX].AnalogTagList = analog_data_tag;
-data_device.Id = "DeviceID";
-
-data.DeviceNumber = 1;
-data.DeviceList = data_device;
-
-bool result = SendData(data); 
 ```
 
 ### 9. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
