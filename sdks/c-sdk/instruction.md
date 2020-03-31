@@ -135,8 +135,7 @@ SetMessageReceived(edgeAgent_Recieve);
 ### 4. Using OpenVPN Client to connect \(\)
 
 To connect a VPN connection, start OpenVPN Connect, select an imported .ovpn file
-
-You can use the options.OvpnPath to determine whether the OpenVPN Connect or not.
+You can use the property called "options.OvpnPath" to determine whether the OpenVPN Connect or not.
 
 ```
 TOPTION_STRUCT options; // your edge object
@@ -250,18 +249,34 @@ Send tag value to cloud.
 ```C
 TEDGE_DATA_STRUCT data;
 
-PTEDGE_DEVICE_STRUCT data_device = malloc(sizeof(struct EDGE_DEVICE_STRUCT));
-PTEDGE_TAG_STRUCT data_tag = malloc(sizeof(struct EDGE_TAG_STRUCT));
+PTEDGE_DEVICE_STRUCT data_device = malloc(device_num * sizeof(struct EDGE_DEVICE_STRUCT));
 
-int value = rand()%1000;
-char *simValue = NULL;
+int analog_tag_num = 1;
+int discrete_tag_num = 1;
+int text_tag_num = 1;
 
-data_tag.Name = "tagName";
-asprintf(&simValue, "%d", value);
-data_tag.Value = simValue;
+PTEDGE_ANALOG_TAG_STRUCT analog_data_tag = malloc(analog_tag_num * sizeof(struct EDGE_ANALOG_TAG_STRUCT));
+PTEDGE_DISCRETE_TAG_STRUCT discrete_data_tag = malloc(discrete_tag_num * sizeof(struct EDGE_DISCRETE_TAG_STRUCT));
+PTEDGE_TEXT_TAG_STRUCT text_data_tag = malloc(text_tag_num * sizeof(struct EDGE_TEXT_TAG_STRUCT));
 
-data_device.TagNumber = tag_num;
-data_device.TagList = data_tag;
+analog_data_tag.Name = "AnalogTagName";
+analog_data_tag.Value = YOUR_TAG_VALUE; // type: integer
+
+discrete_data_tag.Name = "DiscreteTagName";
+discrete_data_tag.Value = YOUR_TAG_VALUE; // type: unsigned integer
+
+text_data_tag.Name = "TextTagName";
+text_data_tag.Value = YOUR_TAG_VALUE; // type: pointer to character
+
+data_device.AnalogTagNumber = analog_tag_num;
+data_device.AnalogTagList = analog_data_tag;
+
+data_device.DiscreteTagNumber = discrete_tag_num;
+data_device.DiscreteTagList = discrete_data_tag;
+
+data_device.TextTagNumber = text_tag_num;
+data_device.TextTagList = text_data_tag;
+
 data_device.Id = "DeviceID";
 
 data.DeviceNumber = 1;
@@ -273,19 +288,26 @@ bool result = SendData(data);
 Similar to allocate tag value in normal tags, an array tag value have to create a new array data instance (PTEDGE_ARRAY_TAG_STRUCT) and reference it in another tag instance (PTEDGE_TAG_STRUCT)
 
 ```c
-PTEDGE_TAG_STRUCT data_tag = malloc(tag_num * sizeof(struct EDGE_TAG_STRUCT));
-PTEDGE_ARRAY_TAG_STRUCT data_array_tag = malloc(array_size * sizeof(struct EDGE_ARRAY_TAG_STRUCT));
 
-for(int i = 0; i< array_size; i++){
-    asprintf(&simValue, "%d", value);
-    data_array_tag[k].Index = i;        // array index
-    data_array_tag[k].Value = simValue; // array value
+/* analog array sample */
+PTEDGE_ANALOG_TAG_STRUCT analog_data_tag = malloc(analog_tag_num * sizeof(struct EDGE_ANALOG_TAG_STRUCT));
+PTEDG_ANALOG_ARRAY_TAG_STRUCT analog_data_array_tag = malloc(3 * sizeof(struct EDGE_ANALOG_ARRAY_TAG_STRUCT));
+
+for ( int tag_num = 0; tag_num < analog_tag_num; tag_num++ ){
+
+	/* construct array tag data */
+	for(int idx = 0; idx< array_size; idx++){
+		analog_data_array_tag[idx].Index = idx;
+		analog_data_array_tag[idx].Value = value;
+	}
+
+	analog_data_tag[tag_num].ArraySize = array_size;
+	analog_data_tag[tag_num].ArrayList = analog_data_array_tag;
+
 }
-data_tag[j].ArraySize = array_size;
-data_tag[j].ArrayList = data_array_tag;
 
-data_device.TagNumber = tag_num;
-data_device.TagList = data_tag;
+data_device[YOUR_DEVICE_IDX].AnalogTagNumber = analog_tag_num;
+data_device[YOUR_DEVICE_IDX].AnalogTagList = analog_data_tag;
 data_device.Id = "DeviceID";
 
 data.DeviceNumber = 1;
