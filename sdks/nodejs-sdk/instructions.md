@@ -215,9 +215,6 @@ deviceConfig.type = 'Smart Device';
 
 // these are optional properties below
 deviceConfig.description = 'Device 1'; 
-deviceConfig.IP = '';
-deviceConfig.port = '';
-deviceConfig.portNumber = '';
 deviceConfig.rp = ''; //retention policy name
 ```
 
