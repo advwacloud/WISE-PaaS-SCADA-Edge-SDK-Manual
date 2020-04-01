@@ -394,7 +394,7 @@ for(int idx = 0; idx < YOUR_ARRAY_SIZE; idx++){
 analog_data_tag[YOUR_TAG_NUMBER].ArraySize = array_size;
 analog_data_tag[YOUR_TAG_NUMBER].ArrayList = analog_data_array_tag;
 ```
-##### 8.4.1 Send Discrete Array Tag Data
+##### 8.4.2 Send Discrete Array Tag Data
 ```c
 PTEDG_DISCRETE_ARRAY_TAG_STRUCT discrete_data_array_tag = malloc(YOUR_ARRAY_SIZE * sizeof(struct EDGE_DISCRETE_ARRAY_TAG_STRUCT));
 
@@ -405,7 +405,7 @@ for(int idx = 0; idx < YOUR_ARRAY_SIZE; idx++){
 discrete_data_tag[YOUR_TAG_NUMBER].ArraySize = array_size;
 discrete_data_tag[YOUR_TAG_NUMBER].ArrayList = discrete_data_array_tag;
 ```
-##### 8.4.1 Send Text Array Tag Data
+##### 8.4.3 Send Text Array Tag Data
 ```c
 PTEDG_TEXT_ARRAY_TAG_STRUCT text_data_array_tag = malloc(YOUR_ARRAY_SIZE * sizeof(struct EDGE_TEXT_ARRAY_TAG_STRUCT));
 
