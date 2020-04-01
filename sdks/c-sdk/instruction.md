@@ -238,7 +238,7 @@ PTANALOG_TAG_CONFIG analogTag = malloc(sizeof(struct ANALOG_TAG_CONFIG));
 analogTag.Name = "TestName";    
 analogTag.Description = "description";          
 analogTag.ReadOnly = false;
-analogTag.ArraySize = 0;
+analogTag.ArraySize = 0;  // Ref chapter 8.4
 analogTag.SpanHigh = 1000;
 analogTag.SpanLow = 0;
 analogTag.EngineerUnit = "enuit";
@@ -254,7 +254,7 @@ PTDISCRETE_TAG_CONFIG discreteTag = malloc(sizeof(struct DISCRETE_TAG_CONFIG));
 discreteTag.NAme = "TestName"
 discreteTag.Description = "description";
 discreteTag.ReadOnly = false;
-discreteTag.ArraySize = 0;
+discreteTag.ArraySize = 0; // Ref chapter 8.4
 discreteTag.State0 = "0";
 discreteTag.State1 = "1";
 discreteTag.State2 = "";
@@ -273,7 +273,7 @@ PTTEXT_TAG_CONFIG textTag = malloc(sizeof(struct TEXT_TAG_CONFIG));
 textTag.Name = "TestName";
 textTag.Description = "description";
 textTag.ReadOnly = false;
-textTag.ArraySize = 0;
+textTag.ArraySize = 0; // Ref chapter 8.4
 ```
 
 ### 8. SendData\( TEDGE_DATA_STRUCT data \)
@@ -289,7 +289,22 @@ Attributes：According to Tag type, properties can be used as follows:
 
 Use TEDGE_DATA_STRUCT structure to conscruct your data object.
 
-Send Analog Tag Data
+##### Tag Data Architecture
+```C
+data (from EDGE_DATA_STRUCT)
+    -- DeviceList (from EDGE_DEVICE_STRUCT)
+        -- AnalogTagList (from EDGE_ANALOG_TAG_STRUCT)  > ref 8.1
+            --Name
+            --Value (double)
+        -- DiscreteTagList (from EDGE_DISCRETE_TAG_STRUCT) > ref 8.2
+            --Name
+            --Value (unsigned int)
+        -- TextTagList (from EDGE_DEVICE_STRUCT) > ref 8.3
+            --Name
+            --Value (*char)
+```
+
+##### 8.1 Send Analog Tag Data
 ```C
 TEDGE_DATA_STRUCT data;
 
@@ -309,7 +324,7 @@ data.DeviceList = data_device;
 bool result = SendData(data);
 ```
 
-Send Discrete Tag Data
+##### 8.2 Send Discrete Tag Data
 ```C
 TEDGE_DATA_STRUCT data;
 
@@ -329,7 +344,7 @@ data.DeviceList = data_device;
 bool result = SendData(data);
 ```
 
-Send Text Tag Data
+##### 8.3 Send Text Tag Data
 ```C
 TEDGE_DATA_STRUCT data;
 
@@ -348,8 +363,58 @@ data.DeviceNumber = 1;
 data.DeviceList = data_device;
 bool result = SendData(data);
 ```
+##### 8.4 Array Tag Data
 Similar to allocate tag value in normal tags, an array tag value have to create a new array data instance (PTEDGE_ARRAY_TAG_STRUCT) and reference it in another tag instance (PTEDGE_TAG_STRUCT)
 
+##### Array Tag Data Architecture
+```C
+data (from EDGE_DATA_STRUCT)
+    -- DeviceList (from EDGE_DEVICE_STRUCT)
+        -- AnalogTagList (from EDGE_ANALOG_TAG_STRUCT) 
+            --Name
+            --ArrayList
+                -- AnalogArrayTagList (from EDGE_ANALOG_ARRAY_TAG_STRUCT) 
+                    --Index (int)
+                    --Value (double)
+                -- DiscreteArrayTagList (from EDGE_DISCRETE_ARRAY_TAG_STRUCT) 
+                    --Index (int)
+                    --Value (unsigned int)
+                -- TextArrayTagList (from EDGE_TEXT_ARRAY_TAG_STRUCT) 
+                    --Index (int)
+                    --Value (*char)
+```
+##### 8.4.1 Send Analog Array Tag Data
+```c
+PTEDG_ANALOG_ARRAY_TAG_STRUCT analog_data_array_tag = malloc(YOUR_ARRAY_SIZE * sizeof(struct EDGE_ANALOG_ARRAY_TAG_STRUCT));
+
+for(int idx = 0; idx < YOUR_ARRAY_SIZE; idx++){
+    analog_data_array_tag[idx].Index = idx;
+    analog_data_array_tag[idx].Value = YOUR_TAG_DATA;
+}
+analog_data_tag[YOUR_TAG_NUMBER].ArraySize = array_size;
+analog_data_tag[YOUR_TAG_NUMBER].ArrayList = analog_data_array_tag;
+```
+##### 8.4.1 Send Discrete Array Tag Data
+```c
+PTEDG_DISCRETE_ARRAY_TAG_STRUCT discrete_data_array_tag = malloc(YOUR_ARRAY_SIZE * sizeof(struct EDGE_DISCRETE_ARRAY_TAG_STRUCT));
+
+for(int idx = 0; idx < YOUR_ARRAY_SIZE; idx++){
+    discrete_data_array_tag[idx].Index = idx;
+    discrete_data_array_tag[idx].Value = YOUR_TAG_DATA;
+}
+discrete_data_tag[YOUR_TAG_NUMBER].ArraySize = array_size;
+discrete_data_tag[YOUR_TAG_NUMBER].ArrayList = discrete_data_array_tag;
+```
+##### 8.4.1 Send Text Array Tag Data
+```c
+PTEDG_TEXT_ARRAY_TAG_STRUCT text_data_array_tag = malloc(YOUR_ARRAY_SIZE * sizeof(struct EDGE_TEXT_ARRAY_TAG_STRUCT));
+
+for(int idx = 0; idx < YOUR_ARRAY_SIZE; idx++){
+    text_data_array_tag[idx].Index = idx;
+    text_data_array_tag[idx].Value = YOUR_TAG_DATA; 
+}
+text_data_array_tag[YOUR_TAG_NUMBER].ArraySize = array_size;
+text_data_array_tag[YOUR_TAG_NUMBER].ArrayList = text_data_array_tag;
 ```
 
 ### 9. SendDeviceStatus\( TEDGE\_DEVICE\_STATUS\_STRUCT deviceStatus \)
