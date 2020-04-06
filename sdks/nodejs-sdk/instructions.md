@@ -61,12 +61,12 @@ console.log(edgeSDK.constant); // edgeSDK.constant includes all parameters of ed
     update: 2,
     delete: 3
   },
-  NODEConfigType: {
+  nodeConfigType: {
     NODE: 1,
     gateway: 2,
     virtualGroup: 3
   },
-  TagType: {
+  tagType: {
     Analog: 1,
     Discrete: 2,
     Text: 3
@@ -75,7 +75,7 @@ console.log(edgeSDK.constant); // edgeSDK.constant includes all parameters of ed
     Offline: 0,
     Online: 1
   },
-  MessageType: {
+  messageType: {
     WriteValue: 0,
     WriteConfig: 1,
     TimeSync: 2,
