@@ -32,7 +32,7 @@ const options = {
   deviceId: 'Device1', // If type is Device, DeviceId must be filled
   heartbeat: 60000, // default is 60 seconds,
   dataRecover: true, // need to recover data or not when disconnected
-  ovpnPath: '' // set the path of your .ovpn file, and only for linux os
+  ovpnPath: '' // set the path of your .ovpn file, only for linux
 };
 const edgeAgent = new edgeSDK.EdgeAgent(options);
 ```
