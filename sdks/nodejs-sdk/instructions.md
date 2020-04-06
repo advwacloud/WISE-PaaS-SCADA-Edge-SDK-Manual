@@ -37,7 +37,7 @@ const options = {
 const edgeAgent = new edgeSDK.EdgeAgent(options);
 ```
 
-Edge SDK provides paramters for user to set options.  The way to access the parameters is shown below:
+Edge SDK provides parameters for user to set options.  The way to access the parameters is shown below:
 
 ```js
 const edgeSDK = require('wisepaas-datahub-edge-nodejs-sdk');
