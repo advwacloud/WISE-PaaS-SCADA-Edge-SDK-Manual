@@ -150,7 +150,7 @@ edgeAgent.disconnect(costumerCallback);
 
 ### 5. uploadConfig\(action, edgeConfig, \[callback\]\)
 
-Upload SCADA/Device/Tag Config with Action Type \(Create/~~Update/Delete~~\).
+Upload Node/Device/Tag Config with Action Type \(Create/~~Update/Delete~~\).
 
 uploadConfig\(action, edgeConfig\) supports both promise and callback.
 
@@ -158,7 +158,7 @@ uploadConfig\(action, edgeConfig\) supports both promise and callback.
 
 ```
 const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
-// set scada condig
+// set node condig
 // set device config
 // set tag config
 
