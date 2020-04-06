@@ -62,7 +62,7 @@ console.log(edgeSDK.constant); // edgeSDK.constant includes all parameters of ed
     delete: 3
   },
   nodeConfigType: {
-    NODE: 1,
+    node: 1,
     gateway: 2,
     virtualGroup: 3
   },
