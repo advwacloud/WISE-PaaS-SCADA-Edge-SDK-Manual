@@ -211,7 +211,7 @@ deviceConfig.type = 'Smart Device';
 
 // these are optional properties below
 deviceConfig.description = 'Device 1'; 
-deviceConfig.rp = ''; //retention policy name
+deviceConfig.retentionPolicyName = ''; //retention policy name
 ```
 
 If you do not need the optional properties, you can skip to set the properties.
