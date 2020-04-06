@@ -8,7 +8,7 @@
 
 New an edgeAent object.
 
-```
+```js
 const edgeSDK = require('wisepaas-datahub-edge-nodejs-sdk');
 const path = require('path');
 
@@ -50,7 +50,7 @@ EdgeAgent has three event for subscribing.
 
   * ConfigAck: The response of uploading config from edge to cloud.
 
-```
+```js
 edgeAgent.events.on('connected', () => {
   console.log('Connect success !');
 });
@@ -86,13 +86,13 @@ Connect to IoTHub. When connect success, the connected event will be triggered.
 
 connect\(\[callback\]\) supports both promise and callback.
 
-```
+```js
 edgeAgent.connect();
 ```
 
 * Promise example
 
-```
+```js
 edgeAgent.connect().then((result) => {
   //if connect successfully, result return true, and vice versa.
   //do something...
@@ -105,7 +105,7 @@ error => {
 
 * Callback example
 
-```
+```js
 function costumerCallback(error,result){
 //if connect successfully without error, error return null, result return true, and vice versa.
 //do something...
@@ -119,13 +119,13 @@ Disconnect to IoTHub. When disconnect success, the disconnected event will be tr
 
 disconnect\(\[callback\]\) supports both promise and callback.
 
-```
+```js
 edgeAgent.disconnect();
 ```
 
 * Promise example
 
-```
+```js
 edgeAgent.disconnect().then((result) => {
   //if disconnect successfully, result return true, and vice versa.
   //do something...
@@ -138,7 +138,7 @@ error => {
 
 * Callback example
 
-```
+```js
 function costumerCallback(error,result){
 //if disconnect successfully without error, error return null, result return true, and vice versa.
 //do something...
@@ -154,7 +154,7 @@ uploadConfig\(action, edgeConfig\) supports both promise and callback.
 
 * Promise example
 
-```
+```js
 const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
 // set node condig
 // set device config
@@ -171,7 +171,7 @@ error => {
 
 * Callback example
 
-```
+```js
 const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
 // set node condig
 // set device config
@@ -201,7 +201,7 @@ If you do not need the optional properties, you can skip to set the properties.
 
 Device Config:
 
-```
+```js
 const deviceConfig = new edgeSDK.EdgeAgent.DeviceConfig();
 
 // these are required properties below
