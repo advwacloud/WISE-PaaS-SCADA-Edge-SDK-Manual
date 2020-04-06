@@ -381,7 +381,7 @@ result => {
   //if send device status successfully, result return true, and vice versa.
 },
 error => {
-  //if send device status unsuccessfully, return an error object containing error message.
+  //if send device status unsuccessfully, return an error object which contains an error message.
 }
 );
 ```
