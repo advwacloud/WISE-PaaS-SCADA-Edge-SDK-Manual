@@ -237,8 +237,8 @@ Node Config:
 const nodeConfig = new edgeSDK.EdgeAgent.NodeConfig();
 
 // this is required property below
-nodeConfig.name = 'Test Scada'; 
-nodeConfig .description = 'Test Scada';
+nodeConfig.name = 'Test Node'; 
+nodeConfig .description = 'Test Node';
 
 edgeConfig.node= nodeConfig;
 ```
@@ -450,5 +450,5 @@ function customerCallback(error, result){
 edgeAgent.sendDeviceStatus(devieStatus, customerCallback);
 ```
 
- 
+
 
