@@ -44,7 +44,7 @@ Edge SDK porvides paramters for user to set options.  The way to access the para
 const edgeSDK = require('wisepaas-datahub-edge-nodejs-sdk');
 console.log(edgeSDK.constant); // edgeSDK.constant includes all parameters of edge sdk.
 
-//All parameters which are included in edgeSDK.constant are shown below
+// All parameters which are included in edgeSDK.constant are shown below
   edgeType: {
     Gateway: 1,
     Device: 2
@@ -450,5 +450,5 @@ function customerCallback(error, result){
 edgeAgent.sendDeviceStatus(devieStatus, customerCallback);
 ```
 
-
+ 
 
