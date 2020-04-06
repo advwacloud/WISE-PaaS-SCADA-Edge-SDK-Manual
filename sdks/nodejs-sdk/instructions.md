@@ -51,17 +51,15 @@ EdgeAgent has three event for subscribing.
   * ConfigAck: The response of uploading config from edge to cloud.
 
 ```
-edgeAgent.events.on('connected',()=>{
+edgeAgent.events.on('connected', () => {
   console.log('Connect success !');
-})
-
-edgeAgent.events.on('disconnected',()=>{
+});
+edgeAgent.events.on('disconnected', () => {
   console.log('Disconnected... ');
-})
-
-edgeAgent.events.on('messageReceived',(msg)=>{
+});
+edgeAgent.events.on('messageReceived', (msg) => {
   switch (msg.type) {
-    case MessageType.WriteValue:
+    case edgeSDK.constant.MessageType.WriteValue:
       for (const device of msg.message.deviceList) {
         console.log('DeviceId: ' + device.id);
         for (const tag of device.tagList) {
@@ -75,11 +73,11 @@ edgeAgent.events.on('messageReceived',(msg)=>{
         }
       }
       break;
-    case MessageType.ConfigAck:
+    case edgeSDK.constant.MessageType.ConfigAck:
       console.log('Upload Config Result: ' + msg.message);
       break;
   }
-})
+});
 ```
 
 ### 3. connect\(\[callback\]\)
@@ -175,7 +173,7 @@ error => {
 
 ```
 const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
-// set scada condig
+// set node condig
 // set device config
 // set tag config
 
@@ -187,10 +185,10 @@ function customerCallback(error, result){
 edgeAgent.uploadConfig(actionType.create, edgeConfig, customerCallback);
 ```
 
-SCADA Config:
+Node Config:
 
 ```
-const scadaConfig = new edgeSDK.EdgeAgent.ScadaConfig();
+const nodeConfig = new edgeSDK.EdgeAgent.NodeConfig();
 
 // this is required property below
 scadaConfig.name = 'Test Scada'; 
