@@ -98,7 +98,7 @@ edgeAgent.connect().then((result) => {
   //do something...
 },
 error => {
-  //if connection unsuccessfully, return an error object containing error message.
+  //if connect unsuccessfully, return an error object which contains an error message.
   //do something...
 })
 ```
@@ -131,7 +131,7 @@ edgeAgent.disconnect().then((result) => {
   //do something...
 },
 error => {
-  //if disconnection unsuccessfully, return an error object containing error message.
+  //if disconnect unsuccessfully, return an error object which contains an error message.
   //do something...
 })
 ```
@@ -165,7 +165,7 @@ result => {
     //if upload successfully result return true, and vice versa.
 },
 error => {
-    //if upload config unsuccessfully, return an error object containing error message.
+    //if upload config unsuccessfully, return an error object which contains an error message.
 });
 ```
 
