@@ -9,33 +9,31 @@
 New an edgeAent object.
 
 ```
-const edgeSDK= require('wisepaas-scada-edge-nodejs-sdk');
-
-const connectType = 2; // MQTT=1 DCCS=2
-const type = 1; // Gateway=1 Device=2
-// const TCP = 1;
+const edgeSDK = require('wisepaas-datahub-edge-nodejs-sdk');
+const path = require('path');
 
 const options = {
-  connectType: connectType,
+  connectType: edgeSDK.constant.connectType.DCCS,
   DCCS: {
-    credentialKey: '1e0e5365c3af88ad3233336c23d43bav',
-    APIUrl: 'https://api-dccs.wise-paas.com/'
+    credentialKey: 'adcekc0f74837e3lqtdlkgfazn4i6qv8',
+    APIUrl: 'https://api-dccs-ensaas.sa.wise-paas.com/'
   },
   // MQTT: {
   //   hostName: '127.0.0.1',
   //   port: 1883,
   //   username: 'admin',
   //   password: 'admin',
-  //   protocolType: TCP
+  //   protocolType: edgeSDK.constant.protocol.TCP
   // },
   useSecure: false,
   autoReconnect: true,
   reconnectInterval: 1000,
-  scadaId: '5095cf13-f005-4c81-b6c9-68cf038e2b87', // getting from SCADA portal
-  type: type, // Choice your edge is Gateway or Device, Default is Gateway
+  nodeId: '6579dba6-9d19-44a2-b645-c2319c8f1315', // getting from datahub portal
+  type: edgeSDK.constant.edgeType.Gateway, // Choice your edge is Gateway or Device, Default is Gateway
   deviceId: 'Device1', // If type is Device, DeviceId must be filled
   heartbeat: 60000, // default is 60 seconds,
-  dataRecover: true // need to recover data or not when disconnected
+  dataRecover: true, // need to recover data or not when disconnected
+  ovpnPath: path.resolve(process.cwd(), './C.ovpn')
 };
 const edgeAgent = new edgeSDK.EdgeAgent(options);
 ```
