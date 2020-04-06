@@ -319,7 +319,7 @@ result => {
   //if send data successful, result return true, and vice versa.
 }, 
 error => {
- //if send data unsuccessfully, return an error object containing error message.
+ //if send data unsuccessfully, return an error object which contains an error message.
 });
 ```
 
