@@ -218,7 +218,7 @@ If you do not need the optional properties, you can skip to set the properties.
 
 Analog Tag Config:
 
-```
+```js
 const analogTagConfig = new edgeSDK.EdgeAgent.AnalogTagConfig();
 let anaTagList = [];
 
@@ -237,7 +237,7 @@ anaTagList.push(analogTagConfig);
 
 Discrete Tag Config:
 
-```
+```js
 const discreteTagConfig = new edgeSDK.EdgeAgent.DiscreteTagConfig();
 let disTagList = []; 
 
@@ -258,7 +258,7 @@ disTagList.push(discreteTagConfig);
 
 Text Tag Config:
 
-```
+```js
 const textTagConfig = new edgeSDK.EdgeAgent.TextTagConfig();
 let tTagList = [];
 
@@ -272,7 +272,7 @@ tTagList.push(textTagConfig)
 
 Finally, add tag list to device config, and add device to scada config:
 
-```
+```js
 deviceConfig.analogTagList = anaTagList; // add analog tag list to device.analogTagList
 deviceConfig.discreteTagList = disTagList; // add discrete tag list to device.discreteTagList
 deviceConfig.textTagList = tTagList; // add text tag list to device.textTagList 
@@ -288,7 +288,7 @@ sendData\(data, \[callback\]\) supports both promise and callback.
 
 * Promise example
 
-```
+```js
 const data = new edgeSDK.EdgeAgent.EdgeData();
 
   for (let i = 1; i <= 2; i++) {
@@ -325,7 +325,7 @@ error => {
 
 * Callback example
 
-```
+```js
 const data = new edgeSDK.EdgeAgent.EdgeData();
 
   for (let i = 1; i <= 2; i++) {
@@ -366,7 +366,7 @@ sendDeviceStatus\(devieStatus, \[callback\]\) supports both promise and callback
 
 * Promise example
 
-```
+```js
 const devieStatus = new edgeSDK.EdgeAgent.EdgeDeviceStatus();
 
   for (let i = 1; i <= 2; i++) {
@@ -388,7 +388,7 @@ error => {
 
 * Callback example
 
-```
+```js
 const devieStatus = new edgeSDK.EdgeAgent.EdgeDeviceStatus();
 
   for (let i = 1; i <= 2; i++) {
