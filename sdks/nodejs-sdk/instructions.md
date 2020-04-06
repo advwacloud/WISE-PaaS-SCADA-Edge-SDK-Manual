@@ -277,7 +277,7 @@ deviceConfig.analogTagList = anaTagList; // add analog tag list to device.analog
 deviceConfig.discreteTagList = disTagList; // add discrete tag list to device.discreteTagList
 deviceConfig.textTagList = tTagList; // add text tag list to device.textTagList 
 
-edgeConfig.node.deviceList.push(deviceConfig) // add the device config to scada.deviceList
+edgeConfig.node.deviceList.push(deviceConfig) // add the device config to node.deviceList
 ```
 
 ### 6. sendData\(data, \[callback\]\)
