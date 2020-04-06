@@ -270,7 +270,7 @@ textTagConfig.arraySize = 0;
 tTagList.push(textTagConfig)
 ```
 
-Finally, add tag list to device config, and add device to scada config:
+Finally, add tag list to device config and add device to node config:
 
 ```js
 deviceConfig.analogTagList = anaTagList; // add analog tag list to device.analogTagList
