@@ -187,7 +187,7 @@ edgeAgent.uploadConfig(actionType.create, edgeConfig, customerCallback);
 
 Node Config:
 
-```
+```js
 const nodeConfig = new edgeSDK.EdgeAgent.NodeConfig();
 
 // this is required property below
