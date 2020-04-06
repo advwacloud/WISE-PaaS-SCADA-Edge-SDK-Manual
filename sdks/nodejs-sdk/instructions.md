@@ -191,10 +191,10 @@ Node Config:
 const nodeConfig = new edgeSDK.EdgeAgent.NodeConfig();
 
 // this is required property below
-scadaConfig.name = 'Test Scada'; 
-scadaConfig.description = 'Test Scada';
+nodeConfig.name = 'Test Scada'; 
+nodeConfig .description = 'Test Scada';
 
-edgeConfig.scada = scadaConfig;
+edgeConfig.node= nodeConfig;
 ```
 
 If you do not need the optional properties, you can skip to set the properties.
