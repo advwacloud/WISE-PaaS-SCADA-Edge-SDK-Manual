@@ -38,6 +38,52 @@ const options = {
 const edgeAgent = new edgeSDK.EdgeAgent(options);
 ```
 
+Edge SDK porvides paramters for user to set options.  The way to access the parameters is shown below:
+
+```js
+const edgeSDK = require('wisepaas-datahub-edge-nodejs-sdk');
+console.log(edgeSDK.constant); // edgeSDK.constant includes all parameters of edge sdk.
+
+//All parameters which are included in edgeSDK.constant are shown below
+  edgeType: {
+    Gateway: 1,
+    Device: 2
+  },
+  connectType: {
+    MQTT: 1,
+    DCCS: 2
+  },
+  protocol: {
+    TCP: 1,
+    WebSocket: 2
+  },
+  actionType: {
+    create: 1,
+    update: 2,
+    delete: 3
+  },
+  NODEConfigType: {
+    NODE: 1,
+    gateway: 2,
+    virtualGroup: 3
+  },
+  TagType: {
+    Analog: 1,
+    Discrete: 2,
+    Text: 3
+  },
+  status: {
+    Offline: 0,
+    Online: 1
+  },
+  MessageType: {
+    WriteValue: 0,
+    WriteConfig: 1,
+    TimeSync: 2,
+    ConfigAck: 3
+  }
+```
+
 ### 2. Event
 
 EdgeAgent has three event for subscribing.
