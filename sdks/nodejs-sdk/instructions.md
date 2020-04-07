@@ -227,7 +227,7 @@ function customerCallback(error, result){
 //do something...
 }
 
-edgeAgent.uploadConfig(actionType.create, edgeConfig, customerCallback);
+edgeAgent.uploadConfig(edgeSDK.constant.actionType.create, edgeConfig, customerCallback);
 ```
 
 Node Config:
