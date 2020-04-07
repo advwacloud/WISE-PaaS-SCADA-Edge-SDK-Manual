@@ -205,7 +205,7 @@ const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
 // set device config
 // set tag config
 
-edgeAgent.uploadConfig(actionType.create, edgeConfig).then(
+edgeAgent.uploadConfig(edgeSDK.constant.actionType.create, edgeConfig).then(
 result => {
     //if upload successfully result return true, and vice versa.
 },
