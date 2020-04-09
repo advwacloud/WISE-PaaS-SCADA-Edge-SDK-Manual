@@ -237,7 +237,7 @@ const nodeConfig = new edgeSDK.NodeConfig();
 
 // this is required property below
 nodeConfig.name = 'Test Node'; 
-nodeConfig .description = 'Test Node';
+nodeConfig.description = 'Test Node';
 
 edgeConfig.node= nodeConfig;
 ```
