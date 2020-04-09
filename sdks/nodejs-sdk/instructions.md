@@ -200,7 +200,7 @@ uploadConfig\(action, edgeConfig\) supports both promise and callback.
 * Promise example
 
 ```js
-const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
+const edgeConfig = new edgeSDK.EdgeConfig();
 // set node condig
 // set device config
 // set tag config
@@ -217,7 +217,7 @@ error => {
 * Callback example
 
 ```js
-const edgeConfig = new edgeSDK.EdgeAgent.EdgeConfig();
+const edgeConfig = new edgeSDK.EdgeConfig();
 // set node condig
 // set device config
 // set tag config
@@ -233,7 +233,7 @@ edgeAgent.uploadConfig(edgeSDK.constant.actionType.create, edgeConfig, customerC
 Node Config:
 
 ```js
-const nodeConfig = new edgeSDK.EdgeAgent.NodeConfig();
+const nodeConfig = new edgeSDK.NodeConfig();
 
 // this is required property below
 nodeConfig.name = 'Test Node'; 
@@ -247,7 +247,7 @@ If you do not need the optional properties, you can skip to set the properties.
 Device Config:
 
 ```js
-const deviceConfig = new edgeSDK.EdgeAgent.DeviceConfig();
+const deviceConfig = new edgeSDK.DeviceConfig();
 
 // these are required properties below
 deviceConfig.id = 'Device1'; 
@@ -264,7 +264,7 @@ If you do not need the optional properties, you can skip to set the properties.
 Analog Tag Config:
 
 ```js
-const analogTagConfig = new edgeSDK.EdgeAgent.AnalogTagConfig();
+const analogTagConfig = new edgeSDK.AnalogTagConfig();
 let anaTagList = [];
 
 analogTagConfig.name = 'ATag1';
@@ -283,7 +283,7 @@ anaTagList.push(analogTagConfig);
 Discrete Tag Config:
 
 ```js
-const discreteTagConfig = new edgeSDK.EdgeAgent.DiscreteTagConfig();
+const discreteTagConfig = new edgeSDK.DiscreteTagConfig();
 let disTagList = []; 
 
 discreteTagConfig.name = 'DTag1';
@@ -304,7 +304,7 @@ disTagList.push(discreteTagConfig);
 Text Tag Config:
 
 ```js
-const textTagConfig = new edgeSDK.EdgeAgent.TextTagConfig();
+const textTagConfig = new edgeSDK.TextTagConfig();
 let tTagList = [];
 
 textTagConfig.name = 'TTag1';
@@ -334,21 +334,21 @@ sendData\(data, \[callback\]\) supports both promise and callback.
 * Promise example
 
 ```js
-const data = new edgeSDK.EdgeAgent.EdgeData();
+const data = new edgeSDK.EdgeData();
 
   for (let i = 1; i <= 2; i++) {
     for (let j = 1; j <= 5; j++) {
-      const ATag = new edgeSDK.EdgeAgent.Tag();
+      const ATag = new edgeSDK.EdgeDataTag();
       ATag.deviceId = 'Device' + i;
       ATag.tagName = 'ATag' + j;
       ATag.value = Math.floor(Math.random() * 100) + 1;
 
-      const DTag = new edgeSDK.EdgeAgent.Tag();
+      const DTag = new edgeSDK.EdgeDataTag();
       DTag.deviceId = 'Device' + i;
       DTag.tagName = 'DTag' + j;
       DTag.value = j % 2;
 
-      const TTag = new edgeSDK.EdgeAgent.Tag();
+      const TTag = new edgeSDK.EdgeDataTag();
       TTag.deviceId = 'Device' + i;
       TTag.tagName = 'TTag' + j;
       TTag.value = 'TEST' + j.toString();
@@ -371,21 +371,21 @@ error => {
 * Callback example
 
 ```js
-const data = new edgeSDK.EdgeAgent.EdgeData();
+const data = new edgeSDK.EdgeData();
 
   for (let i = 1; i <= 2; i++) {
     for (let j = 1; j <= 5; j++) {
-      const ATag = new edgeSDK.EdgeAgent.Tag();
+      const ATag = new edgeSDK.EdgeDataTag();
       ATag.deviceId = 'Device' + i;
       ATag.tagName = 'ATag' + j;
       ATag.value = Math.floor(Math.random() * 100) + 1;
 
-      const DTag = new edgeSDK.EdgeAgent.Tag();
+      const DTag = new edgeSDK.EdgeDataTag();
       DTag.deviceId = 'Device' + i;
       DTag.tagName = 'DTag' + j;
       DTag.value = j % 2;
 
-      const TTag = new edgeSDK.EdgeAgent.Tag();
+      const TTag = new edgeSDK.EdgeDataTag();
       TTag.deviceId = 'Device' + i;
       TTag.tagName = 'TTag' + j;
       TTag.value = 'TEST' + j.toString();
@@ -412,10 +412,10 @@ sendDeviceStatus\(devieStatus, \[callback\]\) supports both promise and callback
 * Promise example
 
 ```js
-const devieStatus = new edgeSDK.EdgeAgent.EdgeDeviceStatus();
+const devieStatus = new edgeSDK.EdgeDeviceStatus();
 
   for (let i = 1; i <= 2; i++) {
-    const device = new edgeSDK.EdgeAgent.DeviceStatus();
+    const device = new edgeSDK.DeviceStatus();
     device.id = 'Device' + i; 
     device.status = 1;// offline = 0, online = 1
     devieStatus.deviceList.push(device);
@@ -434,10 +434,10 @@ error => {
 * Callback example
 
 ```js
-const devieStatus = new edgeSDK.EdgeAgent.EdgeDeviceStatus();
+const devieStatus = new edgeSDK.EdgeDeviceStatus();
 
   for (let i = 1; i <= 2; i++) {
-    const device = new edgeSDK.EdgeAgent.DeviceStatus();
+    const device = new edgeSDK.DeviceStatus();
     device.id = 'Device' + i;
     device.status = 1; // offline = 0, online = 1
     devieStatus.deviceList.push(device);
