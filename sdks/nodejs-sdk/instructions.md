@@ -242,8 +242,6 @@ nodeConfig.description = 'Test Node';
 edgeConfig.node= nodeConfig;
 ```
 
-If you do not need the optional properties, you can skip to set the properties.
-
 Device Config:
 
 ```js
