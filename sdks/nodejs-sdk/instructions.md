@@ -289,12 +289,12 @@ discreteTagConfig.description  = 'DTag1';
 discreteTagConfig.arraySize = 0;
 discreteTagConfig.state0 = '0';
 discreteTagConfig.state1 = '1';
-discreteTagConfig.state2 = 'NotUsed';
-discreteTagConfig.state3 = 'NotUsed';
-discreteTagConfig.state4 = 'NotUsed';
-discreteTagConfig.state5 = 'NotUsed';
-discreteTagConfig.state6 = 'NotUsed';
-discreteTagConfig.state7 = 'NotUsed';
+discreteTagConfig.state2 = '';
+discreteTagConfig.state3 = '';
+discreteTagConfig.state4 = '';
+discreteTagConfig.state5 = '';
+discreteTagConfig.state6 = '';
+discreteTagConfig.state7 = '';
 
 disTagList.push(discreteTagConfig);
 ```
