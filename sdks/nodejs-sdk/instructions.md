@@ -313,6 +313,21 @@ textTagConfig.arraySize = 0;
 tTagList.push(textTagConfig)
 ```
 
+Array Tag Config:
+
+```
+// it can also be type of discrete or text. e.g. arrayTag = new edgeSDK.DiscreteTagConfig()
+const arrayTag = new edgeSDK.AnalogTagConfig();
+arrayTag.name = 'ArrayTag1';
+arrayTag.description = 'ArrayTag1';
+arrayTag.arraySize = 10;
+
+// if you change different type of array tag, you need to add array tag to the correspond tag list.
+// e.g. disTagList.push(arrayTag);
+analogTagList.push(arrayTag);
+
+```
+
 Finally, add tag list to device config and add device to node config:
 
 ```js
