@@ -3,9 +3,9 @@
 ---
 
 * [Environement](https://github.com/advwacloud/WISE-PaaS-SCADA-Edge-SDK-Manual/blob/master/sdks/nodejs-sdk/environement.md)
-* [Instructions](java-sdk/instruction.md)
-* [Sample Code](java-sdk/sample-code.md)
-* [Release Note](java-sdk/release-note.md)
+* [Instructions](https://github.com/advwacloud/WISE-PaaS-SCADA-Edge-SDK-Manual/blob/master/sdks/nodejs-sdk/instructions.md)
+* [Sample Code](https://github.com/advwacloud/WISE-PaaS-SCADA-Edge-SDK-Manual/blob/master/sdks/nodejs-sdk/sample-code.md)
+* [Release Note](https://github.com/advwacloud/WISE-PaaS-SCADA-Edge-SDK-Manual/blob/master/sdks/nodejs-sdk/release-note.md)
 
 
 
