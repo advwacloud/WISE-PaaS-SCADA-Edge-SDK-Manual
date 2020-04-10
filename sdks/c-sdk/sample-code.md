@@ -4,7 +4,7 @@
 
 * GitHub
 
-  * [WISEPaaS.SCADA.C.SDK.Sample](https://github.com/advwacloud/WISEPaaS.SCADA.C.SDK.Sample)
+  * [WISEPaaS.DataHub.Edge.C.SDK.Sample](https://github.com/advwacloud/WISEPaaS.DataHub.Edge.C.SDK.Sample)
 
 
 
