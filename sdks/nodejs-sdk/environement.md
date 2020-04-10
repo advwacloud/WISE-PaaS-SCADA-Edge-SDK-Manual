@@ -11,7 +11,7 @@
 * **Installation**
 
   ```
-  npm install wisepaas-scada-edge-nodejs-sdk
+  npm install wisepaas-datahub-edge-nodejs-sdk
   ```
 
 
