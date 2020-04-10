@@ -431,7 +431,6 @@ AryTag.value = dic;
 data.tagList.push(AryTag);
 
 // discrete array tag
-
 const dic = {};
 dic["0"] = 0;
 dic["1"] = 1;
@@ -444,7 +443,6 @@ AryTag.value = dic;
 data.tagList.push(AryTag);
 
 // text array tag
-
 const dic = {};
 dic["0"] = "zero";
 dic["1"] = "one";
@@ -455,8 +453,6 @@ AryTag.deviceId = 'Device1';
 AryTag.tagName = 'ArrayTextTag1';
 AryTag.value = dic;
 data.tagList.push(AryTag);
-
-
 ```
 
 ### 7. sendDeviceStatus\(devieStatus, \[callback\]\)
