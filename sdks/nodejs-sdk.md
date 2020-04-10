@@ -1,4 +1,4 @@
-# WISE-PaaS Datahub Node.js SDK
+# WISE-PaaS DataHub Node.js SDK
 
 ---
 
