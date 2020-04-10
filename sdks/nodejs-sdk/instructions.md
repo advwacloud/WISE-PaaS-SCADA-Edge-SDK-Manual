@@ -320,7 +320,7 @@ Array Tag Config:
 const arrayTag = new edgeSDK.AnalogTagConfig();
 arrayTag.name = 'ArrayTag1';
 arrayTag.description = 'ArrayTag1';
-arrayTag.arraySize = 10;
+arrayTag.arraySize = 3;
 
 // if you change different type of array tag, you need to add array tag to the correspond tag list.
 // e.g. disTagList.push(arrayTag);
