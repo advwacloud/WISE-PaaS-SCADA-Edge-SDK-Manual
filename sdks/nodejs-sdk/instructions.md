@@ -418,6 +418,8 @@ edgeAgent.sendData(data, customerCallback);
 Send array tag  value to cloud.
 
 ```js
+const data = new edgeSDK.EdgeData();
+
 // analog array tag
 const dic = {};
 dic["0"] = 0.5;
