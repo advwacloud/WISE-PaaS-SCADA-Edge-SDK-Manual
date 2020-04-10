@@ -5,7 +5,7 @@
 * [Environement](/sdks/nodejs-sdk/environement.md)
 * [Instructions](/sdks/nodejs-sdk/instructions.md)
 * [Sample Code](/sdks/nodejs-sdk/sample-code.md)
-* [Release Note](/sdks/java-sdk/release-note.md)
+* [Release Note](/sdks/nodejs-sdk/release-note.md)
 
 
 
