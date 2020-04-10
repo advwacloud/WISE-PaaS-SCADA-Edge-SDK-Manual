@@ -415,6 +415,50 @@ function customerCallback(error, result){
 edgeAgent.sendData(data, customerCallback);
 ```
 
+Send array tag  value to cloud.
+
+```js
+// analog array tag
+const dic = {};
+dic["0"] = 0.5;
+dic["1"] = 1.42;
+dic["2"] = 2.89;
+
+const AryTag = new edgeSDK.EdgeDataTag();
+AryTag.deviceId = 'Device1';
+AryTag.tagName = 'ArrayAnalogTag1';
+AryTag.value = dic;
+data.tagList.push(AryTag);
+
+// discrete array tag
+
+const dic = {};
+dic["0"] = 0;
+dic["1"] = 1;
+dic["2"] = 2;
+
+const AryTag = new edgeSDK.EdgeDataTag();
+AryTag.deviceId = 'Device1';
+AryTag.tagName = 'ArrayDiscreteTag1';
+AryTag.value = dic;
+data.tagList.push(AryTag);
+
+// text array tag
+
+const dic = {};
+dic["0"] = "zero";
+dic["1"] = "one";
+dic["2"] = "two";
+
+const AryTag = new edgeSDK.EdgeDataTag();
+AryTag.deviceId = 'Device1';
+AryTag.tagName = 'ArrayTextTag1';
+AryTag.value = dic;
+data.tagList.push(AryTag);
+
+
+```
+
 ### 7. sendDeviceStatus\(devieStatus, \[callback\]\)
 
 Send Device status to cloud when status changed.
