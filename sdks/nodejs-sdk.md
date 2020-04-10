@@ -1,4 +1,4 @@
-# WISE-PaaS SCADA Node SDK
+# WISE-PaaS Datahub Node.js SDK
 
 ---
 
