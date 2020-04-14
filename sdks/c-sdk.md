@@ -1,4 +1,4 @@
-# WISE-PaaS SCADA C SDK
+# WISE-PaaS DataHub Edge C SDK
 
 ---
 
