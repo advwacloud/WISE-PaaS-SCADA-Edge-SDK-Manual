@@ -187,7 +187,7 @@ edgeAgent.disconnect(costumerCallback);
 
 ### 5. uploadConfig\(action, edgeConfig, \[callback\]\)
 
-Upload Node/Device/Tag Config with Action Type \(Create/~~Update/Delete~~\).
+Upload Node/Device/Tag Config with Action Type \(Create/Update/Delete/Delsert\).
 
 uploadConfig\(action, edgeConfig\) supports both promise and callback.
 
