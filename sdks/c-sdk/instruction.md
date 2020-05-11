@@ -222,7 +222,6 @@ config.Name = "YOUR_NODE_NAME";
 
 ```C
 PTDEVICE_CONFIG_STRUCT device = malloc(sizeof(struct DEVICE_CONFIG_STRUCT));
-
 device.Name = "YOUR_DEVICE_NAME";
 device.Type = "YOUR_DEVICE_TYPE";
 device.Description = "YOUR_DEVICE_DESCRIPTION";
@@ -231,14 +230,21 @@ config.DeviceList = device;
 ```
 
 ##### 7.3.1 Set Analog Tag Config:
+######  Note: 
+The configuration of analog supports Deadband setting. The Deadband is applied only if the trigger includes sending value changes and the Deadband is set appropriately. (It's set to 0(%) by default)
+The SpanHigh and SpanLow defines the conditions scop under which data should be sent to IoTHub as below:
+
+$$(Absolute Value Of (Last Cached Value - Current Value)/(SpanHigh - SpanLow) > Deadband/100$$
+            
+For example, if the Deadband set to 1(%). SpanHigh is 1000 and SpanLow is 0. The data is sent from 0 with an increment value of 1 every 1 second. Only these values: 0,10,20.... will be sent to IoTHub.
 
 ```C
 PTANALOG_TAG_CONFIG analogTag = malloc(sizeof(struct ANALOG_TAG_CONFIG));
-
 analogTag.Name = "TestName";    
 analogTag.Description = "description";          
 analogTag.ReadOnly = false;
 analogTag.ArraySize = 0;  // Ref chapter 8.4
+analogTag.Deadband = 1;   // Specifies the conditions under which a data change should be sent
 analogTag.SpanHigh = 1000;
 analogTag.SpanLow = 0;
 analogTag.EngineerUnit = "enuit";
@@ -250,7 +256,6 @@ analogTag.FractionDisplayFormat = 2;
 
 ```C
 PTDISCRETE_TAG_CONFIG discreteTag = malloc(sizeof(struct DISCRETE_TAG_CONFIG));
-
 discreteTag.NAme = "TestName"
 discreteTag.Description = "description";
 discreteTag.ReadOnly = false;
