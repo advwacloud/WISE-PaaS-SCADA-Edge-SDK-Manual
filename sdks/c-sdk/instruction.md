@@ -232,11 +232,13 @@ config.DeviceList = device;
 ##### 7.3.1 Set Analog Tag Config:
 ######  Note: 
 The configuration of analog supports Deadband setting. The Deadband is applied only if the trigger includes sending value changes and the Deadband is set appropriately. (It's set to 0(%) by default)
-The SpanHigh and SpanLow defines the conditions scop under which data should be sent to IoTHub as below:
+The SpanHigh and SpanLow defines the conditions scop under which data should be sent to IoTHub as follows:
 
-$$(Absolute Value Of (Last Cached Value - Current Value)/(SpanHigh - SpanLow) > Deadband/100$$
-            
-For example, if the Deadband set to 1(%). SpanHigh is 1000 and SpanLow is 0. The data is sent from 0 with an increment value of 1 every 1 second. Only these values: 0,10,20.... will be sent to IoTHub.
+***Sending Data to IoTHub if***
+***(Absolute Value Of (Last Cached Value - Current Value)/(SpanHigh - SpanLow) > Deadband/100***
+
+The last cached value is defined as the last value pushed to the IoTHub.
+For example, if the Deadband set to 1(%). SpanHigh is 1000 and SpanLow is 0. When the data changes more than 10, this data will be allowed to send to IoTHub.
 
 ```C
 PTANALOG_TAG_CONFIG analogTag = malloc(sizeof(struct ANALOG_TAG_CONFIG));
